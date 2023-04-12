@@ -1,7 +1,14 @@
 import Tasks from './components/tasks'
+import Section from './components/context/section'
+
 
 export default function App() {
   return (
-    <Tasks/>
+    <>
+    <Section level={10}>
+      <Tasks/>
+    </Section>
+    </>
+
   )
 }
