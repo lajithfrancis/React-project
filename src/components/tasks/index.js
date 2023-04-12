@@ -2,6 +2,7 @@ import { useReducer } from 'react';
 import AddTask from './addTask.js';
 import TaskList from './taskList.js';
 import tasksReducer from './taskReducer.js';
+import './styles.css'
 
 export default function TaskApp() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks)
@@ -44,7 +45,7 @@ export default function TaskApp() {
 
 let nextId = 3;
 const initialTasks = [
-  {id: 0, text: 'Visit Kafka Museum', done: true},
-  {id: 1, text: 'Watch a puppet show', done: false},
-  {id: 2, text: 'Lennon Wall pic', done: false},
+  {id: 0, text: 'Task 1', done: true},
+  {id: 1, text: 'Task 2', done: false},
+  {id: 2, text: 'Task 3', done: false},
 ];

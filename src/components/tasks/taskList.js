@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+import './styles.css'
+import { Button, Checkbox, TextField } from '@mui/material';
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
   return (
     <ul>
@@ -18,40 +19,60 @@ function Task({task, onChange, onDelete}) {
   if (isEditing) {
     taskContent = (
       <>
-        <input
-          value={task.text}
-          onChange={(e) => {
-            onChange({
-              ...task,
-              text: e.target.value,
-            });
-          }}
+      <TextField id="outlined-basic" label="Task" variant="outlined" placeholder='Edit task'
+      value={task.text}
+      onChange={(e) => {
+        onChange({
+          ...task,
+          text: e.target.value,
+        });
+      }}
         />
-        <button onClick={() => setIsEditing(false)}>Save</button>
+        <Button variant="contained" color="success"
+          onClick={() => setIsEditing(false)}
+        >
+          Save
+        </Button>
       </>
     );
   } else {
     taskContent = (
       <>
-        {task.text}
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+      <TextField id="outlined-basic" label="" variant="outlined" placeholder='Edit task'
+      value={task.text}
+      onChange={(e) => {
+        onChange({
+          ...task,
+          text: e.target.value,
+        });
+      }}
+      />
+        <Button variant="contained" color="secondary"
+          onClick={() => setIsEditing(true)}
+        >
+          Edit
+        </Button>
       </>
     );
   }
   return (
     <label>
-      <input
-        type="checkbox"
-        checked={task.done}
-        onChange={(e) => {
-          onChange({
-            ...task,
-            done: e.target.checked,
-          });
-        }}
+      <Checkbox 
+      type="checkbox"
+      checked={task.done}
+      onChange={(e) => {
+        onChange({
+          ...task,
+          done: e.target.checked,
+        });
+      }}
       />
       {taskContent}
-      <button onClick={() => onDelete(task.id)}>Delete</button>
+      <Button variant="contained" color="error"
+        onClick={() => onDelete(task.id)}
+      >
+        Delete
+      </Button>
     </label>
   );
 }
