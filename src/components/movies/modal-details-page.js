@@ -28,9 +28,7 @@ export default function ModalArea({ data, isOpen, setOpen }) {
           <p id="parent-modal-description">
             {data.Plot}
           </p>
-          <img src={data.Poster} alt="poster">
-
-          </img>
+          <img src={data.Poster} alt="poster"/>
         </Box>
       </Modal>
     );
