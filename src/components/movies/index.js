@@ -1,10 +1,23 @@
 import { Grid, ListItem } from "@mui/material";
 import ActionAreaCard from "./movie-card";
 import movieSearchList from "../../data/movie-search-list.json";
-
+import axios from 'axios';
+import { useEffect, useState } from "react";
 
 
 export default function MoviePage() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then(response => {
+        setPosts(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+  // console.log("posts", posts)
   return (
     <>
       <h1>Movie list</h1>
