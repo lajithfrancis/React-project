@@ -8,10 +8,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import ModalArea from './modal-details-page';
+import CircularLoader from '../../helpers/loader';
 
 
 export default function ActionAreaCard({ data }) {
   const [open, setOpen] = useState(false);
+  const [isLoading, setLoaderStatus] = useState(false);
   const [movie, setMovie] = useState('')
   const [movieData, setMovieData] = useState([]);
 
@@ -22,6 +24,7 @@ export default function ActionAreaCard({ data }) {
 
   useEffect(() => {
     if (open && movie.imdbID) {
+      setLoaderStatus(true)
       axios.get(`https://www.omdbapi.com/?apikey=e7570bb3&i=${movie.imdbID}`)
       .then(response => {
         setMovieData(response.data);
@@ -30,12 +33,15 @@ export default function ActionAreaCard({ data }) {
         console.error(error);
       });
     }
+    setLoaderStatus(false)
   }, [open]);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onMouseDown={(e) => handleClickAction(data)}>
-        { open? <ModalArea data={movieData} isOpen={open} setOpen={setOpen}/> : null}
+        {open ? <ModalArea data={movieData} isOpen={open} setOpen={setOpen}>
+        {isLoading ? <CircularLoader /> : null}
+        </ModalArea> : null}
         <CardMedia
           component="img"
           height="300"
