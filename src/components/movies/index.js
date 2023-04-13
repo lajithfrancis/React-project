@@ -1,5 +1,8 @@
 import { Grid, ListItem } from "@mui/material";
 import ActionAreaCard from "./movie-card";
+import movieSearchList from "../../data/movie-search-list.json";
+
+
 
 export default function MoviePage() {
   return (
@@ -9,9 +12,9 @@ export default function MoviePage() {
         direction="row"
         justifyContent="flex-start"
         alignItems="flex-start">
-        {[1, 2, 3, 4, 5, 6, 6].map(a => (
-          <Grid key={a} item xs={4} >
-              <ActionAreaCard key={a} />
+        {movieSearchList.Search.map(a => (
+          <Grid key={a.imdbID} item xs={4} >
+              <ActionAreaCard key={a.imdbID} data={a}  />
           </Grid>
         )
         )}

@@ -5,22 +5,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export default function ActionAreaCard() {
+export default function ActionAreaCard({ data }) {
   return (
-    <Card sx={{ maxWidth: 345, maxHeight: 345 }}>
+    <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/image.jpg"
+          height="300"
+          image={data.Poster}
           alt="movie image"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Movie title
+            {data.Title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          A film – also called a movie, motion picture, moving picture, picture, photoplay or (slang) flick – is a work of visual art that simulates experiences and otherwise communicates ideas, stories, perceptions, feelings, beauty, or atmosphere through the use of moving images.
+            {data.Year}
           </Typography>
         </CardContent>
       </CardActionArea>
