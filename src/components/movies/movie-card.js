@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import ModalArea from './modal-details-page';
-import CircularLoader from '../../helpers/loader';
+// import CircularLoader from '../../helpers/loader';
 import SimpleBackdrop from '../../helpers/backdrop';
 
 
