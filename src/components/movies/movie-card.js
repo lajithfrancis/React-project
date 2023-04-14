@@ -9,6 +9,7 @@ import axios from 'axios';
 
 import ModalArea from './modal-details-page';
 import CircularLoader from '../../helpers/loader';
+import SimpleBackdrop from '../../helpers/backdrop';
 
 
 export default function ActionAreaCard({ data }) {
@@ -19,28 +20,30 @@ export default function ActionAreaCard({ data }) {
 
   const handleClickAction = (clickedMovie) => {
     setOpen(true);
-    setMovie(clickedMovie)
+    setMovie(clickedMovie);
   }
 
   useEffect(() => {
     if (open && movie.imdbID) {
       setLoaderStatus(true)
       axios.get(`https://www.omdbapi.com/?apikey=e7570bb3&i=${movie.imdbID}`)
-      .then(response => {
-        setMovieData(response.data);
+      .then(({data}) => {
+        if (data.Title) {
+          setMovieData(data);
+          setLoaderStatus(false)
+        }
       })
       .catch(error => {
         console.error(error);
-      });
+      })
     }
-    setLoaderStatus(false)
-  }, [open]);
+  }, [open, movie]);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onMouseDown={(e) => handleClickAction(data)}>
         {open ? <ModalArea data={movieData} isOpen={open} setOpen={setOpen}>
-        {isLoading ? <CircularLoader /> : null}
+        {isLoading ? <SimpleBackdrop isOpen={open} /> : null}
         </ModalArea> : null}
         <CardMedia
           component="img"
