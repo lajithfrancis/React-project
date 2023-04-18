@@ -43,7 +43,7 @@ export default function ActionAreaCard({ data }) {
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onMouseDown={(e) => handleClickAction(data)}>
         {open ? <ModalArea data={movieData} isOpen={open} setOpen={setOpen}>
-        {isLoading ? <SimpleBackdrop isOpen={open} /> : null}
+        {/* {isLoading ? <SimpleBackdrop isOpen={open} /> : null} */}
         </ModalArea> : null}
         <CardMedia
           component="img"
