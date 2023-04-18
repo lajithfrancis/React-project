@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -52,6 +55,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBar({ children }) {
+    const [search, setSearch] = useState('');
+    const [movies, setMovies] = useState([]);
+    const handleOnChange = async (e) => {
+        setSearch(e.target.value)
+    }
+    const searchMovies = async (search) => {
+        const searchResult = await axios.get(`https://www.omdbapi.com/?apikey=e7570bb3&t=${search}`)
+        if (searchResult.data.Response !== 'False') {
+            setMovies(searchResult.data);
+            console.log('got results!!!')
+        }
+    }
+    useEffect(() => {
+        searchMovies(search)
+    }, [search]);
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -81,6 +99,7 @@ export default function SearchBar({ children }) {
                             <StyledInputBase
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}
+                                onChange={async (e) => await handleOnChange(e)}
                             />
                         </Search>
                     </Toolbar>
