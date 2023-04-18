@@ -55,7 +55,7 @@ export default function SearchBar({ children }) {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
+                <AppBar position="static" sx={{ bgcolor: 'black' }}>
                     <Toolbar>
                         <IconButton
                             size="large"
