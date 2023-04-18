@@ -1,4 +1,4 @@
-import { Box, Modal } from "@mui/material";
+import { Box, Modal, Skeleton } from "@mui/material";
 
 const style = {
   position: 'absolute',
@@ -26,11 +26,15 @@ export default function ModalArea({ data, isOpen, setOpen, children }) {
       >
         <Box sx={{ ...style }}>
           {children}
-          <h2 id="parent-modal-title">{data.Title}</h2>
+          <h2 id="parent-modal-title">{!data.Title ? <Skeleton /> : data.Title}</h2>
           <p id="parent-modal-description">
-            {data.Plot}
+            {!data.Plot ? <><Skeleton /><Skeleton /></> : data.Plot}
           </p>
-          <img src={data.Poster} alt="poster" />
+          {!data.Poster ?
+            <Skeleton variant="rectangular" width={350} height={450} /> :
+            <img src={data.Poster} alt="poster" />
+          }
+
         </Box>
       </Modal>
     </>
