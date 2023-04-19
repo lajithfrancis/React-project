@@ -10,6 +10,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useMovieContext, useMovieDispatchContext } from '../context/movie-context';
+import movieSearchList from '../../data/movie-search-list.json';
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -56,15 +59,24 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchBar({ children }) {
     const [search, setSearch] = useState('');
-    const [movies, setMovies] = useState([]);
+    const dispatch = useMovieDispatchContext();
+
     const handleOnChange = async (e) => {
         setSearch(e.target.value)
     }
     const searchMovies = async (search) => {
         const searchResult = await axios.get(`https://www.omdbapi.com/?apikey=e7570bb3&t=${search}`)
         if (searchResult.data.Response !== 'False') {
-            setMovies(searchResult.data);
-            console.log('got results!!!')
+            dispatch({
+                type: 'replace',
+                movie: searchResult.data
+            })
+            console.log('got results!!!', searchResult.data)
+        } else {
+            dispatch({
+                type: 'initiate',
+                movies: movieSearchList.Search
+            })
         }
     }
     useEffect(() => {

@@ -8,9 +8,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import ModalArea from './modal-details-page';
-// import CircularLoader from '../../helpers/loader';
-import SimpleBackdrop from '../../helpers/backdrop';
-
 
 export default function ActionAreaCard({ data }) {
   const [open, setOpen] = useState(false);
@@ -43,7 +40,6 @@ export default function ActionAreaCard({ data }) {
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onMouseDown={(e) => handleClickAction(data)}>
         {open ? <ModalArea data={movieData} isOpen={open} setOpen={setOpen}>
-        {/* {isLoading ? <SimpleBackdrop isOpen={open} /> : null} */}
         </ModalArea> : null}
         <CardMedia
           component="img"
