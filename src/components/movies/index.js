@@ -8,9 +8,6 @@ import { useEffect } from "react";
 
 function MoviesPage() {
   const movies = useMovieContext();
-  useEffect(() => {
-    console.log('movies context', movies);
-  }, [movies]);
   return (
     <>
       <SearchBar>
