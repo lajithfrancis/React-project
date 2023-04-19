@@ -64,24 +64,25 @@ export default function SearchBar({ children }) {
     const handleOnChange = async (e) => {
         setSearch(e.target.value)
     }
-    const searchMovies = async (search) => {
-        const searchResult = await axios.get(`https://www.omdbapi.com/?apikey=e7570bb3&t=${search}`)
-        if (searchResult.data.Response !== 'False') {
-            dispatch({
-                type: 'replace',
-                movie: searchResult.data
-            })
-            console.log('got results!!!', searchResult.data)
-        } else {
-            dispatch({
-                type: 'initiate',
-                movies: movieSearchList.Search
-            })
-        }
-    }
+
     useEffect(() => {
+        const searchMovies = async (search) => {
+            const searchResult = await axios.get(`https://www.omdbapi.com/?apikey=e7570bb3&t=${search}`)
+            if (searchResult.data.Response !== 'False') {
+                dispatch({
+                    type: 'replace',
+                    movie: searchResult.data
+                })
+                console.log('got results!!!', searchResult.data)
+            } else {
+                dispatch({
+                    type: 'initiate',
+                    movies: movieSearchList.Search
+                })
+            }
+        }
         searchMovies(search)
-    }, [search]);
+    }, [search, dispatch]);
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
