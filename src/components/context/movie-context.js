@@ -10,13 +10,13 @@ export const MovieProvider = ({children}) => {
   const [movies, dispatch] = useReducer(moviesReducer, movieSearchList.Search)
 
     return (
-        <MovieContext.Provider value={movies}>
-            <MovieDispatchContext.Provider value={dispatch}>
+        <MovieContext.Provider value={{movies, dispatch}}>
+            {/* <MovieDispatchContext.Provider value={dispatch}> */}
             {children}
-            </MovieDispatchContext.Provider>
+            {/* </MovieDispatchContext.Provider> */}
         </MovieContext.Provider>
     )
 }
 
 export const useMovieContext = () => useContext(MovieContext)
-export const useMovieDispatchContext = () => useContext(MovieDispatchContext)
+// export const useMovieDispatchContext = () => useContext(MovieDispatchContext)

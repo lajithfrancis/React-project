@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 
 function MoviesPage() {
-  const movies = useMovieContext();
+  const {movies} = useMovieContext();
   return (
     <>
       <SearchBar>

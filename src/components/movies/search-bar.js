@@ -59,7 +59,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchBar({ children }) {
     const [search, setSearch] = useState('');
-    const dispatch = useMovieDispatchContext();
+    // const dispatch = useMovieDispatchContext();
+    const {dispatch} = useMovieContext();
 
     const handleOnChange = async (e) => {
         setSearch(e.target.value)
