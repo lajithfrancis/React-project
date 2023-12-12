@@ -43,9 +43,24 @@ export default function TaskApp() {
     <>
       <div style={{ display: 'flex' }}>
         {SideBar()}
-        <div style={{ display: 'grid', gap: '5rem', width: '100%' }}>
+        <div
+          style={{
+            display: 'grid',
+            gap: '5rem',
+            width: '100%',
+            height: '50px',
+          }}
+        >
           {NavBar()}
-          <div className='container' style={{ position: 'relative' }}>
+          <div
+            className=''
+            style={{
+              position: 'relative',
+              display: 'grid',
+              width: '75%',
+              left: '1rem',
+            }}
+          >
             {/* <h1>TODO list</h1> */}
             <AddTask onAddTask={handleAddTask} />
             <TaskList

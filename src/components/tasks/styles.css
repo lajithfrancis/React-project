@@ -24,6 +24,10 @@
   grid-template-columns: auto auto auto auto;
 }
 
+#task-u-list > li > div > div {
+  width: 100%
+}
+
 .input {
   width: 50%
 }

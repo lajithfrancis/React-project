@@ -8,13 +8,13 @@ export default function AddTask({onAddTask}) {
       <TextField
         id='standard-basic'
         label='Add'
-        variant='standard'
+        variant='filled'
         placeholder='Add task'
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
       <Button
-        variant='outlined'
+        variant='contained'
         onClick={() => {
           setText('');
           onAddTask(text);
