@@ -11,7 +11,7 @@ export default function Cards() {
           <div class="container px-4 py-5" id="featured-3">
               <h2 class="pb-2 border-bottom">My Projects</h2>
               <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                  <div class="feature col">
+                  <div class="feature col movie-card">
                       <h3 class="fs-2 text-body-emphasis">ToDo</h3>
                       <p>Daily Todo Application for everyone!</p>
                       <button
@@ -25,7 +25,7 @@ export default function Cards() {
                           Go
                       </button>
                   </div>
-                  <div class="feature col">
+                  <div class="feature col movie-card">
                       <h3 class="fs-2 text-body-emphasis">MOViE</h3>
                       <p>
                           Paragraph of text beneath the heading to explain the
@@ -43,7 +43,7 @@ export default function Cards() {
                           Go
                       </button>
                   </div>
-                  <div class="feature col">
+                  <div class="feature col movie-card">
                       <h3 class="fs-2 text-body-emphasis">Coming soon!</h3>
                       <p>
                           Paragraph of text beneath the heading to explain the

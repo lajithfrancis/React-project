@@ -3,6 +3,11 @@
   margin: 0 -5px;
 }
 
+.movie-card {
+  display: grid;
+  align-content: space-between;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
