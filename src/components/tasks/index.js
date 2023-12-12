@@ -40,17 +40,14 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>TODO list</h1>
-      <AddTask onAddTask={handleAddTask} />
-      <TaskList
-        tasks={tasks}
-        onChangeTask={handleChangeTask}
-        onDeleteTask={handleDeleteTask}
-      />
-      <div>
-        <button onClick={handleClick} type="button">
-          movies
-        </button>
+      <div className='container' style={{ position: 'relative' }}>
+        <h1>TODO list</h1>
+        <AddTask onAddTask={handleAddTask} />
+        <TaskList
+          tasks={tasks}
+          onChangeTask={handleChangeTask}
+          onDeleteTask={handleDeleteTask}
+        />
       </div>
     </>
   );
