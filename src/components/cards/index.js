@@ -7,7 +7,10 @@ export default function Cards() {
     navigate(`/${page}`);
   };
   return (
-    <div className='row'>
+    <div
+      className='row'
+      style={{ display: 'flex', justifyContent: 'space-evenly' }}
+    >
       <div className='column'>
         <div className='card'>
           <h3>ToDo App</h3>
