@@ -59,9 +59,9 @@ function Task({ task, onChange, onDelete }) {
     );
   }
   return (
-    <label>
+    <div style={{ display: 'flex', gap: '1rem' }}>
       <Checkbox
-        type="checkbox"
+        type='checkbox'
         checked={task.done}
         onChange={(e) => {
           onChange({
@@ -71,11 +71,13 @@ function Task({ task, onChange, onDelete }) {
         }}
       />
       {taskContent}
-      <Button variant="contained" color="error"
+      <Button
+        variant='contained'
+        color='error'
         onClick={() => onDelete(task.id)}
       >
         Delete
       </Button>
-    </label>
+    </div>
   );
 }
