@@ -1,17 +1,25 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import AddTask from './addTask.js';
 import TaskList from './taskList.js';
 import tasksReducer from './taskReducer.js';
-import './styles.css'
-import { useNavigate } from "react-router-dom";
+import './styles.css';
+import { useNavigate } from 'react-router-dom';
 import SideBar from './sidebar.js';
 import NavBar from './navbar.js';
 
 export default function TaskApp() {
   const navigate = useNavigate();
 
-  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
+  const [tasksData, dispatch] = useReducer(tasksReducer, initialTasks);
+  const [tasks, setTasks] = useState(tasksData);
 
+  useEffect(() => {
+    setTasks((prev) => {
+      console.log('prev: ', prev);
+      console.log('tasksData: ', tasksData);
+      return tasksData;
+    });
+  }, [tasksData]);
   function handleAddTask(text) {
     dispatch({
       type: 'added',
@@ -35,14 +43,20 @@ export default function TaskApp() {
     });
   }
 
-  const handleClick = () => {
-    navigate('/movies');
+  const filterTasks = (tab) => {
+    if (tab === 'All') {
+      setTasks(tasksData);
+    } else if (tab === 'Completed') {
+      setTasks(tasksData.filter((task) => task.done));
+    } else if (tab === 'Pending') {
+      setTasks(tasksData.filter((task) => !task.done));
+    }
   };
 
   return (
     <>
       <div style={{ display: 'flex' }}>
-        {SideBar()}
+        {SideBar({ initialTasks, filterTasks })}
         <div
           style={{
             display: 'grid',
@@ -75,11 +89,11 @@ export default function TaskApp() {
   );
 }
 
-let nextId = 3;
+let nextId = 5;
 const initialTasks = [
-  { id: 0, text: 'Task 1', done: true },
-  { id: 1, text: 'Task 2', done: false },
-  { id: 2, text: 'Task 3', done: false },
-  { id: 3, text: 'Task 4', done: false },
-  { id: 4, text: 'Task 5', done: false },
+  { id: 0, text: 'Finish sales report', done: true },
+  { id: 1, text: 'Weekly All Hands', done: false },
+  { id: 2, text: 'Out of office', done: false },
+  { id: 3, text: 'Enjoy movie', done: false },
+  { id: 4, text: 'Take a nap', done: true },
 ];
