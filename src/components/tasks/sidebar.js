@@ -1,5 +1,10 @@
+import { useState } from 'react';
+
 export default function SideBar({ filterTasks }) {
+  const [tab, setTab] = useState('All');
   function handleOnClick(e, buttonName) {
+    console.log('event:', e);
+    setTab(buttonName);
     filterTasks(buttonName);
   }
   return (
@@ -18,8 +23,9 @@ export default function SideBar({ filterTasks }) {
         <ul className='nav nav-pills flex-column mb-auto'>
           <li className='nav-item'>
             <a
+              key='All'
               href='#'
-              className='nav-link active'
+              className={`nav-link ${tab === 'All' ? 'active' : 'text-white'}`}
               aria-current='page'
               onClick={(e) => handleOnClick(e, 'All')}
             >
@@ -28,8 +34,11 @@ export default function SideBar({ filterTasks }) {
           </li>
           <li>
             <a
+              key='Completed'
               href='#'
-              className='nav-link text-white'
+              className={`nav-link ${
+                tab === 'Completed' ? 'active' : 'text-white'
+              }`}
               onClick={(e) => handleOnClick(e, 'Completed')}
             >
               Completed Tasks
@@ -37,20 +46,33 @@ export default function SideBar({ filterTasks }) {
           </li>
           <li>
             <a
+              key='Pending'
               href='#'
-              className='nav-link text-white'
+              className={`nav-link ${
+                tab === 'Pending' ? 'active' : 'text-white'
+              }`}
               onClick={(e) => handleOnClick(e, 'Pending')}
             >
               Pending tasks
             </a>
           </li>
           <li>
-            <a href='#' className='nav-link text-white'>
+            <a
+              href='#'
+              className={`nav-link ${
+                tab === 'Upcoming' ? 'active' : 'text-white'
+              }`}
+            >
               Upcoming
             </a>
           </li>
           <li>
-            <a href='#' className='nav-link text-white'>
+            <a
+              href='#'
+              className={`nav-link ${
+                tab === 'Others' ? 'active' : 'text-white'
+              }`}
+            >
               others
             </a>
           </li>
