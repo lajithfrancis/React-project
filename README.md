@@ -6,7 +6,7 @@ My Application overview page:
   
 **Todo Project**
 
-![ToDo App](/public/ToDo-Application-page.png "ToDo")
+![ToDo App](/public/ToDo-Application.png "ToDo")
 
 
 **Movies App Project**
