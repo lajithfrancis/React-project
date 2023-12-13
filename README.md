@@ -1,17 +1,17 @@
 # My sample projects
 My Application overview page:
 
-![Overview ](file://public/Overview-page.png "Landing page")
+![Overview ](/public/Overview-page.png "Landing page")
 
   
 **Todo Project**
 
-![ToDo App](file://public/ToDo-Application-page.png "ToDo")
+![ToDo App](/public/ToDo-Application-page.png "ToDo")
 
 
 **Movies App Project**
 
-![Movie App](file://public/Movies-Application.png "MOViE")
+![Movie App](/public/Movies-Application.png "MOViE")
 
 
 ## Available Scripts
