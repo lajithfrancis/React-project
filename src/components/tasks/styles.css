@@ -18,7 +18,15 @@
     width: 100%;
   }
 }
-
+#add-task > div {
+  flex: 4
+}
+#add-task > button {
+  flex: 1
+}
+/* #task-delete-button > div {
+  flex: 1
+} */
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;

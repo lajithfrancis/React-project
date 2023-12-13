@@ -5,23 +5,33 @@ export default function AddTask({onAddTask}) {
   const [text, setText] = useState('');
   return (
     <>
-      <TextField
-        id='standard-basic'
-        label='Add'
-        variant='filled'
-        placeholder='Add task'
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <Button
-        variant='contained'
-        onClick={() => {
-          setText('');
-          onAddTask(text);
+      <div
+        id='add-task'
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          paddingBottom: '1rem',
+          width: '100%',
         }}
       >
-        Add
-      </Button>
+        <TextField
+          id='standard-basic'
+          label='New Task'
+          variant='filled'
+          placeholder='Type here...'
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <Button
+          variant='contained'
+          onClick={() => {
+            setText('');
+            onAddTask(text);
+          }}
+        >
+          Add
+        </Button>
+      </div>
     </>
   );
 }
