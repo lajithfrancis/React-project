@@ -6,7 +6,15 @@ export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
     <div className='list-group'>
       <>
         {tasks.map((task) => (
-          <div key={task.id}>
+          <div
+            key={task.id}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid #ced4da',
+              borderRadius: '5px',
+            }}
+          >
             {taskRow({ task, onChange: onChangeTask, onDelete: onDeleteTask })}
           </div>
         ))}
@@ -22,7 +30,10 @@ function taskRow({ task, onChange, onDelete }) {
   }
   return (
     <>
-      <label className='list-group-item d-flex gap-3'>
+      <label
+        className='list-group-item d-flex gap-3'
+        style={{ width: '100%', borderColor: 'white' }}
+      >
         <input
           className='form-check-input flex-shrink-0'
           type='checkbox'
@@ -35,12 +46,21 @@ function taskRow({ task, onChange, onDelete }) {
           <strong>{task.text}</strong>
           <small className='d-block text-body-secondary'>
             <svg className='bi me-1' width='1em' height='1em'>
-              {/* <use xlink:href='#calendar-event'></use> */}
+              <use href='#calendar-event'></use>
             </svg>
             1:00–2:00pm
           </small>
         </span>
       </label>
+      <div style={{ margin: '1rem' }}>
+        <Button
+          variant='contained'
+          color='error'
+          // onClick={() => setIsEditing(false)}
+        >
+          Delete
+        </Button>
+      </div>
     </>
   );
 }
