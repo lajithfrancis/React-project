@@ -15,8 +15,6 @@ export default function TaskApp() {
 
   useEffect(() => {
     setTasks((prev) => {
-      console.log('prev: ', prev);
-      console.log('tasksData: ', tasksData);
       return tasksData;
     });
   }, [tasksData]);
@@ -56,7 +54,7 @@ export default function TaskApp() {
   return (
     <>
       <div style={{ display: 'flex' }}>
-        {SideBar({ initialTasks, filterTasks })}
+        {SideBar({ filterTasks })}
         <div
           style={{
             display: 'grid',
@@ -67,7 +65,6 @@ export default function TaskApp() {
         >
           {NavBar()}
           <div
-            className=''
             style={{
               position: 'relative',
               display: 'grid',

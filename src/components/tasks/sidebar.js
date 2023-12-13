@@ -1,4 +1,4 @@
-export default function SideBar({ tasks, filterTasks }) {
+export default function SideBar({ filterTasks }) {
   function handleOnClick(e, buttonName) {
     filterTasks(buttonName);
   }
