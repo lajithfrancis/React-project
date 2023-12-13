@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './styles.css'
-import { Button, Checkbox, TextField } from '@mui/material';
+import { Button, Checkbox, IconButton, TextField } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
   return (
     <div className='list-group'>
@@ -25,6 +26,9 @@ export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
 
 function taskRow({ task, onChange, onDelete }) {
   // const [isEditing, setIsEditing] = useState(false);
+  function handleDelete() {
+    onDelete(task.id);
+  }
   function handleOnClick(e, task) {
     onChange({ ...task, done: !task.done });
   }
@@ -40,7 +44,7 @@ function taskRow({ task, onChange, onDelete }) {
           value=''
           defaultChecked={task.done}
           style={{ fontSize: '1.375em' }}
-          onChange={(e) => handleOnClick(e, task)}
+          onClick={(e) => handleOnClick(e, task)}
         />
         <span className='pt-1 form-checked-content'>
           <strong>{task.text}</strong>
@@ -53,13 +57,9 @@ function taskRow({ task, onChange, onDelete }) {
         </span>
       </label>
       <div style={{ margin: '1rem' }}>
-        <Button
-          variant='contained'
-          color='error'
-          // onClick={() => setIsEditing(false)}
-        >
-          Delete
-        </Button>
+        <IconButton>
+          <DeleteIcon onClick={handleDelete} />
+        </IconButton>
       </div>
     </>
   );
