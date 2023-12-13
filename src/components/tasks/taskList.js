@@ -48,12 +48,6 @@ function taskRow({ task, onChange, onDelete }) {
         />
         <span className='pt-1 form-checked-content'>
           <strong>{task.text}</strong>
-          <small className='d-block text-body-secondary'>
-            <svg className='bi me-1' width='1em' height='1em'>
-              <use href='#calendar-event'></use>
-            </svg>
-            1:00–2:00pm
-          </small>
         </span>
       </label>
       <div style={{ margin: '1rem' }}>
