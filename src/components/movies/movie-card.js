@@ -39,19 +39,29 @@ export default function ActionAreaCard({ data }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onMouseDown={(e) => handleClickAction(data)}>
-        {open ? <ModalArea data={movieData} isOpen={open} setOpen={setOpen}>
-        </ModalArea> : null}
+        {open ? (
+          <ModalArea
+            data={movieData}
+            isOpen={open}
+            setOpen={setOpen}
+          ></ModalArea>
+        ) : null}
         <CardMedia
-          component="img"
-          height="300"
+          component='img'
+          height='300'
           image={data.Poster}
-          alt="movie image"
+          alt='movie image'
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant='h5'
+            component='div'
+            style={{ height: 60, overflow: 'auto' }}
+          >
             {data.Title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant='body2' color='text.secondary'>
             {data.Year}
           </Typography>
         </CardContent>
