@@ -36,7 +36,7 @@ function taskRow({ task, onChange, onDelete }) {
     <>
       <label
         className='list-group-item d-flex gap-3'
-        style={{ width: '100%', borderColor: 'white' }}
+        style={{ borderColor: 'white' }}
       >
         <input
           className='form-check-input flex-shrink-0'
@@ -46,9 +46,13 @@ function taskRow({ task, onChange, onDelete }) {
           style={{ fontSize: '1.375em' }}
           onClick={(e) => handleOnClick(e, task)}
         />
-        <span className='pt-1 form-checked-content'>
-          <strong>{task.text}</strong>
-        </span>
+      </label>
+      <label
+        className='list-group-item d-flex gap-3'
+        style={{ width: '100%', borderColor: 'white' }}
+        contentEditable={true}
+      >
+        <strong>{task.text}</strong>
       </label>
       <div style={{ margin: '1rem' }}>
         <IconButton>
