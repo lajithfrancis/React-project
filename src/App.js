@@ -3,6 +3,7 @@ import Section from './components/context/section'
 import { Route, Routes } from 'react-router-dom'
 import MoviePage from './components/movies'
 import Cards from './components/cards';
+import Board from './components/kanban-board';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Route path='/' element={<Cards />} />
         <Route path='/tasks' element={<Tasks />} />
         <Route path='/movies' element={<MoviePage />} />
+        <Route path='/board' element={<Board />} />
       </Routes>
       <Section level={10}></Section>
     </>
