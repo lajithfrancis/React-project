@@ -1,11 +1,15 @@
 // src/components/KanbanBoard.js
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import { Grid } from '@mui/material';
 import Column from './Column';
 import CardReducer from './Reducer';
+import { SortableContext } from '@dnd-kit/sortable';
+import { DndContext, DragOverlay } from '@dnd-kit/core';
 
 const KanbanBoard = () => {
   const [columns, colDispatch] = useReducer(CardReducer, data);
+  const [activeColumn, setActiveColumn] = useState(null);
+  const columnIds = useMemo(() => columns.map((col) => col.id), [columns]);
   const allCards = columns.reduce((acc, column) => {
     const cards = column.cards.map((card) => {
       return { ...card, columnId: column.id };
@@ -24,21 +28,48 @@ const KanbanBoard = () => {
       },
     });
   };
+  const onDragStart = (e) => {
+    console.log('drag started here! ', e);
+    if (e.active.data.current?.type === 'column') {
+      setActiveColumn(e.active.data.current.column);
+      return;
+    }
+  };
+
+  const onDragEnd = (e) => {
+    const { active, over } = e;
+    if (!over) return;
+    if (active.id == over.id) return;
+    colDispatch({
+      type: 'move_column',
+      payload: {
+        activeIndex: columns.findIndex((col) => col.id === active.id),
+        overIndex: columns.findIndex((col) => col.id === over.id),
+      },
+    });
+  };
 
   return (
-    <Grid container spacing={2} style={{ padding: '16px' }}>
-      {columns.map((column, index) => (
-        <div
-          key={index}
-          onDrop={(e) => handleDrop(e, column.id)}
-          onDragOver={(e) => e.preventDefault()}
-        >
-          <Grid item key={index}>
-            <Column column={column} />
-          </Grid>
-        </div>
-      ))}
-    </Grid>
+    <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+      <Grid container spacing={2} style={{ padding: '16px' }}>
+        <SortableContext items={columnIds}>
+          {columns.map((column, index) => (
+            <div
+              key={index}
+              onDrop={(e) => handleDrop(e, column.id)}
+              onDragOver={(e) => e.preventDefault()}
+            >
+              <Grid item key={index}>
+                <Column column={column} />
+              </Grid>
+            </div>
+          ))}
+        </SortableContext>
+      </Grid>
+      <DragOverlay>
+        {activeColumn && <Column column={activeColumn} />}
+      </DragOverlay>
+    </DndContext>
   );
 };
 

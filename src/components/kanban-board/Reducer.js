@@ -1,3 +1,5 @@
+import { arrayMove } from '@dnd-kit/sortable';
+
 export default function CardReducer(columns, action) {
   switch (action.type) {
     case 'added': {
@@ -40,8 +42,12 @@ export default function CardReducer(columns, action) {
         return [...newColumns];
       }
     }
-    case 'deleted': {
-      return columns.filter((t) => t.id !== action.id);
+    case 'move_column': {
+      return arrayMove(
+        columns,
+        action.payload.activeIndex,
+        action.payload.overIndex
+      );
     }
     default: {
       throw Error('Unknown action: ' + action.type);
