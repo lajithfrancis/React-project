@@ -16,13 +16,10 @@ const KanbanBoard = () => {
   );
 
   const getCards = (columnId) => {
-    console.log('getCards should rerender');
     return boardsCards.filter((card) => card.columnId === columnId);
   };
 
   const handleDrop = (id, desColumnId) => {
-    // e.preventDefault();
-    // const id = e.dataTransfer.getData('id');
     cardDispatch({
       type: 'swap',
       cardId: id,
@@ -30,10 +27,8 @@ const KanbanBoard = () => {
         columnId: desColumnId,
       },
     });
-    console.log('card drop is handled!');
   };
   const onDragStart = (e) => {
-    console.log('drag started here! ', e);
     if (e.active.data.current?.type === 'column') {
       setActiveColumn(e.active.data.current.column);
       return;
@@ -59,20 +54,14 @@ const KanbanBoard = () => {
         <Grid container spacing={2} style={{ padding: '16px' }} wrap='nowrap'>
           <SortableContext items={columnIds}>
             {boardColumns.map((column, index) => (
-              <div
-                key={index}
-                // onDrop={(e) => handleDrop(e, column.id)}
-                // onDragOver={(e) => e.preventDefault()}
-              >
-                <Grid item key={index}>
-                  <Column
-                    column={column}
-                    fetchCards={getCards}
-                    boardsCards={boardsCards}
-                    handleDrop={handleDrop}
-                  />
-                </Grid>
-              </div>
+              <Grid item key={index}>
+                <Column
+                  column={column}
+                  fetchCards={getCards}
+                  boardsCards={boardsCards}
+                  handleDrop={handleDrop}
+                />
+              </Grid>
             ))}
           </SortableContext>
         </Grid>
