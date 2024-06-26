@@ -57,11 +57,15 @@ const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
           </Button>
         </div>
 
-        <DropArea handleDrop={handleDrop} columnId={column.id} />
+        <DropArea handleDrop={handleDrop} columnId={column.id} cards={cards} />
         {cards.map((card, index) => (
           <React.Fragment key={index}>
             <Card key={index} card={card} columnId={column.id} />
-            <DropArea handleDrop={handleDrop} columnId={column.id} />
+            <DropArea
+              handleDrop={handleDrop}
+              columnId={column.id}
+              cards={cards}
+            />
           </React.Fragment>
         ))}
       </Paper>

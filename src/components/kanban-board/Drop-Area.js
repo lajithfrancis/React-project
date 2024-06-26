@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './Drop-Area.css';
 import { Card as MuiCard, CardContent, Typography } from '@mui/material';
 
-export default function DropArea({ handleDrop, columnId }) {
+export default function DropArea({ handleDrop, columnId, cards }) {
   const [isHidden, setIsHidden] = useState(true);
   let timeout;
 
@@ -15,7 +15,7 @@ export default function DropArea({ handleDrop, columnId }) {
   return (
     <div
       style={{
-        height: isHidden ? '20px' : '50px',
+        height: isHidden ? '20px' : cards.length ? '100px' : '100%',
         transition: 'height 0.3s ease',
       }}
       className={'drop-area'}
@@ -37,7 +37,7 @@ export default function DropArea({ handleDrop, columnId }) {
       {!isHidden && (
         <MuiCard
           style={{
-            height: '50px',
+            height: cards.length ? '100px' : '100%',
             backgroundColor: !isHidden ? 'lightgrey' : 'transparent',
           }}
         >
