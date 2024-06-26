@@ -5,10 +5,15 @@ import Column from './Column';
 import { CardReducer, ColumnReducer } from './Reducer';
 import { SortableContext } from '@dnd-kit/sortable';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
+import {
+  BoardProvider,
+  useCardContext,
+  useColumnContext,
+} from './context/BoardContext';
 
 const KanbanBoard = () => {
-  const [boardColumns, colDispatch] = useReducer(ColumnReducer, board_columns);
-  const [boardsCards, cardDispatch] = useReducer(CardReducer, board_cards);
+  const { boardColumns, colDispatch } = useColumnContext();
+  const { boardCards, cardDispatch } = useCardContext();
   const [activeColumn, setActiveColumn] = useState(null);
   const columnIds = useMemo(
     () => boardColumns.map((col) => col.id),
@@ -16,7 +21,7 @@ const KanbanBoard = () => {
   );
 
   const getCards = (columnId) => {
-    return boardsCards.filter((card) => card.columnId === columnId);
+    return boardCards.filter((card) => card.columnId === columnId);
   };
 
   const handleDrop = (id, desColumnId) => {
@@ -58,7 +63,7 @@ const KanbanBoard = () => {
                 <Column
                   column={column}
                   fetchCards={getCards}
-                  boardsCards={boardsCards}
+                  boardCards={boardCards}
                   handleDrop={handleDrop}
                 />
               </Grid>
@@ -74,54 +79,3 @@ const KanbanBoard = () => {
 };
 
 export default KanbanBoard;
-
-const board_columns = [
-  {
-    id: '1',
-    title: 'To Do',
-  },
-  {
-    id: '2',
-    title: 'In Progress',
-  },
-  {
-    id: '3',
-    title: 'Done',
-  },
-  {
-    id: '10',
-    title: 'Again To Do',
-  },
-];
-const board_cards = [
-  {
-    id: 'card-1',
-    title: 'Task 1',
-    description: 'Description for Task 1',
-    columnId: '1',
-  },
-  {
-    id: 'card-2',
-    title: 'Task 2',
-    description: 'Description for Task 2',
-    columnId: '1',
-  },
-  {
-    id: 'card-3',
-    title: 'Task 3',
-    description: 'Description for Task 3',
-    columnId: '2',
-  },
-  {
-    id: 'card-10',
-    title: 'Task 4',
-    description: 'Description for Task 1',
-    columnId: '10',
-  },
-  {
-    id: 'card-20',
-    title: 'Task 5',
-    description: 'Description for Task 2',
-    columnId: '10',
-  },
-];

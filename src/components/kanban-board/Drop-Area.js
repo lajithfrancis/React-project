@@ -5,16 +5,12 @@ import { Card as MuiCard, CardContent, Typography } from '@mui/material';
 export default function DropArea({ handleDrop, columnId }) {
   const [isHidden, setIsHidden] = useState(true);
   let timeout;
-  useEffect(() => {
-    console.log('isHidden', isHidden);
-  }, [isHidden]);
 
   const handleOnDrop = (e) => {
     setIsHidden(true);
     e.preventDefault();
     const id = e.dataTransfer.getData('id');
     handleDrop(id, columnId);
-    console.log('drop area event: ', e);
   };
   return (
     <div

@@ -1,4 +1,5 @@
 import { arrayMove } from '@dnd-kit/sortable';
+import { v4 as uuidv4 } from 'uuid';
 
 export function CardReducer(cards, action) {
   switch (action.type) {
@@ -40,6 +41,19 @@ export function ColumnReducer(columns, action) {
         action.payload.activeIndex,
         action.payload.overIndex
       );
+    }
+    case 'add_column': {
+      return [
+        ...columns,
+        {
+          id: uuidv4(),
+          title: action.title,
+          cards: [],
+        },
+      ];
+    }
+    case 'delete_column': {
+      return columns.filter((col) => col.id !== action.id);
     }
 
     default:

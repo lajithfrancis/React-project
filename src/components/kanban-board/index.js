@@ -2,6 +2,7 @@
 import React from 'react';
 import { Container, CssBaseline, Typography } from '@mui/material';
 import KanbanBoard from './KanbanBoard';
+import { BoardProvider } from './context/BoardContext';
 
 const Board = () => {
   return (
@@ -10,7 +11,9 @@ const Board = () => {
       <Typography variant='h3' gutterBottom style={{ margin: '16px 0' }}>
         Kanban Board
       </Typography>
-      <KanbanBoard />
+      <BoardProvider>
+        <KanbanBoard />
+      </BoardProvider>
     </Container>
   );
 };

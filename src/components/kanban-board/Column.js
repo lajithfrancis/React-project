@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, Typography } from '@mui/material';
+import { Button, Paper, Typography } from '@mui/material';
 import Card from './Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import DropArea from './Drop-Area';
+import { useColumnContext } from './context/BoardContext';
 
-const Column = ({ column, fetchCards, boardsCards, handleDrop }) => {
+const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
   const [cards, setCards] = useState([]);
+  const { boardColumns, colDispatch } = useColumnContext();
   const {
     setNodeRef,
     attributes,
@@ -30,7 +32,11 @@ const Column = ({ column, fetchCards, boardsCards, handleDrop }) => {
   useEffect(() => {
     const cards = fetchCards(column.id);
     setCards([...cards]);
-  }, [column, boardsCards]);
+  }, [column, boardCards]);
+
+  const handleOnClick = () => {
+    colDispatch({ type: 'delete_column', id: column.id });
+  };
 
   return (
     <div ref={setNodeRef} style={style}>
@@ -42,9 +48,15 @@ const Column = ({ column, fetchCards, boardsCards, handleDrop }) => {
           overflow: 'auto',
         }}
       >
-        <div {...attributes} {...listeners}>
-          <Typography variant='h5'>{column.title}</Typography>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div {...attributes} {...listeners}>
+            <Typography variant='h5'>{column.title}</Typography>
+          </div>
+          <Button style={{ marginLeft: 'auto' }} onClick={handleOnClick}>
+            Delete
+          </Button>
         </div>
+
         <DropArea handleDrop={handleDrop} columnId={column.id} />
         {cards.map((card, index) => (
           <React.Fragment key={index}>
