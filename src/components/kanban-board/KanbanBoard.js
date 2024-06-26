@@ -1,6 +1,6 @@
 // src/components/KanbanBoard.js
 import React, { useEffect, useMemo, useReducer, useState } from 'react';
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import Column from './Column';
 import { CardReducer, ColumnReducer } from './Reducer';
 import { SortableContext } from '@dnd-kit/sortable';
@@ -53,6 +53,13 @@ const KanbanBoard = () => {
     });
     setActiveColumn(null);
   };
+
+  const handleAddBtnOnClick = () => {
+    colDispatch({
+      type: 'add_column',
+      title: 'New Column',
+    });
+  };
   return (
     <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
       <div style={{ display: 'flex', overflowX: 'auto', padding: '16px' }}>
@@ -68,6 +75,7 @@ const KanbanBoard = () => {
                 />
               </Grid>
             ))}
+            <Button onClick={handleAddBtnOnClick}>Add</Button>
           </SortableContext>
         </Grid>
       </div>
