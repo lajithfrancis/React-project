@@ -70,7 +70,6 @@ const KanbanBoard = () => {
                 <Column
                   column={column}
                   fetchCards={getCards}
-                  boardCards={boardCards}
                   handleDrop={handleDrop}
                 />
               </Grid>

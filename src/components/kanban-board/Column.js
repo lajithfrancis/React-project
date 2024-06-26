@@ -7,11 +7,10 @@ import DropArea from './Drop-Area';
 import { useColumnContext } from './context/BoardContext';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
-const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
+const Column = ({ column, fetchCards, handleDrop }) => {
   const [cards, setCards] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState(column.title);
-  const { boardColumns, colDispatch } = useColumnContext();
+  const [title, setTitle] = useState('');
+  const { boardCards, colDispatch } = useColumnContext();
   const {
     setNodeRef,
     attributes,
@@ -26,6 +25,11 @@ const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
       column,
     },
   });
+
+  useEffect(() => {
+    setTitle(column.title);
+  }, [column]);
+
   const style = {
     transition,
     transform: CSS.Transform.toString(transform),
@@ -35,7 +39,7 @@ const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
   useEffect(() => {
     const cards = fetchCards(column.id);
     setCards([...cards]);
-  }, [column, boardCards]);
+  }, [column]);
 
   const handleOnClick = () => {
     colDispatch({ type: 'delete_column', id: column.id });
@@ -48,17 +52,6 @@ const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
         title,
       },
     });
-    setIsEditing(false);
-  };
-
-  const handleInputChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      handleSaveClick();
-    }
   };
 
   return (
@@ -75,22 +68,11 @@ const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
           <div {...attributes} {...listeners}>
             <DragIndicatorIcon />
           </div>
-          {isEditing ? (
-            <div>
-              <Input
-                value={title}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyDown}
-                autoFocus
-              />
-              <Button onClick={handleSaveClick}>Save</Button>
-            </div>
-          ) : (
-            <div onClick={() => setIsEditing(true)}>
-              <Typography variant='h5'>{column.title}</Typography>
-            </div>
-          )}
-
+          <EditableTypography
+            title={title}
+            setTitle={setTitle}
+            handleSave={handleSaveClick}
+          />
           <Button style={{ marginLeft: 'auto' }} onClick={handleOnClick}>
             Delete
           </Button>
@@ -111,5 +93,42 @@ const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
     </div>
   );
 };
+
+function EditableTypography({ title, setTitle, handleSave }) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleInputChange = (event) => {
+    setTitle(event.target.value);
+  };
+  const handleOnClick = () => {
+    handleSave();
+    setIsEditing(false);
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleOnClick();
+    }
+  };
+
+  return (
+    <>
+      {isEditing ? (
+        <div>
+          <Input
+            value={title}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            autoFocus
+          />
+          <Button onClick={handleOnClick}>Save</Button>
+        </div>
+      ) : (
+        <div onClick={() => setIsEditing(true)}>
+          <Typography variant='h5'>{title}</Typography>
+        </div>
+      )}
+    </>
+  );
+}
 
 export default Column;

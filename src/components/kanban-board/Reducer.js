@@ -15,7 +15,6 @@ export function CardReducer(cards, action) {
     }
     case 'swap': {
       const cardId = action.cardId;
-      console.log('card swap reached: ', action);
       return cards.map((card) => {
         if (card.id === cardId) {
           return {
