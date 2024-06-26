@@ -27,7 +27,14 @@ const Column = ({ column }) => {
 
   return (
     <div ref={setNodeRef} style={style}>
-      <Paper style={{ padding: '16px', width: '300px' }}>
+      <Paper
+        style={{
+          padding: '16px',
+          width: '300px',
+          height: '80vh',
+          overflow: 'auto',
+        }}
+      >
         <div {...attributes} {...listeners}>
           <Typography variant='h5'>{column.title}</Typography>
         </div>
