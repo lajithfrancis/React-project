@@ -1,15 +1,9 @@
-// src/components/KanbanBoard.js
-import React, { useEffect, useMemo, useReducer, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Button, Grid } from '@mui/material';
 import Column from './Column';
-import { CardReducer, ColumnReducer } from './Reducer';
 import { SortableContext } from '@dnd-kit/sortable';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
-import {
-  BoardProvider,
-  useCardContext,
-  useColumnContext,
-} from './context/BoardContext';
+import { useCardContext, useColumnContext } from './context/BoardContext';
 
 const KanbanBoard = () => {
   const { boardColumns, colDispatch } = useColumnContext();

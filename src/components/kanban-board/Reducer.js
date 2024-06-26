@@ -34,7 +34,6 @@ export function CardReducer(cards, action) {
 export function ColumnReducer(columns, action) {
   switch (action.type) {
     case 'move_column': {
-      console.log('column swap: ', action);
       return arrayMove(
         columns,
         action.payload.activeIndex,
