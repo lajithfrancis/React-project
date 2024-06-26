@@ -9,7 +9,7 @@ const Card = ({ card }) => {
       onDragStart={(e) => {
         e.dataTransfer.setData('id', card.id);
       }}
-      style={{ marginBottom: '16px' }}
+      // style={{ marginBottom: '16px' }}
     >
       <CardContent>
         <Typography variant='h6'>{card.title}</Typography>

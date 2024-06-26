@@ -19,7 +19,7 @@ export default function DropArea({ handleDrop, columnId }) {
   return (
     <div
       style={{
-        height: '20px',
+        height: '10px',
       }}
       className={'drop-area'}
       onDragEnter={() => {
@@ -41,7 +41,7 @@ export default function DropArea({ handleDrop, columnId }) {
       {!isHidden && (
         <MuiCard
           style={{
-            marginBottom: '16px',
+            height: '10px',
             backgroundColor: !isHidden ? 'lightgrey' : 'transparent',
           }}
         >
