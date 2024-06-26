@@ -1,10 +1,10 @@
 import { arrayMove } from '@dnd-kit/sortable';
 
-export default function CardReducer(columns, action) {
+export function CardReducer(cards, action) {
   switch (action.type) {
     case 'added': {
       return [
-        ...columns,
+        ...cards,
         {
           title: action.title,
           description: action.description,
@@ -13,45 +13,37 @@ export default function CardReducer(columns, action) {
       ];
     }
     case 'swap': {
-      const allCards = columns.reduce((acc, column) => {
-        const cards = column.cards.map((card) => {
-          return { ...card, columnId: column.id };
-        });
-        return [...acc, ...cards];
-      }, []);
-      const foundCard = allCards.find((card) => {
-        return card.id === action.payload.id;
+      const cardId = action.cardId;
+      console.log('card swap reached: ', action);
+      return cards.map((card) => {
+        if (card.id === cardId) {
+          return {
+            ...card,
+            ...action.payload,
+          };
+        }
+        return card;
       });
-      if (foundCard) {
-        const newColumns = columns.map((column) => {
-          if (column.id === action.payload.desColumnId) {
-            column.cards.push({
-              ...foundCard,
-              columnId: action.payload.desColumnId,
-            });
-          }
-          if (column.id == foundCard.columnId) {
-            const currentIndex = column.cards.findIndex(
-              (card) => card.id === foundCard.id
-            );
-            column.cards.splice(currentIndex, 1);
-            console.log('splice', currentIndex, foundCard);
-          }
-          return column;
-        });
-        return [...newColumns];
-      }
     }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
+  }
+}
+
+export function ColumnReducer(columns, action) {
+  switch (action.type) {
     case 'move_column': {
+      console.log('column swap: ', action);
       return arrayMove(
         columns,
         action.payload.activeIndex,
         action.payload.overIndex
       );
     }
-    default: {
-      throw Error('Unknown action: ' + action.type);
-    }
+
+    default:
+      break;
   }
 }
 

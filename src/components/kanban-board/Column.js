@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Paper, Typography } from '@mui/material';
 import Card from './Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-const Column = ({ column }) => {
+const Column = ({ column, fetchCards, boardsCards }) => {
+  const [cards, setCards] = useState([]);
   const {
     setNodeRef,
     attributes,
@@ -25,6 +26,11 @@ const Column = ({ column }) => {
     opacity: isDragging && '40%',
   };
 
+  useEffect(() => {
+    const cards = fetchCards(column.id);
+    setCards([...cards]);
+  }, [column, boardsCards]);
+
   return (
     <div ref={setNodeRef} style={style}>
       <Paper
@@ -38,7 +44,7 @@ const Column = ({ column }) => {
         <div {...attributes} {...listeners}>
           <Typography variant='h5'>{column.title}</Typography>
         </div>
-        {column.cards.map((card, index) => (
+        {cards.map((card, index) => (
           <Card key={index} card={card} columnId={column.id} />
         ))}
       </Paper>
