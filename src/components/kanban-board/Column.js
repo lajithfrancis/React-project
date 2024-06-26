@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Paper, Typography } from '@mui/material';
+import { Button, Input, Paper, Typography } from '@mui/material';
 import Card from './Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import DropArea from './Drop-Area';
 import { useColumnContext } from './context/BoardContext';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
   const [cards, setCards] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(column.title);
   const { boardColumns, colDispatch } = useColumnContext();
   const {
     setNodeRef,
@@ -37,6 +40,26 @@ const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
   const handleOnClick = () => {
     colDispatch({ type: 'delete_column', id: column.id });
   };
+  const handleSaveClick = () => {
+    colDispatch({
+      type: 'edit_column',
+      payload: {
+        id: column.id,
+        title,
+      },
+    });
+    setIsEditing(false);
+  };
+
+  const handleInputChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSaveClick();
+    }
+  };
 
   return (
     <div ref={setNodeRef} style={style}>
@@ -50,8 +73,24 @@ const Column = ({ column, fetchCards, boardCards, handleDrop }) => {
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div {...attributes} {...listeners}>
-            <Typography variant='h5'>{column.title}</Typography>
+            <DragIndicatorIcon />
           </div>
+          {isEditing ? (
+            <div>
+              <Input
+                value={title}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+                autoFocus
+              />
+              <Button onClick={handleSaveClick}>Save</Button>
+            </div>
+          ) : (
+            <div onClick={() => setIsEditing(true)}>
+              <Typography variant='h5'>{column.title}</Typography>
+            </div>
+          )}
+
           <Button style={{ marginLeft: 'auto' }} onClick={handleOnClick}>
             Delete
           </Button>

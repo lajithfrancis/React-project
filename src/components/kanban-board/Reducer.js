@@ -42,6 +42,19 @@ export function ColumnReducer(columns, action) {
         action.payload.overIndex
       );
     }
+
+    case 'edit_column': {
+      return columns.map((column) => {
+        if (column.id === action.payload.id) {
+          return {
+            ...column,
+            title: action.payload.title,
+          };
+        }
+        return column;
+      });
+    }
+
     case 'add_column': {
       return [
         ...columns,
