@@ -51,21 +51,23 @@ const KanbanBoard = () => {
 
   return (
     <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      <Grid container spacing={2} style={{ padding: '16px' }}>
-        <SortableContext items={columnIds}>
-          {columns.map((column, index) => (
-            <div
-              key={index}
-              onDrop={(e) => handleDrop(e, column.id)}
-              onDragOver={(e) => e.preventDefault()}
-            >
-              <Grid item key={index}>
-                <Column column={column} />
-              </Grid>
-            </div>
-          ))}
-        </SortableContext>
-      </Grid>
+      <div style={{ display: 'flex', overflowX: 'auto', padding: '16px' }}>
+        <Grid container spacing={2} style={{ padding: '16px' }} wrap='nowrap'>
+          <SortableContext items={columnIds}>
+            {columns.map((column, index) => (
+              <div
+                key={index}
+                onDrop={(e) => handleDrop(e, column.id)}
+                onDragOver={(e) => e.preventDefault()}
+              >
+                <Grid item key={index}>
+                  <Column column={column} />
+                </Grid>
+              </div>
+            ))}
+          </SortableContext>
+        </Grid>
+      </div>
       <DragOverlay>
         {activeColumn && <Column column={activeColumn} />}
       </DragOverlay>
@@ -115,6 +117,48 @@ const data = [
         title: 'Task 4',
         description: 'Description for Task 4',
         columnId: '3',
+      },
+    ],
+  },
+  {
+    id: '10',
+    title: 'To Do',
+    cards: [
+      {
+        id: '10',
+        title: 'Task 1',
+        description: 'Description for Task 1',
+        columnId: '10',
+      },
+      {
+        id: '20',
+        title: 'Task 2',
+        description: 'Description for Task 2',
+        columnId: '10',
+      },
+    ],
+  },
+  {
+    id: '20',
+    title: 'In Progress',
+    cards: [
+      {
+        id: '30',
+        title: 'Task 3',
+        description: 'Description for Task 3',
+        columnId: '20',
+      },
+    ],
+  },
+  {
+    id: '30',
+    title: 'Done',
+    cards: [
+      {
+        id: '40',
+        title: 'Task 4',
+        description: 'Description for Task 4',
+        columnId: '30',
       },
     ],
   },
