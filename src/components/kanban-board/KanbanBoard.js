@@ -20,9 +20,9 @@ const KanbanBoard = () => {
     return boardsCards.filter((card) => card.columnId === columnId);
   };
 
-  const handleDrop = (e, desColumnId) => {
-    e.preventDefault();
-    const id = e.dataTransfer.getData('id');
+  const handleDrop = (id, desColumnId) => {
+    // e.preventDefault();
+    // const id = e.dataTransfer.getData('id');
     cardDispatch({
       type: 'swap',
       cardId: id,
@@ -61,14 +61,15 @@ const KanbanBoard = () => {
             {boardColumns.map((column, index) => (
               <div
                 key={index}
-                onDrop={(e) => handleDrop(e, column.id)}
-                onDragOver={(e) => e.preventDefault()}
+                // onDrop={(e) => handleDrop(e, column.id)}
+                // onDragOver={(e) => e.preventDefault()}
               >
                 <Grid item key={index}>
                   <Column
                     column={column}
                     fetchCards={getCards}
                     boardsCards={boardsCards}
+                    handleDrop={handleDrop}
                   />
                 </Grid>
               </div>

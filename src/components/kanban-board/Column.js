@@ -3,8 +3,9 @@ import { Paper, Typography } from '@mui/material';
 import Card from './Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import DropArea from './Drop-Area';
 
-const Column = ({ column, fetchCards, boardsCards }) => {
+const Column = ({ column, fetchCards, boardsCards, handleDrop }) => {
   const [cards, setCards] = useState([]);
   const {
     setNodeRef,
@@ -44,8 +45,12 @@ const Column = ({ column, fetchCards, boardsCards }) => {
         <div {...attributes} {...listeners}>
           <Typography variant='h5'>{column.title}</Typography>
         </div>
+        <DropArea handleDrop={handleDrop} columnId={column.id} />
         {cards.map((card, index) => (
-          <Card key={index} card={card} columnId={column.id} />
+          <React.Fragment key={index}>
+            <Card key={index} card={card} columnId={column.id} />
+            <DropArea handleDrop={handleDrop} columnId={column.id} />
+          </React.Fragment>
         ))}
       </Paper>
     </div>
