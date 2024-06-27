@@ -13,6 +13,7 @@ import DropArea from './Drop-Area';
 import { useCardContext, useColumnContext } from './context/BoardContext';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 import './Column.css';
 
 const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
@@ -134,7 +135,9 @@ const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
             />
           </React.Fragment>
         ))}
-        <MuiCard>add</MuiCard>
+        <MuiCard style={{ display: 'flex', justifyContent: 'center' }}>
+          <AddIcon />
+        </MuiCard>
       </Paper>
     </div>
   );

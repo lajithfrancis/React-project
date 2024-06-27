@@ -42,7 +42,6 @@ export default function DropArea({
       onDragLeave={() => {
         timeout = setTimeout(() => {
           setIsHidden(true);
-          setIsDragged(false);
         }, 100);
       }}
       onDrop={(e) => handleOnDrop(e)}
