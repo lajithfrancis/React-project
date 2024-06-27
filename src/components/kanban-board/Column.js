@@ -16,7 +16,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import './Column.css';
 
-const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
+const Column = ({
+  column,
+  handleDrop,
+  setIsDragged,
+  isDragged,
+  handleCardOnClick,
+}) => {
   const [cards, setCards] = useState([]);
   const [title, setTitle] = useState('');
   const { boardCards, cardDispatch } = useCardContext();
@@ -134,8 +140,8 @@ const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
             <Card
               key={index}
               card={card}
-              columnId={column.id}
               setIsDragged={setIsDragged}
+              handleCardOnClick={handleCardOnClick}
             />
             <DropArea
               cardDropIndex={index + 1}

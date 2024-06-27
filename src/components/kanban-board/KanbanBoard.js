@@ -1,15 +1,18 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Fade } from '@mui/material';
 import Column from './Column';
 import { SortableContext } from '@dnd-kit/sortable';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { useCardContext, useColumnContext } from './context/BoardContext';
+import CardDetailsPage from './CardDetails';
 
 const KanbanBoard = () => {
   const { boardColumns, colDispatch } = useColumnContext();
   const { cardDispatch } = useCardContext();
   const [activeColumn, setActiveColumn] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
   const [isDragged, setIsDragged] = useState(false);
+  const [isModelOpen, setIsModelOpen] = useState(false);
   const columnIds = useMemo(
     () => boardColumns.map((col) => col.id),
     [boardColumns]
@@ -53,27 +56,56 @@ const KanbanBoard = () => {
       title: 'New Column',
     });
   };
+
+  const handleCardOnClick = (card) => {
+    setIsModelOpen(!isModelOpen);
+    setSelectedCard(card);
+    console.log('card on click worked', card);
+  };
+
   return (
-    <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      <Grid container spacing={2} style={{ padding: '16px' }} wrap='nowrap'>
-        <SortableContext items={columnIds}>
-          {boardColumns.map((column, index) => (
-            <Grid item key={index}>
-              <Column
-                column={column}
-                handleDrop={handleDrop}
-                setIsDragged={setIsDragged}
-                isDragged={isDragged}
-              />
+    <>
+      <Button onClick={() => setIsModelOpen(!isModelOpen)}>Modal</Button>
+      <div
+        style={{
+          height: isModelOpen ? '100vh' : '0',
+          visibility: isModelOpen ? 'visible' : 'hidden',
+          // backgroundColor: 'black',
+        }}
+      >
+        {selectedCard && isModelOpen && <CardDetailsPage card={selectedCard} />}
+      </div>
+      <Fade in={!isModelOpen}>
+        <div>
+          <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+            <Grid
+              container
+              spacing={2}
+              style={{ padding: '16px' }}
+              wrap='nowrap'
+            >
+              <SortableContext items={columnIds}>
+                {boardColumns.map((column, index) => (
+                  <Grid item key={index}>
+                    <Column
+                      column={column}
+                      handleDrop={handleDrop}
+                      setIsDragged={setIsDragged}
+                      isDragged={isDragged}
+                      handleCardOnClick={handleCardOnClick}
+                    />
+                  </Grid>
+                ))}
+                <Button onClick={handleAddBtnOnClick}>Add</Button>
+              </SortableContext>
             </Grid>
-          ))}
-          <Button onClick={handleAddBtnOnClick}>Add</Button>
-        </SortableContext>
-      </Grid>
-      <DragOverlay>
-        {activeColumn && <Column column={activeColumn} />}
-      </DragOverlay>
-    </DndContext>
+            <DragOverlay>
+              {activeColumn && <Column column={activeColumn} />}
+            </DragOverlay>
+          </DndContext>
+        </div>
+      </Fade>
+    </>
   );
 };
 

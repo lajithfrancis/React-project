@@ -1,11 +1,11 @@
 // src/components/Card.js
 import React from 'react';
 import { Card as MuiCard, CardContent, Typography } from '@mui/material';
-import { useCardContext } from './context/BoardContext';
 
-const Card = ({ card, setIsDragged }) => {
-  const { boardCards, cardDispatch } = useCardContext();
-  const handleOnClick = (e) => {};
+const Card = ({ card, setIsDragged, handleCardOnClick }) => {
+  const handleOnClick = () => {
+    handleCardOnClick(card);
+  };
   return (
     <MuiCard
       draggable
