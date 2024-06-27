@@ -4,13 +4,14 @@ import Card from './Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import DropArea from './Drop-Area';
-import { useCardContext } from './context/BoardContext';
+import { useCardContext, useColumnContext } from './context/BoardContext';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 const Column = ({ column, handleDrop }) => {
   const [cards, setCards] = useState([]);
   const [title, setTitle] = useState('');
-  const { boardCards, colDispatch } = useCardContext();
+  const { boardCards } = useCardContext();
+  const { colDispatch } = useColumnContext();
   const {
     setNodeRef,
     attributes,
