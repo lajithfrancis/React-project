@@ -44,7 +44,6 @@ const Column = ({ column, handleDrop }) => {
         return card;
       })
       .sort((cardA, cardB) => cardA.index - cardB.index);
-    // console.log('get sorted Cards: ', sortedCards, existingIndexes);
     return sortedCards;
   };
 

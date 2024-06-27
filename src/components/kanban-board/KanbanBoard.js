@@ -54,7 +54,6 @@ const KanbanBoard = () => {
   };
   return (
     <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      {/* <div style={{ display: 'flex', overflowX: 'auto' }}> */}
       <Grid container spacing={2} style={{ padding: '16px' }} wrap='nowrap'>
         <SortableContext items={columnIds}>
           {boardColumns.map((column, index) => (
@@ -65,7 +64,6 @@ const KanbanBoard = () => {
           <Button onClick={handleAddBtnOnClick}>Add</Button>
         </SortableContext>
       </Grid>
-      {/* </div> */}
       <DragOverlay>
         {activeColumn && <Column column={activeColumn} />}
       </DragOverlay>
