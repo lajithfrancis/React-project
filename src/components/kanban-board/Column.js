@@ -91,16 +91,15 @@ const Column = ({ column, handleDrop }) => {
           <div {...attributes} {...listeners}>
             <DragIndicatorIcon />
           </div>
-          <EditableTypography
-            title={title}
-            setTitle={setTitle}
-            handleSave={handleSaveClick}
-          />
-          <Button
-            className='delete-button'
-            style={{ marginLeft: 'auto' }}
-            onClick={handleOnClick}
-          >
+          <div style={{ flex: '0 1 70%' }}>
+            <EditableTypography
+              title={title}
+              setTitle={setTitle}
+              handleSave={handleSaveClick}
+            />
+          </div>
+
+          <Button className='delete-button' onClick={handleOnClick}>
             <DeleteIcon />
           </Button>
         </div>
