@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import './Card.css';
 
-const CardDetailsPage = ({ card }) => {
+const CardDetailsPage = ({ card, handleOnClick }) => {
   return (
     <Card className='card-root'>
       <CardContent>
@@ -25,7 +25,7 @@ const CardDetailsPage = ({ card }) => {
           >
             Card Title
           </Typography>
-          <CloseIcon />
+          <CloseIcon onClick={handleOnClick} />
         </div>
 
         <Grid container spacing={2}>

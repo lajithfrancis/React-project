@@ -63,25 +63,25 @@ const KanbanBoard = () => {
     console.log('card on click worked', card);
   };
 
+  const handleOnClickCloseButton = () => {
+    setIsModelOpen(false);
+  };
+
   return (
     <>
-      <Button onClick={() => setIsModelOpen(!isModelOpen)}>Modal</Button>
-      <div
-        style={{
-          height: isModelOpen ? '100vh' : '0',
-          visibility: isModelOpen ? 'visible' : 'hidden',
-          // backgroundColor: 'black',
-        }}
-      >
-        {selectedCard && isModelOpen && <CardDetailsPage card={selectedCard} />}
-      </div>
+      {selectedCard && isModelOpen && (
+        <CardDetailsPage
+          card={selectedCard}
+          handleOnClick={handleOnClickCloseButton}
+        />
+      )}
       <Fade in={!isModelOpen}>
         <div>
           <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
             <Grid
               container
               spacing={2}
-              style={{ padding: '16px' }}
+              style={{ paddingTop: '16px' }}
               wrap='nowrap'
             >
               <SortableContext items={columnIds}>
