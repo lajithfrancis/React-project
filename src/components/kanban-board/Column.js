@@ -19,7 +19,7 @@ import './Column.css';
 const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
   const [cards, setCards] = useState([]);
   const [title, setTitle] = useState('');
-  const { boardCards } = useCardContext();
+  const { boardCards, cardDispatch } = useCardContext();
   const { colDispatch } = useColumnContext();
   const {
     setNodeRef,
@@ -84,6 +84,18 @@ const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
     });
   };
 
+  const handleAddCardOnClick = () => {
+    console.log('handleAddCardOnClick');
+    cardDispatch({
+      type: 'add_card',
+      payload: {
+        columnId: column.id,
+        title: 'New card',
+        description: 'Add description',
+      },
+    });
+  };
+
   return (
     <div ref={setNodeRef} style={style}>
       <Paper
@@ -141,6 +153,7 @@ const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
             justifyContent: 'center',
             visibility: isDragged ? 'hidden' : 'visible',
           }}
+          onClick={handleAddCardOnClick}
         >
           <AddIcon />
         </MuiCard>

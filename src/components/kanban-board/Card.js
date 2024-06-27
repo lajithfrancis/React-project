@@ -1,8 +1,11 @@
 // src/components/Card.js
 import React from 'react';
 import { Card as MuiCard, CardContent, Typography } from '@mui/material';
+import { useCardContext } from './context/BoardContext';
 
 const Card = ({ card, setIsDragged }) => {
+  const { boardCards, cardDispatch } = useCardContext();
+  const handleOnClick = (e) => {};
   return (
     <MuiCard
       draggable
@@ -14,6 +17,7 @@ const Card = ({ card, setIsDragged }) => {
       onDragEnd={() => {
         setIsDragged(false);
       }}
+      onClick={handleOnClick}
     >
       <CardContent>
         <Typography variant='h6'>{card.title}</Typography>

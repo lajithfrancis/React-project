@@ -3,13 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 export function CardReducer(cards, action) {
   switch (action.type) {
-    case 'added': {
+    case 'add_card': {
       return [
         ...cards,
         {
-          title: action.title,
-          description: action.description,
-          columnId: action.columnId,
+          id: uuidv4(),
+          title: action.payload.title,
+          description: action.payload.description,
+          columnId: action.payload.columnId,
         },
       ];
     }
