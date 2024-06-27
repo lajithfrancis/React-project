@@ -13,6 +13,7 @@ const KanbanBoard = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isDragged, setIsDragged] = useState(false);
   const [isModelOpen, setIsModelOpen] = useState(false);
+  const [isBoardVisible, setIsBoardVisible] = useState(true);
   const columnIds = useMemo(
     () => boardColumns.map((col) => col.id),
     [boardColumns]
@@ -58,13 +59,16 @@ const KanbanBoard = () => {
   };
 
   const handleCardOnClick = (card) => {
-    setIsModelOpen(!isModelOpen);
+    setIsBoardVisible(false);
+    setTimeout(() => {
+      setIsModelOpen(true);
+    }, 100);
     setSelectedCard(card);
-    console.log('card on click worked', card);
   };
 
   const handleOnClickCloseButton = () => {
     setIsModelOpen(false);
+    setIsBoardVisible(true);
   };
 
   return (
@@ -75,7 +79,7 @@ const KanbanBoard = () => {
           handleOnClick={handleOnClickCloseButton}
         />
       )}
-      <Fade in={!isModelOpen}>
+      <Fade in={isBoardVisible} timeout={100}>
         <div>
           <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
             <Grid
