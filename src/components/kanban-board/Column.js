@@ -135,7 +135,13 @@ const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
             />
           </React.Fragment>
         ))}
-        <MuiCard style={{ display: 'flex', justifyContent: 'center' }}>
+        <MuiCard
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            visibility: isDragged ? 'hidden' : 'visible',
+          }}
+        >
           <AddIcon />
         </MuiCard>
       </Paper>
