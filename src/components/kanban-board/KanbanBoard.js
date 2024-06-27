@@ -9,6 +9,7 @@ const KanbanBoard = () => {
   const { boardColumns, colDispatch } = useColumnContext();
   const { cardDispatch } = useCardContext();
   const [activeColumn, setActiveColumn] = useState(null);
+  const [isDragged, setIsDragged] = useState(false);
   const columnIds = useMemo(
     () => boardColumns.map((col) => col.id),
     [boardColumns]
@@ -58,7 +59,12 @@ const KanbanBoard = () => {
         <SortableContext items={columnIds}>
           {boardColumns.map((column, index) => (
             <Grid item key={index}>
-              <Column column={column} handleDrop={handleDrop} />
+              <Column
+                column={column}
+                handleDrop={handleDrop}
+                setIsDragged={setIsDragged}
+                isDragged={isDragged}
+              />
             </Grid>
           ))}
           <Button onClick={handleAddBtnOnClick}>Add</Button>

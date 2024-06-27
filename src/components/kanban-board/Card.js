@@ -2,13 +2,17 @@
 import React from 'react';
 import { Card as MuiCard, CardContent, Typography } from '@mui/material';
 
-const Card = ({ card }) => {
+const Card = ({ card, setIsDragged }) => {
   return (
     <MuiCard
       draggable
       onDragStart={(e) => {
+        setIsDragged(true);
         e.dataTransfer.setData('id', card.id);
         e.dataTransfer.setData('activeCard', JSON.stringify(card));
+      }}
+      onDragEnd={() => {
+        setIsDragged(false);
       }}
     >
       <CardContent>

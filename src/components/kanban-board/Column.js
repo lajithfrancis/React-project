@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Input, Paper, Typography } from '@mui/material';
+import {
+  Card as MuiCard,
+  Button,
+  Input,
+  Paper,
+  Typography,
+} from '@mui/material';
 import Card from './Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -9,7 +15,7 @@ import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './Column.css';
 
-const Column = ({ column, handleDrop }) => {
+const Column = ({ column, handleDrop, setIsDragged, isDragged }) => {
   const [cards, setCards] = useState([]);
   const [title, setTitle] = useState('');
   const { boardCards } = useCardContext();
@@ -98,29 +104,37 @@ const Column = ({ column, handleDrop }) => {
               handleSave={handleSaveClick}
             />
           </div>
-
           <Button className='delete-button' onClick={handleOnClick}>
             <DeleteIcon />
           </Button>
         </div>
-
         <DropArea
           cardDropIndex={0}
           handleDrop={handleDrop}
           columnId={column.id}
           cards={cards}
+          setIsDragged={setIsDragged}
+          isDragged={isDragged}
         />
         {cards.map((card, index) => (
           <React.Fragment key={index}>
-            <Card key={index} card={card} columnId={column.id} />
+            <Card
+              key={index}
+              card={card}
+              columnId={column.id}
+              setIsDragged={setIsDragged}
+            />
             <DropArea
               cardDropIndex={index + 1}
               handleDrop={handleDrop}
               columnId={column.id}
               cards={cards}
+              setIsDragged={setIsDragged}
+              isDragged={isDragged}
             />
           </React.Fragment>
         ))}
+        <MuiCard>add</MuiCard>
       </Paper>
     </div>
   );
@@ -139,6 +153,9 @@ function EditableTypography({ title, setTitle, handleSave }) {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleOnClick();
+    }
+    if (event.key === 'Escape') {
+      setIsEditing(false);
     }
   };
 

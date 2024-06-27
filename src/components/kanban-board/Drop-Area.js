@@ -7,12 +7,15 @@ export default function DropArea({
   handleDrop,
   columnId,
   cards,
+  setIsDragged,
+  isDragged,
 }) {
   const [isHidden, setIsHidden] = useState(true);
   let timeout;
 
   const handleOnDrop = (e) => {
     setIsHidden(true);
+    setIsDragged(false);
     e.preventDefault();
     const id = e.dataTransfer.getData('id');
     const activeCard = JSON.parse(e.dataTransfer.getData('activeCard'));
@@ -22,23 +25,24 @@ export default function DropArea({
     <div
       style={{
         height:
-          cards.length === cardDropIndex
+          isDragged && cardDropIndex === cards.length
             ? '100%'
             : isHidden
             ? '20px'
-            : cards.length
-            ? '100px'
-            : '100%',
+            : '100px',
         transition: 'height 0.3s ease',
+        backgroundColor: !isHidden ? 'lightgrey' : 'transparent',
       }}
       className={'drop-area'}
       onDragEnter={() => {
         clearTimeout(timeout);
         setIsHidden(false);
+        setIsDragged(true);
       }}
       onDragLeave={() => {
         timeout = setTimeout(() => {
           setIsHidden(true);
+          setIsDragged(false);
         }, 100);
       }}
       onDrop={(e) => handleOnDrop(e)}
@@ -46,20 +50,6 @@ export default function DropArea({
         e.preventDefault();
         clearTimeout(timeout);
       }}
-    >
-      {!isHidden && (
-        <MuiCard
-          style={{
-            height: '100%',
-            backgroundColor: !isHidden ? 'lightgrey' : 'transparent',
-          }}
-        >
-          <CardContent>
-            <Typography variant='h6'></Typography>
-            <Typography variant='body2' color='textSecondary'></Typography>
-          </CardContent>
-        </MuiCard>
-      )}
-    </div>
+    ></div>
   );
 }
