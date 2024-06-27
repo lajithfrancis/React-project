@@ -14,6 +14,23 @@ export function CardReducer(cards, action) {
         },
       ];
     }
+
+    case 'update_card': {
+      console.log('update_card: ', action.payload);
+      const cardId = action.cardId;
+      return cards.map((card) => {
+        if (card.id === cardId) {
+          return {
+            id: cardId,
+            title: action.payload.title,
+            description: action.payload.description,
+            columnId: action.payload.columnId,
+          };
+        }
+        return card;
+      });
+    }
+
     case 'swap': {
       console.table({ ...action.payload });
       const cardId = action.cardId;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -12,8 +12,32 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 
 import './Card.css';
+import { useCardContext } from './context/BoardContext';
 
 const CardDetailsPage = ({ card, handleOnClick }) => {
+  const [cardDetails, setCardDetails] = useState({});
+  const { cardDispatch } = useCardContext();
+  useEffect(() => {
+    setCardDetails(card);
+  }, [card]);
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setCardDetails((prevDetails) => {
+      return {
+        ...prevDetails,
+        [name]: value,
+      };
+    });
+    cardDispatch({
+      type: 'update_card',
+      cardId: cardDetails.id,
+      payload: {
+        ...cardDetails,
+        [name]: value,
+      },
+    });
+  };
   return (
     <Card className='card-root'>
       <CardContent>
@@ -34,22 +58,27 @@ const CardDetailsPage = ({ card, handleOnClick }) => {
               label='Title'
               variant='outlined'
               fullWidth
+              name='title'
               className='card-textField'
-              value={card?.title}
+              value={cardDetails.title}
+              onChange={handleOnChange}
             />
             <TextField
               label='Description'
               variant='outlined'
               fullWidth
+              name='description'
               multiline
               rows={4}
               className='card-textField'
-              value={card?.description}
+              value={cardDetails.description}
+              onChange={handleOnChange}
             />
             <TextField
               label='Assignee'
               variant='outlined'
               fullWidth
+              value={''}
               className='card-textField'
             />
           </Grid>
@@ -58,12 +87,14 @@ const CardDetailsPage = ({ card, handleOnClick }) => {
               label='Priority'
               variant='outlined'
               fullWidth
+              value={''}
               className='card-textField'
             />
             <TextField
               label='Status'
               variant='outlined'
               fullWidth
+              value={''}
               className='card-textField'
             />
             <TextField
@@ -71,6 +102,7 @@ const CardDetailsPage = ({ card, handleOnClick }) => {
               type='date'
               variant='outlined'
               fullWidth
+              value={''}
               InputLabelProps={{ shrink: true }}
               className='card-textField'
             />
@@ -86,6 +118,7 @@ const CardDetailsPage = ({ card, handleOnClick }) => {
           fullWidth
           multiline
           rows={3}
+          value={''}
           className='card-textField'
         />
         <Button variant='contained' color='primary' className='card-button'>
