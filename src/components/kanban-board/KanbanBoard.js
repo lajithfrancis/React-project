@@ -7,23 +7,21 @@ import { useCardContext, useColumnContext } from './context/BoardContext';
 
 const KanbanBoard = () => {
   const { boardColumns, colDispatch } = useColumnContext();
-  const { boardCards, cardDispatch } = useCardContext();
+  const { cardDispatch } = useCardContext();
   const [activeColumn, setActiveColumn] = useState(null);
   const columnIds = useMemo(
     () => boardColumns.map((col) => col.id),
     [boardColumns]
   );
 
-  const getCards = (columnId) => {
-    return boardCards.filter((card) => card.columnId === columnId);
-  };
-
-  const handleDrop = (id, desColumnId) => {
+  const handleDrop = (id, activeColumnId, desColumnId, cardDropIndex) => {
     cardDispatch({
       type: 'swap',
       cardId: id,
       payload: {
-        columnId: desColumnId,
+        activeColumnId,
+        desColumnId,
+        cardDropIndex,
       },
     });
   };
@@ -56,24 +54,20 @@ const KanbanBoard = () => {
   };
   return (
     <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      <div style={{ display: 'flex', overflowX: 'auto', padding: '16px' }}>
-        <Grid container spacing={2} style={{ padding: '16px' }} wrap='nowrap'>
-          <SortableContext items={columnIds}>
-            {boardColumns.map((column, index) => (
-              <Grid item key={index}>
-                <Column
-                  column={column}
-                  fetchCards={getCards}
-                  handleDrop={handleDrop}
-                />
-              </Grid>
-            ))}
-            <Button onClick={handleAddBtnOnClick}>Add</Button>
-          </SortableContext>
-        </Grid>
-      </div>
+      {/* <div style={{ display: 'flex', overflowX: 'auto' }}> */}
+      <Grid container spacing={2} style={{ padding: '16px' }} wrap='nowrap'>
+        <SortableContext items={columnIds}>
+          {boardColumns.map((column, index) => (
+            <Grid item key={index}>
+              <Column column={column} handleDrop={handleDrop} />
+            </Grid>
+          ))}
+          <Button onClick={handleAddBtnOnClick}>Add</Button>
+        </SortableContext>
+      </Grid>
+      {/* </div> */}
       <DragOverlay>
-        {activeColumn && <Column column={activeColumn} fetchCards={getCards} />}
+        {activeColumn && <Column column={activeColumn} />}
       </DragOverlay>
     </DndContext>
   );

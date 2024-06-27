@@ -2,7 +2,12 @@ import { useEffect, useState } from 'react';
 import './Drop-Area.css';
 import { Card as MuiCard, CardContent, Typography } from '@mui/material';
 
-export default function DropArea({ handleDrop, columnId, cards }) {
+export default function DropArea({
+  cardDropIndex,
+  handleDrop,
+  columnId,
+  cards,
+}) {
   const [isHidden, setIsHidden] = useState(true);
   let timeout;
 
@@ -10,7 +15,8 @@ export default function DropArea({ handleDrop, columnId, cards }) {
     setIsHidden(true);
     e.preventDefault();
     const id = e.dataTransfer.getData('id');
-    handleDrop(id, columnId);
+    const activeCard = JSON.parse(e.dataTransfer.getData('activeCard'));
+    handleDrop(id, activeCard.columnId, columnId, cardDropIndex);
   };
   return (
     <div

@@ -14,16 +14,55 @@ export function CardReducer(cards, action) {
       ];
     }
     case 'swap': {
+      console.table({ ...action.payload });
       const cardId = action.cardId;
-      return cards.map((card) => {
+      let { activeColumnId, desColumnId, cardDropIndex } = action.payload;
+      let currentIndex;
+      const updatedCards = cards.map((card) => {
         if (card.id === cardId) {
+          currentIndex = card.index;
           return {
             ...card,
-            ...action.payload,
+            columnId: desColumnId,
           };
         }
         return card;
       });
+      const destinationColumnCards = updatedCards.filter(
+        (card) => card.columnId === desColumnId
+      );
+      const currentIndexOfCard = destinationColumnCards.findIndex(
+        (card) => card.id === cardId
+      );
+      if (activeColumnId === desColumnId) {
+        // Adjacent dropping is avoided
+        if (
+          cardDropIndex === currentIndex ||
+          cardDropIndex === currentIndex + 1
+        ) {
+          return updatedCards;
+        } else {
+          // When destination is same column; and drop index is larger than the selected card then we need to avoid considering the selected card index
+          if (cardDropIndex > currentIndexOfCard) {
+            cardDropIndex -= 1;
+          }
+        }
+      }
+      const newCard = destinationColumnCards[currentIndexOfCard];
+      destinationColumnCards.splice(currentIndexOfCard, 1);
+      destinationColumnCards.splice(cardDropIndex, 0, newCard);
+      const updatedDestinationColumnCards = destinationColumnCards.map(
+        (card, index) => {
+          return {
+            ...card,
+            index,
+          };
+        }
+      );
+      return [
+        ...updatedCards.filter((card) => card.columnId !== desColumnId),
+        ...updatedDestinationColumnCards,
+      ];
     }
     default: {
       throw Error('Unknown action: ' + action.type);

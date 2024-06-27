@@ -4,13 +4,13 @@ import Card from './Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import DropArea from './Drop-Area';
-import { useColumnContext } from './context/BoardContext';
+import { useCardContext } from './context/BoardContext';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
-const Column = ({ column, fetchCards, handleDrop }) => {
+const Column = ({ column, handleDrop }) => {
   const [cards, setCards] = useState([]);
   const [title, setTitle] = useState('');
-  const { boardCards, colDispatch } = useColumnContext();
+  const { boardCards, colDispatch } = useCardContext();
   const {
     setNodeRef,
     attributes,
@@ -26,6 +26,27 @@ const Column = ({ column, fetchCards, handleDrop }) => {
     },
   });
 
+  const getCards = (columnId) => {
+    let existingIndexes = [];
+    const sortedCards = boardCards
+      .filter((card) => card.columnId === columnId)
+      .map((card, index) => {
+        if (card.index === undefined) {
+          card.index = index;
+        }
+        if (existingIndexes.includes(card.index)) {
+          card.index = index + 1;
+          existingIndexes.push(index + 1);
+        } else {
+          existingIndexes.push(index);
+        }
+        return card;
+      })
+      .sort((cardA, cardB) => cardA.index - cardB.index);
+    // console.log('get sorted Cards: ', sortedCards, existingIndexes);
+    return sortedCards;
+  };
+
   useEffect(() => {
     setTitle(column.title);
   }, [column]);
@@ -37,9 +58,9 @@ const Column = ({ column, fetchCards, handleDrop }) => {
   };
 
   useEffect(() => {
-    const cards = fetchCards(column.id);
+    const cards = getCards(column.id);
     setCards([...cards]);
-  }, [column]);
+  }, [column, boardCards]);
 
   const handleOnClick = () => {
     colDispatch({ type: 'delete_column', id: column.id });
@@ -78,11 +99,17 @@ const Column = ({ column, fetchCards, handleDrop }) => {
           </Button>
         </div>
 
-        <DropArea handleDrop={handleDrop} columnId={column.id} cards={cards} />
+        <DropArea
+          cardDropIndex={0}
+          handleDrop={handleDrop}
+          columnId={column.id}
+          cards={cards}
+        />
         {cards.map((card, index) => (
           <React.Fragment key={index}>
             <Card key={index} card={card} columnId={column.id} />
             <DropArea
+              cardDropIndex={index + 1}
               handleDrop={handleDrop}
               columnId={column.id}
               cards={cards}

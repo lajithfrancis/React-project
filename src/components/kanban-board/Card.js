@@ -8,6 +8,7 @@ const Card = ({ card }) => {
       draggable
       onDragStart={(e) => {
         e.dataTransfer.setData('id', card.id);
+        e.dataTransfer.setData('activeCard', JSON.stringify(card));
       }}
     >
       <CardContent>
