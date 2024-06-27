@@ -21,7 +21,14 @@ export default function DropArea({
   return (
     <div
       style={{
-        height: isHidden ? '20px' : cards.length ? '100px' : '100%',
+        height:
+          cards.length === cardDropIndex
+            ? '100%'
+            : isHidden
+            ? '20px'
+            : cards.length
+            ? '100px'
+            : '100%',
         transition: 'height 0.3s ease',
       }}
       className={'drop-area'}
@@ -43,7 +50,7 @@ export default function DropArea({
       {!isHidden && (
         <MuiCard
           style={{
-            height: cards.length ? '100px' : '100%',
+            height: '100%',
             backgroundColor: !isHidden ? 'lightgrey' : 'transparent',
           }}
         >
