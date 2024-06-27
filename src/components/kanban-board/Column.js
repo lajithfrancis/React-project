@@ -6,6 +6,8 @@ import { CSS } from '@dnd-kit/utilities';
 import DropArea from './Drop-Area';
 import { useCardContext, useColumnContext } from './context/BoardContext';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import DeleteIcon from '@mui/icons-material/Delete';
+import './Column.css';
 
 const Column = ({ column, handleDrop }) => {
   const [cards, setCards] = useState([]);
@@ -94,8 +96,12 @@ const Column = ({ column, handleDrop }) => {
             setTitle={setTitle}
             handleSave={handleSaveClick}
           />
-          <Button style={{ marginLeft: 'auto' }} onClick={handleOnClick}>
-            Delete
+          <Button
+            className='delete-button'
+            style={{ marginLeft: 'auto' }}
+            onClick={handleOnClick}
+          >
+            <DeleteIcon />
           </Button>
         </div>
 
