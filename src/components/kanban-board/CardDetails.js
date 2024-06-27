@@ -9,6 +9,7 @@ import {
   Avatar,
   Chip,
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 import './Card.css';
 
@@ -16,9 +17,16 @@ const CardDetailsPage = ({ card }) => {
   return (
     <Card className='card-root'>
       <CardContent>
-        <Typography variant='h5' className='card-title'>
-          Card Title
-        </Typography>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Typography
+            variant='h5'
+            className='card-title'
+            style={{ flexGrow: 1 }}
+          >
+            Card Title
+          </Typography>
+          <CloseIcon />
+        </div>
 
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
