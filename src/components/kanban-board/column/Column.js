@@ -111,7 +111,7 @@ const Column = ({
           width: '300px',
           height: '80vh',
           overflow: 'auto',
-          background: '#EFEBE9',
+          background: '#FAFAFA',
         }}
       >
         <div
@@ -119,8 +119,6 @@ const Column = ({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            // backgroundColor: '#F5F5F5',
-            // height: '15%',
             borderRadius: '15px',
           }}
         >
@@ -181,7 +179,7 @@ const Column = ({
             borderRadius: '15px',
             display: 'flex',
             justifyContent: 'center',
-            visibility: isDragged ? 'hidden' : 'visible',
+            // visibility: isDragged ? 'hidden' : 'visible',
             cursor: 'pointer',
             height: '10%',
           }}
