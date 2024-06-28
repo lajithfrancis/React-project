@@ -111,9 +111,19 @@ const Column = ({
           width: '300px',
           height: '80vh',
           overflow: 'auto',
+          background: '#F5F5F5',
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'F5F5F5',
+            height: '15%',
+            borderRadius: '15px',
+          }}
+        >
           <div
             {...attributes}
             {...listeners}
@@ -165,22 +175,23 @@ const Column = ({
             />
           </React.Fragment>
         ))}
-        <MuiCard
+        <div
           style={{
-            backgroundColor: 'lightgrey',
+            backgroundColor: '#E0E0E0',
             borderRadius: '15px',
             display: 'flex',
             justifyContent: 'center',
             visibility: isDragged ? 'hidden' : 'visible',
             cursor: 'pointer',
+            height: '10%',
           }}
           onClick={handleAddCardOnClick}
         >
-          <CardContent>
-            <AddIcon />
-            Add new card
-          </CardContent>
-        </MuiCard>
+          <div style={{ display: 'flex' }}>
+            <AddIcon style={{ marginTop: '.75rem' }} />
+            <p style={{ marginTop: '.75rem' }}>Add new card</p>
+          </div>
+        </div>
       </Paper>
     </div>
   );
