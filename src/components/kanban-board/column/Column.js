@@ -113,7 +113,11 @@ const Column = ({
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div {...attributes} {...listeners} style={{ flex: '0 1 auto' }}>
+          <div
+            {...attributes}
+            {...listeners}
+            style={{ flex: '0 1 auto', cursor: 'grab' }}
+          >
             <DragIndicatorIcon />
           </div>
           <div style={{ flex: '3 1 auto' }}>
@@ -199,7 +203,6 @@ function EditableTypography({ title, setTitle, handleSave }) {
       {isEditing ? (
         <div>
           <Input
-            // style={{ marginLeft: '10px' }}
             value={title}
             placeholder='Column Name'
             onChange={handleInputChange}
