@@ -113,7 +113,7 @@ const Column = ({
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div {...attributes} {...listeners} style={{ flex: '1 1 auto' }}>
+          <div {...attributes} {...listeners} style={{ flex: '0 1 auto' }}>
             <DragIndicatorIcon />
           </div>
           <div style={{ flex: '3 1 auto' }}>
@@ -195,10 +195,11 @@ function EditableTypography({ title, setTitle, handleSave }) {
   };
 
   return (
-    <>
+    <div style={{ marginLeft: '10px' }}>
       {isEditing ? (
         <div>
           <Input
+            // style={{ marginLeft: '10px' }}
             value={title}
             placeholder='Column Name'
             onChange={handleInputChange}
@@ -212,7 +213,7 @@ function EditableTypography({ title, setTitle, handleSave }) {
           <Typography variant='h5'>{title || 'Untitled'}</Typography>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
