@@ -15,6 +15,7 @@ import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import './Column.css';
+import ButtonComponent from '../button/Button';
 
 const Column = ({
   column,
@@ -125,10 +126,13 @@ const Column = ({
           <Button
             className='delete-button'
             onClick={handleOnClick}
-            style={{ flex: '0 1 auto' }}
+            style={{ flex: '0 1 auto', minWidth: '30px' }}
           >
             <DeleteIcon />
           </Button>
+          {/* <div style={{ flex: '0 1 auto' }}>
+            <ButtonComponent handleOnClick={handleOnClick} />
+          </div> */}
         </div>
         <DropArea
           cardDropIndex={0}
