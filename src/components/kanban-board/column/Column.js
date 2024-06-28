@@ -111,7 +111,7 @@ const Column = ({
           width: '300px',
           height: '80vh',
           overflow: 'auto',
-          background: '#F5F5F5',
+          background: '#EFEBE9',
         }}
       >
         <div
@@ -119,8 +119,8 @@ const Column = ({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'F5F5F5',
-            height: '15%',
+            // backgroundColor: '#F5F5F5',
+            // height: '15%',
             borderRadius: '15px',
           }}
         >
@@ -188,8 +188,8 @@ const Column = ({
           onClick={handleAddCardOnClick}
         >
           <div style={{ display: 'flex' }}>
-            <AddIcon style={{ marginTop: '.75rem' }} />
-            <p style={{ marginTop: '.75rem' }}>Add new card</p>
+            <AddIcon style={{ marginTop: '1rem' }} />
+            <p style={{ marginTop: '1rem' }}>Add new card</p>
           </div>
         </div>
       </Paper>
