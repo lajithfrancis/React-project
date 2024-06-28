@@ -5,6 +5,7 @@ import {
   Input,
   Paper,
   Typography,
+  CardContent,
 } from '@mui/material';
 import Card from '../card/Card';
 import { useSortable } from '@dnd-kit/sortable';
@@ -166,13 +167,19 @@ const Column = ({
         ))}
         <MuiCard
           style={{
+            backgroundColor: 'lightgrey',
+            borderRadius: '15px',
             display: 'flex',
             justifyContent: 'center',
             visibility: isDragged ? 'hidden' : 'visible',
+            cursor: 'pointer',
           }}
           onClick={handleAddCardOnClick}
         >
-          <AddIcon />
+          <CardContent>
+            <AddIcon />
+            Add new card
+          </CardContent>
         </MuiCard>
       </Paper>
     </div>

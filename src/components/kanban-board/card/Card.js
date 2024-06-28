@@ -8,6 +8,7 @@ const Card = ({ card, setIsDragged, handleCardOnClick }) => {
   };
   return (
     <MuiCard
+      style={{ borderRadius: '15px' }}
       draggable
       onDragStart={(e) => {
         setIsDragged(true);

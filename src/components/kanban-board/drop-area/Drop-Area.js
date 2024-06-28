@@ -24,6 +24,7 @@ export default function DropArea({
   return (
     <div
       style={{
+        borderRadius: '20px',
         height:
           isDragged && cardDropIndex === cards.length
             ? '100%'
@@ -31,7 +32,8 @@ export default function DropArea({
             ? '20px'
             : '100px',
         transition: 'height 0.3s ease',
-        backgroundColor: !isHidden ? 'lightgrey' : 'transparent',
+        border: !isHidden && '2px dotted',
+        backgroundColor: !isHidden ? '#eeeeee' : 'transparent',
       }}
       className={'drop-area'}
       onDragEnter={() => {
