@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import { Button, Grid, Fade } from '@mui/material';
-import Column from './Column';
+import Column from './column/Column';
 import { SortableContext } from '@dnd-kit/sortable';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { useCardContext, useColumnContext } from './context/BoardContext';
-import CardDetailsPage from './CardDetails';
+import CardDetailsPage from './card/CardDetails';
 
 const KanbanBoard = () => {
   const { boardColumns, colDispatch } = useColumnContext();

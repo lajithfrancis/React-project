@@ -12,7 +12,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 
 import './Card.css';
-import { useCardContext } from './context/BoardContext';
+import { useCardContext } from '../context/BoardContext';
 
 const CardDetailsPage = ({ card, handleOnClick }) => {
   const [cardDetails, setCardDetails] = useState({});

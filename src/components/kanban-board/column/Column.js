@@ -6,11 +6,11 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import Card from './Card';
+import Card from '../card/Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import DropArea from './Drop-Area';
-import { useCardContext, useColumnContext } from './context/BoardContext';
+import DropArea from '../drop-area/Drop-Area';
+import { useCardContext, useColumnContext } from '../context/BoardContext';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -91,7 +91,6 @@ const Column = ({
   };
 
   const handleAddCardOnClick = () => {
-    console.log('handleAddCardOnClick');
     cardDispatch({
       type: 'add_card',
       payload: {
@@ -113,17 +112,21 @@ const Column = ({
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div {...attributes} {...listeners}>
+          <div {...attributes} {...listeners} style={{ flex: '1 1 auto' }}>
             <DragIndicatorIcon />
           </div>
-          <div style={{ flex: '0 1 70%' }}>
+          <div style={{ flex: '3 1 auto' }}>
             <EditableTypography
               title={title}
               setTitle={setTitle}
               handleSave={handleSaveClick}
             />
           </div>
-          <Button className='delete-button' onClick={handleOnClick}>
+          <Button
+            className='delete-button'
+            onClick={handleOnClick}
+            style={{ flex: '0 1 auto' }}
+          >
             <DeleteIcon />
           </Button>
         </div>
@@ -193,6 +196,7 @@ function EditableTypography({ title, setTitle, handleSave }) {
         <div>
           <Input
             value={title}
+            placeholder='Column Name'
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             autoFocus
@@ -201,7 +205,7 @@ function EditableTypography({ title, setTitle, handleSave }) {
         </div>
       ) : (
         <div onClick={() => setIsEditing(true)}>
-          <Typography variant='h5'>{title}</Typography>
+          <Typography variant='h5'>{title || 'Untitled'}</Typography>
         </div>
       )}
     </>
