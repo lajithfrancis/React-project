@@ -18,7 +18,6 @@ const Card = ({ card, setIsDragged, handleCardOnClick }) => {
         setIsDragged(true);
         setIsDragging(true);
         console.log('drag started');
-        e.dataTransfer.setData('id', card.id);
         e.dataTransfer.setData('activeCard', JSON.stringify(card));
       }}
       onDragEnd={() => {

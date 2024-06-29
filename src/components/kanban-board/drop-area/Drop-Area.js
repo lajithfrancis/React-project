@@ -17,9 +17,8 @@ export default function DropArea({
     setIsHidden(true);
     setIsDragged(false);
     e.preventDefault();
-    const id = e.dataTransfer.getData('id');
     const activeCard = JSON.parse(e.dataTransfer.getData('activeCard'));
-    handleDrop(id, activeCard.columnId, columnId, cardDropIndex);
+    handleDrop(activeCard.id, activeCard.columnId, columnId, cardDropIndex);
   };
   return (
     <div
