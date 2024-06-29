@@ -82,7 +82,7 @@ export default function PersistentDrawerLeft({ children }) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: 'black' }}>
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -112,7 +112,7 @@ export default function PersistentDrawerLeft({ children }) {
       >
         <DrawerHeader>
           <Typography variant='h5' gutterBottom>
-            My Board
+            Lajith's Board
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
