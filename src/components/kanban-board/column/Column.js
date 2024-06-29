@@ -185,9 +185,9 @@ const Column = ({
           }}
           onClick={handleAddCardOnClick}
         >
-          <div style={{ display: 'flex' }}>
-            <AddIcon style={{ marginTop: '1rem' }} />
-            <p style={{ marginTop: '1rem' }}>Add new card</p>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <AddIcon />
+            <p style={{ margin: '0' }}>Add new card</p>
           </div>
         </div>
       </Paper>
