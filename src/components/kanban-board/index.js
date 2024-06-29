@@ -3,18 +3,20 @@ import React from 'react';
 import { Container, CssBaseline, Typography } from '@mui/material';
 import KanbanBoard from './KanbanBoard';
 import { BoardProvider } from './context/BoardContext';
+import PersistentDrawerLeft from './Drawer';
 
 const Board = () => {
   return (
-    <Container maxWidth='lg'>
+    <PersistentDrawerLeft>
       <CssBaseline />
-      <Typography variant='h3' gutterBottom style={{ margin: '16px 0' }}>
-        Kanban Board
-      </Typography>
-      <BoardProvider>
-        <KanbanBoard />
-      </BoardProvider>
-    </Container>
+      <div style={{ display: ' flex' }}>
+        <Container maxWidth='xl'>
+          <BoardProvider>
+            <KanbanBoard />
+          </BoardProvider>
+        </Container>
+      </div>
+    </PersistentDrawerLeft>
   );
 };
 
