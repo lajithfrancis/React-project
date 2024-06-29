@@ -1,22 +1,30 @@
 // src/components/Card.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Card as MuiCard, CardContent, Typography } from '@mui/material';
 
 const Card = ({ card, setIsDragged, handleCardOnClick }) => {
+  const [isDragging, setIsDragging] = useState();
   const handleOnClick = () => {
     handleCardOnClick(card);
   };
   return (
     <MuiCard
-      style={{ borderRadius: '15px' }}
+      style={{
+        borderRadius: '15px',
+        opacity: isDragging ? 0.5 : 1,
+      }}
       draggable
       onDragStart={(e) => {
         setIsDragged(true);
+        setIsDragging(true);
+        console.log('drag started');
         e.dataTransfer.setData('id', card.id);
         e.dataTransfer.setData('activeCard', JSON.stringify(card));
       }}
       onDragEnd={() => {
         setIsDragged(false);
+        setIsDragging(false);
+        console.log('drag stopped');
       }}
       onClick={handleOnClick}
     >
