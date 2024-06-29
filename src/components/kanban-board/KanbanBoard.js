@@ -88,6 +88,7 @@ const KanbanBoard = () => {
               spacing={2}
               style={{ paddingTop: '16px' }}
               wrap='nowrap'
+              overflow={'auto'}
             >
               <SortableContext items={columnIds}>
                 {boardColumns.map((column, index) => (
@@ -103,7 +104,12 @@ const KanbanBoard = () => {
                     />
                   </Grid>
                 ))}
-                <Button onClick={handleAddBtnOnClick}>Add</Button>
+                <Button
+                  style={{ marginTop: '16px' }}
+                  onClick={handleAddBtnOnClick}
+                >
+                  Add
+                </Button>
               </SortableContext>
             </Grid>
             <DragOverlay>
