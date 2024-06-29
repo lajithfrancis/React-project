@@ -12,6 +12,7 @@ const Card = ({ card, setIsDragged, handleCardOnClick }) => {
       style={{
         borderRadius: '.5rem',
         opacity: isDragging ? 0.5 : 1,
+        transition: 'opacity .3s cubic-bezier(0.4, 0, 1, 1)',
       }}
       draggable
       onDragStart={(e) => {
