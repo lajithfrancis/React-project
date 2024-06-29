@@ -43,12 +43,22 @@ const Card = ({
           justifyContent: 'space-between',
           minHeight: '7rem',
           maxHeight: '10rem',
-          overflow: 'auto',
+          // overflow: 'auto',
         }}
       >
         <Typography variant='h6'>{card.title}</Typography>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography variant='body2' color='textSecondary'>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            overflow: 'auto',
+          }}
+        >
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            style={{ overflow: 'auto' }}
+          >
             {card.description}
           </Typography>
           <Typography variant='body2' color='textSecondary'>
