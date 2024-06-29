@@ -10,7 +10,7 @@ const Card = ({ card, setIsDragged, handleCardOnClick }) => {
   return (
     <MuiCard
       style={{
-        borderRadius: '15px',
+        borderRadius: '.5rem',
         opacity: isDragging ? 0.5 : 1,
       }}
       draggable
@@ -27,11 +27,25 @@ const Card = ({ card, setIsDragged, handleCardOnClick }) => {
       }}
       onClick={handleOnClick}
     >
-      <CardContent>
+      <CardContent
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          minHeight: '7rem',
+          maxHeight: '10rem',
+          overflow: 'auto',
+        }}
+      >
         <Typography variant='h6'>{card.title}</Typography>
-        <Typography variant='body2' color='textSecondary'>
-          {card.description}
-        </Typography>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography variant='body2' color='textSecondary'>
+            {card.description}
+          </Typography>
+          <Typography variant='body2' color='textSecondary'>
+            {5}
+          </Typography>
+        </div>
       </CardContent>
     </MuiCard>
   );

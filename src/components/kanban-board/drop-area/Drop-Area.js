@@ -14,9 +14,9 @@ export default function DropArea({
   let timeout;
 
   const handleOnDrop = (e) => {
+    e.preventDefault();
     setIsHidden(true);
     setIsDragged(false);
-    e.preventDefault();
     const activeCard = JSON.parse(e.dataTransfer.getData('activeCard'));
     handleDrop(activeCard.id, activeCard.columnId, columnId, cardDropIndex);
   };
