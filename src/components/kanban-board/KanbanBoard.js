@@ -14,6 +14,7 @@ const KanbanBoard = () => {
   const [isDragged, setIsDragged] = useState(false);
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [isBoardVisible, setIsBoardVisible] = useState(true);
+  const [draggedElementHeight, setDraggedElementHeight] = useState();
   const columnIds = useMemo(
     () => boardColumns.map((col) => col.id),
     [boardColumns]
@@ -97,6 +98,8 @@ const KanbanBoard = () => {
                       setIsDragged={setIsDragged}
                       isDragged={isDragged}
                       handleCardOnClick={handleCardOnClick}
+                      setDraggedElementHeight={setDraggedElementHeight}
+                      draggedElementHeight={draggedElementHeight}
                     />
                   </Grid>
                 ))}

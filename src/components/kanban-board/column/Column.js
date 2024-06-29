@@ -17,6 +17,8 @@ const Column = ({
   setIsDragged,
   isDragged,
   handleCardOnClick,
+  draggedElementHeight,
+  setDraggedElementHeight,
 }) => {
   const [cards, setCards] = useState([]);
   const [title, setTitle] = useState('');
@@ -147,6 +149,7 @@ const Column = ({
           cards={cards}
           setIsDragged={setIsDragged}
           isDragged={isDragged}
+          draggedElementHeight={draggedElementHeight}
         />
         {cards.map((card, index) => (
           <React.Fragment key={index}>
@@ -155,6 +158,7 @@ const Column = ({
               card={card}
               setIsDragged={setIsDragged}
               handleCardOnClick={handleCardOnClick}
+              setDraggedElementHeight={setDraggedElementHeight}
             />
             <DropArea
               cardDropIndex={index + 1}
@@ -163,6 +167,7 @@ const Column = ({
               cards={cards}
               setIsDragged={setIsDragged}
               isDragged={isDragged}
+              draggedElementHeight={draggedElementHeight}
             />
           </React.Fragment>
         ))}

@@ -2,7 +2,12 @@
 import React, { useState } from 'react';
 import { Card as MuiCard, CardContent, Typography } from '@mui/material';
 
-const Card = ({ card, setIsDragged, handleCardOnClick }) => {
+const Card = ({
+  card,
+  setIsDragged,
+  handleCardOnClick,
+  setDraggedElementHeight,
+}) => {
   const [isDragging, setIsDragging] = useState();
   const handleOnClick = () => {
     handleCardOnClick(card);
@@ -18,12 +23,15 @@ const Card = ({ card, setIsDragged, handleCardOnClick }) => {
       onDragStart={(e) => {
         setIsDragged(true);
         setIsDragging(true);
+        setDraggedElementHeight(e.target.offsetHeight);
+        console.log('e.target.offsetHeight: ', e.target.offsetHeight);
         console.log('drag started');
         e.dataTransfer.setData('activeCard', JSON.stringify(card));
       }}
       onDragEnd={() => {
         setIsDragged(false);
         setIsDragging(false);
+        setDraggedElementHeight(null);
         console.log('drag stopped');
       }}
       onClick={handleOnClick}

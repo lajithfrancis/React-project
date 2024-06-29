@@ -9,6 +9,7 @@ export default function DropArea({
   cards,
   setIsDragged,
   isDragged,
+  draggedElementHeight,
 }) {
   const [isHidden, setIsHidden] = useState(true);
   let timeout;
@@ -20,6 +21,8 @@ export default function DropArea({
     const activeCard = JSON.parse(e.dataTransfer.getData('activeCard'));
     handleDrop(activeCard.id, activeCard.columnId, columnId, cardDropIndex);
   };
+  console.log('height received in drop area: ', draggedElementHeight);
+
   return (
     <div
       style={{
@@ -28,7 +31,7 @@ export default function DropArea({
           // isDragged && cardDropIndex === cards.length
           //   ? '100%'
           // : isHidden
-          isHidden ? '20px' : '100px',
+          isHidden ? '20px' : `${draggedElementHeight}px`,
         transition: 'height 0.3s ease',
         border: !isHidden && '2px dotted',
         backgroundColor: !isHidden ? '#eeeeee' : 'transparent',
