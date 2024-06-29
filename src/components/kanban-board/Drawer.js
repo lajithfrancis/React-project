@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import './index.css';
 
 const drawerWidth = 240;
 
@@ -82,7 +83,7 @@ export default function PersistentDrawerLeft({ children }) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
-        <Toolbar style={{ backgroundColor: 'black' }}>
+        <Toolbar className='bg-toolbar'>
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -104,6 +105,7 @@ export default function PersistentDrawerLeft({ children }) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            backgroundColor: '#EEEEEE',
           },
         }}
         variant='persistent'

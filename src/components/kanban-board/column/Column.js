@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import './Column.css';
 import ButtonComponent from '../button/Button';
 import AddNewCardButton from '../card/AddNewCard';
+import DeleteDialogBox from './DeleteDialogBox';
 
 const Column = ({
   column,
@@ -24,6 +25,7 @@ const Column = ({
   const [title, setTitle] = useState('');
   const { boardCards, cardDispatch } = useCardContext();
   const { colDispatch } = useColumnContext();
+  const [openConfirm, setOpenConfirm] = useState();
   const {
     setNodeRef,
     attributes,
@@ -75,8 +77,14 @@ const Column = ({
   }, [column, boardCards]);
 
   const handleOnClick = () => {
+    // open dialog box
+    setOpenConfirm(true);
+  };
+
+  const handleColumnDelete = () => {
     colDispatch({ type: 'delete_column', id: column.id });
   };
+
   const handleSaveClick = () => {
     colDispatch({
       type: 'edit_column',
@@ -138,6 +146,11 @@ const Column = ({
           >
             <DeleteIcon />
           </Button>
+          <DeleteDialogBox
+            openConfirm={openConfirm}
+            setOpenConfirm={setOpenConfirm}
+            handleOnClick={handleColumnDelete}
+          />
           {/* <div style={{ flex: '0 1 auto' }}>
             <ButtonComponent handleOnClick={handleOnClick} />
           </div> */}

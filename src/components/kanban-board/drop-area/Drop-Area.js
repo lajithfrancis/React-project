@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import './Drop-Area.css';
 import { Card as MuiCard, CardContent, Typography } from '@mui/material';
+import '../index.css';
 
 export default function DropArea({
   cardDropIndex,

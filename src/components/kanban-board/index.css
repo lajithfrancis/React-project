@@ -1,0 +1,16 @@
+
+.bg-col {
+    background-color: #EEEEEE
+}
+
+.bg-toolbar {
+    background-color: #30343F
+}
+
+.drop-area {
+    opacity: 1;
+}
+
+.drop-area-hidden {
+    opacity: 0;
+}

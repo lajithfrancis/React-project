@@ -9,13 +9,11 @@ const Board = () => {
   return (
     <PersistentDrawerLeft>
       <CssBaseline />
-      <div style={{ display: ' flex' }}>
-        <Container maxWidth='xl'>
-          <BoardProvider>
-            <KanbanBoard />
-          </BoardProvider>
-        </Container>
-      </div>
+      <Container maxWidth='xl'>
+        <BoardProvider>
+          <KanbanBoard />
+        </BoardProvider>
+      </Container>
     </PersistentDrawerLeft>
   );
 };
