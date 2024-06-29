@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Card as MuiCard,
-  Button,
-  Input,
-  Paper,
-  Typography,
-  CardContent,
-} from '@mui/material';
+import { Button, Input, Paper, Typography } from '@mui/material';
 import Card from '../card/Card';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -14,9 +7,9 @@ import DropArea from '../drop-area/Drop-Area';
 import { useCardContext, useColumnContext } from '../context/BoardContext';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
 import './Column.css';
 import ButtonComponent from '../button/Button';
+import AddNewCardButton from '../card/AddNewCard';
 
 const Column = ({
   column,
@@ -173,23 +166,7 @@ const Column = ({
             />
           </React.Fragment>
         ))}
-        <div
-          style={{
-            backgroundColor: '#E0E0E0',
-            borderRadius: '15px',
-            display: 'flex',
-            justifyContent: 'center',
-            // visibility: isDragged ? 'hidden' : 'visible',
-            cursor: 'pointer',
-            height: '10%',
-          }}
-          onClick={handleAddCardOnClick}
-        >
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <AddIcon />
-            <p style={{ margin: '0' }}>Add new card</p>
-          </div>
-        </div>
+        <AddNewCardButton handleOnClick={handleAddCardOnClick} />
       </Paper>
     </div>
   );
