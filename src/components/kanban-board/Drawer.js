@@ -111,10 +111,17 @@ export default function PersistentDrawerLeft({ children }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position='fixed' open={open}>
+      <AppBar
+        position='fixed'
+        open={open}
+        style={{
+          backgroundColor: '#30343F',
+        }}
+      >
         <Toolbar
           className='bg-toolbar'
           style={{
+            paddingLeft: '30px',
             marginLeft: hovered && '240px',
           }}
         >
