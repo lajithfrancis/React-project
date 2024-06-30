@@ -106,6 +106,7 @@ export default function PersistentDrawerLeft({ children }) {
             width: drawerWidth,
             boxSizing: 'border-box',
             backgroundColor: '#EEEEEE',
+            // color: '#30343F',
           },
         }}
         variant='persistent'

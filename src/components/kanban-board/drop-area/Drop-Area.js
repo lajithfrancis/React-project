@@ -27,11 +27,7 @@ export default function DropArea({
     <div
       style={{
         borderRadius: '20px',
-        height:
-          // isDragged && cardDropIndex === cards.length
-          //   ? '100%'
-          // : isHidden
-          isHidden ? '20px' : `${draggedElementHeight}px`,
+        height: isHidden ? '20px' : `${draggedElementHeight}px`,
         transition: 'height 0.3s ease',
         border: !isHidden && '2px dotted',
         backgroundColor: !isHidden ? '#eeeeee' : 'transparent',
