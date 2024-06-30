@@ -23,16 +23,15 @@ const miniDrawerWidth = 60;
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open, hovered }) => ({
+})(({ theme, hovered }) => ({
   flexGrow: 1,
   padding: theme.spacing(3),
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginLeft: !hovered ? `-${drawerWidth}px` : `-${miniDrawerWidth}px`,
-  // marginLeft: `-${drawerWidth}px`,
-  ...(open && {
+  marginLeft: `-${drawerWidth}px`,
+  ...(hovered && {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -43,12 +42,12 @@ const Main = styled('main', {
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
+})(({ theme, open, hovered }) => ({
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  ...(open && {
+  ...(hovered && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
     transition: theme.transitions.create(['margin', 'width'], {
@@ -68,12 +67,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-const CustomDrawer = styled(Drawer)(({ theme, open, onHover }) => ({
-  width: open ? drawerWidth : miniDrawerWidth,
+const CustomDrawer = styled(Drawer)(({ theme, hovered }) => ({
+  width: hovered ? drawerWidth : miniDrawerWidth,
   flexShrink: 0,
   whiteSpace: 'nowrap',
   '& .MuiDrawer-paper': {
-    width: open ? drawerWidth : miniDrawerWidth,
+    width: miniDrawerWidth,
     boxSizing: 'border-box',
     backgroundColor: '#EEEEEE',
     transition: theme.transitions.create('width', {
@@ -112,13 +111,15 @@ export default function PersistentDrawerLeft({ children }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position='fixed' open={open}>
+      <AppBar position='fixed' open={open} hovered={hovered}>
         <Toolbar
-          className='bg-toolbar'
-          style={{
-            paddingLeft: '30px',
-            marginLeft: hovered && '240px',
-          }}
+          // className='bg-toolbar'
+          style={
+            {
+              //   paddingLeft: '30px',
+              //   marginLeft: hovered && '240px',
+            }
+          }
         >
           <IconButton
             color='inherit'
@@ -143,7 +144,7 @@ export default function PersistentDrawerLeft({ children }) {
           width: drawerWidth,
         }}
       >
-        <DrawerHeader></DrawerHeader>
+        {/* <DrawerHeader></DrawerHeader> */}
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
