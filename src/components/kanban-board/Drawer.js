@@ -10,8 +10,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -23,24 +21,25 @@ import './index.css';
 const drawerWidth = 240;
 const miniDrawerWidth = 60;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
+const Main = styled('main', {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open, hovered }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: !hovered ? `-${drawerWidth}px` : `-${miniDrawerWidth}px`,
+  // marginLeft: `-${drawerWidth}px`,
+  ...(open && {
     transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
+    marginLeft: 0,
+  }),
+}));
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -68,7 +67,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-const CustomDrawer = styled(Drawer)(({ theme, open }) => ({
+const CustomDrawer = styled(Drawer)(({ theme, open, onHover }) => ({
   width: open ? drawerWidth : miniDrawerWidth,
   flexShrink: 0,
   whiteSpace: 'nowrap',
@@ -94,6 +93,7 @@ const CustomDrawer = styled(Drawer)(({ theme, open }) => ({
 export default function PersistentDrawerLeft({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [hovered, setHovered] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -101,6 +101,11 @@ export default function PersistentDrawerLeft({ children }) {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleHoverChange = (isHovered) => {
+    setHovered(isHovered);
+    console.log('handleHoverChange: ', isHovered);
   };
 
   return (
@@ -125,29 +130,13 @@ export default function PersistentDrawerLeft({ children }) {
       <CustomDrawer
         variant='permanent'
         open={open}
+        onMouseEnter={() => handleHoverChange(true)}
+        onMouseLeave={() => handleHoverChange(false)}
         sx={{
           width: drawerWidth,
-          // flexShrink: 0,
-          // '& .MuiDrawer-paper': {
-          //   width: drawerWidth,
-          //   boxSizing: 'border-box',
-          //   backgroundColor: '#EEEEEE',
-          //   // color: '#30343F',
-          // },
         }}
       >
-        <DrawerHeader>
-          {/* <Typography variant='h5' gutterBottom>
-            Lajith's Board
-          </Typography> */}
-          {/* <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton> */}
-        </DrawerHeader>
+        <DrawerHeader></DrawerHeader>
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -175,7 +164,7 @@ export default function PersistentDrawerLeft({ children }) {
           ))}
         </List>
       </CustomDrawer>
-      <Main open={open}>
+      <Main open={open} hovered={hovered}>
         <DrawerHeader />
         {children}
       </Main>
