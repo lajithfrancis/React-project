@@ -14,8 +14,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SettingsIcon from '@mui/icons-material/Settings';
+import GroupsIcon from '@mui/icons-material/Group';
+import StarIcon from '@mui/icons-material/Star';
 import './index.css';
 
 const drawerWidth = 240;
@@ -146,19 +148,29 @@ export default function PersistentDrawerLeft({ children }) {
         <DrawerHeader></DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {['My dashboard', 'Starred', 'Contributors', 'Settings'].map(
+            (text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {index === 0 ? (
+                      <DashboardIcon />
+                    ) : index === 1 ? (
+                      <StarIcon />
+                    ) : index === 2 ? (
+                      <GroupsIcon />
+                    ) : (
+                      <SettingsIcon />
+                    )}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            )
+          )}
         </List>
         <Divider />
-        <List>
+        {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
@@ -169,7 +181,7 @@ export default function PersistentDrawerLeft({ children }) {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </CustomDrawer>
       <Main open={open} hovered={hovered}>
         <DrawerHeader />
