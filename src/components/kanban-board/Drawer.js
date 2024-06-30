@@ -56,6 +56,7 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
+  backgroundColor: '#30343F',
 }));
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -111,13 +112,7 @@ export default function PersistentDrawerLeft({ children }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar
-        position='fixed'
-        open={open}
-        style={{
-          backgroundColor: '#30343F',
-        }}
-      >
+      <AppBar position='fixed' open={open}>
         <Toolbar
           className='bg-toolbar'
           style={{
