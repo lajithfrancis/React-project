@@ -18,6 +18,8 @@ const Card = ({
         borderRadius: '.5rem',
         opacity: isDragging ? 0.5 : 1,
         transition: 'opacity .3s cubic-bezier(0.4, 0, 1, 1)',
+        backgroundColor: '#2F3337', // TODO: card bg color
+        color: '#E9EAEC', // TODO: card font color
       }}
       draggable
       onDragStart={(e) => {
@@ -54,14 +56,10 @@ const Card = ({
             overflow: 'auto',
           }}
         >
-          <Typography
-            variant='body2'
-            color='textSecondary'
-            style={{ overflow: 'auto' }}
-          >
+          <Typography variant='body2' color='' style={{ overflow: 'auto' }}>
             {card.description}
           </Typography>
-          <Typography variant='body2' color='textSecondary'>
+          <Typography variant='body2' color='GrayText'>
             {5}
           </Typography>
         </div>

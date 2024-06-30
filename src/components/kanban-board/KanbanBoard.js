@@ -92,7 +92,13 @@ const KanbanBoard = () => {
             >
               <SortableContext items={columnIds}>
                 {boardColumns.map((column, index) => (
-                  <Grid item key={index}>
+                  <Grid
+                    item
+                    key={index}
+                    style={{
+                      paddingBottom: '16px',
+                    }}
+                  >
                     <Column
                       column={column}
                       handleDrop={handleDrop}

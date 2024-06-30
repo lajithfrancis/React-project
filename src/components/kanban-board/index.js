@@ -7,19 +7,27 @@ import PersistentDrawerLeft from './Drawer';
 
 const Board = () => {
   return (
-    <PersistentDrawerLeft>
-      <CssBaseline />
-      <Container
-        maxWidth='xl'
-        style={{
-          backgroundColor: 'red',
-        }}
-      >
-        <BoardProvider>
-          <KanbanBoard />
-        </BoardProvider>
-      </Container>
-    </PersistentDrawerLeft>
+    <div
+      style={{
+        background: '#26292C',
+      }}
+    >
+      <PersistentDrawerLeft>
+        <CssBaseline />
+        <Container
+          maxWidth='xl'
+          style={{
+            backgroundColor: '#26292C', // TODO: board background color
+            borderRadius: '1rem',
+            paddingBottom: '2rem',
+          }}
+        >
+          <BoardProvider>
+            <KanbanBoard />
+          </BoardProvider>
+        </Container>
+      </PersistentDrawerLeft>
+    </div>
   );
 };
 

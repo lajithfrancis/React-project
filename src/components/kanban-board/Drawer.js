@@ -28,6 +28,8 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
+  backgroundColor: '#2F3337', // TODO: side bar bg color
+  color: '#E9EAEC', // TODO: side bar text color
 });
 
 const closedMixin = (theme) => ({
@@ -36,6 +38,8 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
+  backgroundColor: '#2F3337', // TODO: side bar bg color
+  // color: '#E9EAEC',
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
@@ -102,7 +106,11 @@ export default function MiniDrawer({ children }) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
-        <Toolbar>
+        <Toolbar
+          style={{
+            backgroundColor: '#26292C',
+          }}
+        >
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -143,6 +151,7 @@ export default function MiniDrawer({ children }) {
               >
                 <ListItemIcon
                   sx={{
+                    color: '#E9EAEC', //TODO: side bar icon color
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',

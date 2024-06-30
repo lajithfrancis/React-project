@@ -110,72 +110,72 @@ const Column = ({
     <div ref={setNodeRef} style={style}>
       <Paper
         style={{
-          padding: '16px',
+          // padding: '16px',
           width: '300px',
           height: '80vh',
           overflow: 'auto',
-          background: '#FAFAFA',
-          borderRadius: '1rem',
+          backgroundColor: '#26292C', // TODO: Column bg color
+          color: 'lightgrey',
         }}
       >
         <div
           style={{
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: '15px',
+            flexDirection: 'column',
+            height: '100%',
           }}
         >
           <div
-            {...attributes}
-            {...listeners}
-            style={{ flex: '0 1 auto', cursor: 'grab' }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: '5px',
+              padding: '10px',
+              marginBottom: '10px',
+              border: '.1px solid #393D41',
+            }}
           >
-            <DragIndicatorIcon />
-          </div>
-          <div style={{ flex: '3 1 auto' }}>
-            <EditableTypography
-              title={title}
-              setTitle={setTitle}
-              handleSave={handleSaveClick}
+            <div
+              {...attributes}
+              {...listeners}
+              style={{ flex: '0 1 auto', cursor: 'grab' }}
+            >
+              <DragIndicatorIcon />
+            </div>
+            <div style={{ flex: '3 1 auto' }}>
+              <EditableTypography
+                title={title}
+                setTitle={setTitle}
+                handleSave={handleSaveClick}
+              />
+            </div>
+            <Button
+              className='delete-button'
+              onClick={handleOnClick}
+              style={{ flex: '0 1 auto', minWidth: '30px' }}
+            >
+              <DeleteIcon />
+            </Button>
+            <DeleteDialogBox
+              openConfirm={openConfirm}
+              setOpenConfirm={setOpenConfirm}
+              handleOnClick={handleColumnDelete}
             />
-          </div>
-          <Button
-            className='delete-button'
-            onClick={handleOnClick}
-            style={{ flex: '0 1 auto', minWidth: '30px' }}
-          >
-            <DeleteIcon />
-          </Button>
-          <DeleteDialogBox
-            openConfirm={openConfirm}
-            setOpenConfirm={setOpenConfirm}
-            handleOnClick={handleColumnDelete}
-          />
-          {/* <div style={{ flex: '0 1 auto' }}>
+            {/* <div style={{ flex: '0 1 auto' }}>
             <ButtonComponent handleOnClick={handleOnClick} />
           </div> */}
-        </div>
-        <DropArea
-          cardDropIndex={0}
-          handleDrop={handleDrop}
-          columnId={column.id}
-          cards={cards}
-          setIsDragged={setIsDragged}
-          isDragged={isDragged}
-          draggedElementHeight={draggedElementHeight}
-        />
-        {cards.map((card, index) => (
-          <React.Fragment key={index}>
-            <Card
-              key={index}
-              card={card}
-              setIsDragged={setIsDragged}
-              handleCardOnClick={handleCardOnClick}
-              setDraggedElementHeight={setDraggedElementHeight}
-            />
+          </div>
+          <div
+            style={{
+              flex: '1',
+              borderRadius: '.5rem',
+              border: '2px solid #393D41', // TODO: column border color
+              padding: '5px',
+            }}
+          >
             <DropArea
-              cardDropIndex={index + 1}
+              cardDropIndex={0}
               handleDrop={handleDrop}
               columnId={column.id}
               cards={cards}
@@ -183,9 +183,29 @@ const Column = ({
               isDragged={isDragged}
               draggedElementHeight={draggedElementHeight}
             />
-          </React.Fragment>
-        ))}
-        <AddNewCardButton handleOnClick={handleAddCardOnClick} />
+            {cards.map((card, index) => (
+              <React.Fragment key={index}>
+                <Card
+                  key={index}
+                  card={card}
+                  setIsDragged={setIsDragged}
+                  handleCardOnClick={handleCardOnClick}
+                  setDraggedElementHeight={setDraggedElementHeight}
+                />
+                <DropArea
+                  cardDropIndex={index + 1}
+                  handleDrop={handleDrop}
+                  columnId={column.id}
+                  cards={cards}
+                  setIsDragged={setIsDragged}
+                  isDragged={isDragged}
+                  draggedElementHeight={draggedElementHeight}
+                />
+              </React.Fragment>
+            ))}
+            <AddNewCardButton handleOnClick={handleAddCardOnClick} />
+          </div>
+        </div>
       </Paper>
     </div>
   );
