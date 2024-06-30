@@ -9,7 +9,12 @@ const Board = () => {
   return (
     <PersistentDrawerLeft>
       <CssBaseline />
-      <Container maxWidth='xl'>
+      <Container
+        maxWidth='xl'
+        style={{
+          backgroundColor: 'red',
+        }}
+      >
         <BoardProvider>
           <KanbanBoard />
         </BoardProvider>

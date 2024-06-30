@@ -115,6 +115,7 @@ const Column = ({
           height: '80vh',
           overflow: 'auto',
           background: '#FAFAFA',
+          borderRadius: '1rem',
         }}
       >
         <div

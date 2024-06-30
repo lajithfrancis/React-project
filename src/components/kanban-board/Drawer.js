@@ -183,7 +183,13 @@ export default function PersistentDrawerLeft({ children }) {
           ))}
         </List> */}
       </CustomDrawer>
-      <Main open={open} hovered={hovered}>
+      <Main
+        open={open}
+        hovered={hovered}
+        style={{
+          backgroundColor: 'lightgrey',
+        }}
+      >
         <DrawerHeader />
         {children}
       </Main>
