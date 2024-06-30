@@ -49,7 +49,6 @@ const AppBar = styled(MuiAppBar, {
   }),
   ...(hovered && {
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -116,7 +115,7 @@ export default function PersistentDrawerLeft({ children }) {
           // className='bg-toolbar'
           style={
             {
-              //   paddingLeft: '30px',
+              // paddingLeft: '60px',
               //   marginLeft: hovered && '240px',
             }
           }
@@ -126,7 +125,7 @@ export default function PersistentDrawerLeft({ children }) {
             aria-label='open drawer'
             onClick={handleDrawerOpen}
             edge='start'
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(hovered && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -144,7 +143,7 @@ export default function PersistentDrawerLeft({ children }) {
           width: drawerWidth,
         }}
       >
-        {/* <DrawerHeader></DrawerHeader> */}
+        <DrawerHeader></DrawerHeader>
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
