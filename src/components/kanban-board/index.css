@@ -1,10 +1,11 @@
 
 .bg-col {
-    background-color: #EEEEEE
+    background-color: #EEEEEE;
 }
 
 .bg-toolbar {
-    background-color: #30343F
+    background-color: #30343F;
+    margin-left: 60px;
 }
 
 .drop-area {

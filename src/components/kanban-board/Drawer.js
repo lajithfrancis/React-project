@@ -112,7 +112,12 @@ export default function PersistentDrawerLeft({ children }) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
-        <Toolbar className='bg-toolbar'>
+        <Toolbar
+          className='bg-toolbar'
+          style={{
+            marginLeft: hovered && '240px',
+          }}
+        >
           <IconButton
             color='inherit'
             aria-label='open drawer'
