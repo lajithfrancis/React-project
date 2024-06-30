@@ -137,16 +137,16 @@ export default function PersistentDrawerLeft({ children }) {
         }}
       >
         <DrawerHeader>
-          <Typography variant='h5' gutterBottom>
+          {/* <Typography variant='h5' gutterBottom>
             Lajith's Board
-          </Typography>
-          <IconButton onClick={handleDrawerClose}>
+          </Typography> */}
+          {/* <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
               <ChevronRightIcon />
             )}
-          </IconButton>
+          </IconButton> */}
         </DrawerHeader>
         <Divider />
         <List>
