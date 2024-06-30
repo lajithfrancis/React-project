@@ -21,6 +21,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import './index.css';
 
 const drawerWidth = 240;
+const miniDrawerWidth = 60;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -67,9 +68,32 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
+const CustomDrawer = styled(Drawer)(({ theme, open }) => ({
+  width: open ? drawerWidth : miniDrawerWidth,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  '& .MuiDrawer-paper': {
+    width: open ? drawerWidth : miniDrawerWidth,
+    boxSizing: 'border-box',
+    backgroundColor: '#EEEEEE',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    '&:hover': {
+      width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+  },
+}));
+
 export default function PersistentDrawerLeft({ children }) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -98,20 +122,19 @@ export default function PersistentDrawerLeft({ children }) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
+      <CustomDrawer
+        variant='permanent'
+        open={open}
         sx={{
           width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-            backgroundColor: '#EEEEEE',
-            // color: '#30343F',
-          },
+          // flexShrink: 0,
+          // '& .MuiDrawer-paper': {
+          //   width: drawerWidth,
+          //   boxSizing: 'border-box',
+          //   backgroundColor: '#EEEEEE',
+          //   // color: '#30343F',
+          // },
         }}
-        variant='persistent'
-        anchor='left'
-        open={open}
       >
         <DrawerHeader>
           <Typography variant='h5' gutterBottom>
@@ -151,7 +174,7 @@ export default function PersistentDrawerLeft({ children }) {
             </ListItem>
           ))}
         </List>
-      </Drawer>
+      </CustomDrawer>
       <Main open={open}>
         <DrawerHeader />
         {children}
