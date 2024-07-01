@@ -18,8 +18,7 @@ const Card = ({
         borderRadius: '.5rem',
         opacity: isDragging ? 0.5 : 1,
         transition: 'opacity .3s cubic-bezier(0.4, 0, 1, 1)',
-        // backgroundColor: '#2F3337', // TODO: card bg color
-        // color: '#E9EAEC', // TODO: card font color
+        boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
       }}
       draggable
       onDragStart={(e) => {

@@ -33,18 +33,42 @@ const Board = () => {
     palette: {
       mode: 'light',
       primary: {
-        main: '#1976d2',
+        main: '#F0F0F0', // Primary main color
+        light: '#FFFFFF', // Primary light color
+        dark: '#DADADA', // Primary dark color
       },
       secondary: {
-        main: '#dc004e',
+        main: '#EFE7DD', // Secondary main color
+        light: '#FFFFFF', // Secondary light color
+        dark: '#D2C4B2', // Secondary dark color
       },
       background: {
-        default: '#ffffff',
-        paper: '#f5f5f5',
+        default: '#FAFAFA', // Background default color
+        paper: '#FFFFFF', // Background paper color
       },
       text: {
-        primary: '#000000',
-        secondary: '#555555',
+        primary: '#212121', // Primary text color
+        secondary: '#757575', // Secondary text color
+      },
+      success: {
+        main: '#E8F5E9', // Success main color
+        light: '#FFFFFF', // Success light color
+        dark: '#C5E1A5', // Success dark color
+      },
+      error: {
+        main: '#FFEBEE', // Error main color
+        light: '#FFFFFF', // Error light color
+        dark: '#FFCDD2', // Error dark color
+      },
+      warning: {
+        main: '#FFFDE7', // Warning main color
+        light: '#FFFFFF', // Warning light color
+        dark: '#FFF9C4', // Warning dark color
+      },
+      info: {
+        main: '#E3F2FD', // Info main color
+        light: '#FFFFFF', // Info light color
+        dark: '#BBDEFB', // Info dark color
       },
     },
   });
