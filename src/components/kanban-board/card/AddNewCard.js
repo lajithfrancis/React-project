@@ -12,7 +12,7 @@ const AddNewCardButton = ({ handleOnClick }) => {
     },
   }));
 
-  const StyledTypography = styled(Typography)(({ theme }) => ({
+  const StyledGridTypography = styled(Grid)(({ theme }) => ({
     color: theme.palette.text.secondary, // Default icon color from the theme
     '&:hover': {
       color: theme.palette.text.primary, // Icon color on hover, using secondary color from the theme
@@ -20,18 +20,17 @@ const AddNewCardButton = ({ handleOnClick }) => {
   }));
 
   return (
-    <Grid className='add-card-button' onClick={handleOnClick}>
-      <Grid style={{ display: 'flex', alignItems: 'center' }}>
-        <StyledIconButton>
-          <AddIcon />
-        </StyledIconButton>
-        <StyledTypography>
-          <Typography color='main' style={{ margin: '0' }}>
-            Add new card
-          </Typography>
-        </StyledTypography>
-      </Grid>
-    </Grid>
+    <StyledGridTypography
+      onClick={handleOnClick}
+      style={{ display: 'flex', alignItems: 'center', padding: '1rem' }}
+    >
+      <AddIcon
+        style={{
+          marginRight: '5px',
+        }}
+      />
+      <Typography>Add new card</Typography>
+    </StyledGridTypography>
   );
 };
 
