@@ -114,7 +114,7 @@ const Column = ({
           width: '300px',
           height: '80vh',
           overflow: 'auto',
-          backgroundColor: '#26292C', // TODO: Column bg color
+          // backgroundColor: '#26292C', // TODO: Column bg color
           color: 'lightgrey',
         }}
       >
@@ -170,7 +170,7 @@ const Column = ({
             style={{
               flex: '1',
               borderRadius: '.5rem',
-              border: '2px solid #393D41', // TODO: column border color
+              // border: '2px solid #393D41', // TODO: column border color
               padding: '5px',
             }}
           >

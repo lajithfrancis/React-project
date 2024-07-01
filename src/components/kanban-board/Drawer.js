@@ -18,6 +18,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { Button } from '@mui/material';
+import ToggleOffTwoToneIcon from '@mui/icons-material/ToggleOffTwoTone';
+import ToggleOnTwoToneIcon from '@mui/icons-material/ToggleOnTwoTone';
 
 const drawerWidth = 240;
 
@@ -28,8 +31,8 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
-  backgroundColor: '#2F3337', // TODO: side bar bg color
-  color: '#E9EAEC', // TODO: side bar text color
+  // backgroundColor: '#2F3337', // TODO: side bar bg color
+  // color: '#E9EAEC', // TODO: side bar text color
 });
 
 const closedMixin = (theme) => ({
@@ -38,7 +41,7 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  backgroundColor: '#2F3337', // TODO: side bar bg color
+  // backgroundColor: '#2F3337', // TODO: side bar bg color
   // color: '#E9EAEC',
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
@@ -90,7 +93,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer({ children }) {
+export default function MiniDrawer({ children, isDark, setIsDark }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -106,27 +109,41 @@ export default function MiniDrawer({ children }) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
-        <Toolbar
-          style={{
-            backgroundColor: '#26292C',
-          }}
-        >
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Toolbar
+            style={{
+              flex: '1',
+              // backgroundColor: '#26292C', // TODO: APP bar bg color
             }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6' noWrap component='div'>
-            My Kanban Board
-          </Typography>
-        </Toolbar>
+            <IconButton
+              color='inherit'
+              aria-label='open drawer'
+              onClick={handleDrawerOpen}
+              edge='start'
+              sx={{
+                marginRight: 5,
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant='h6' noWrap component='div'>
+              My Kanban Board
+            </Typography>
+          </Toolbar>
+          <div
+            style={{
+              marginRight: '1rem',
+            }}
+            onClick={() => {
+              setIsDark(!isDark);
+              console.log('setting dark mode: ', isDark);
+            }}
+          >
+            {isDark ? <ToggleOnTwoToneIcon /> : <ToggleOffTwoToneIcon />}
+          </div>
+        </div>
       </AppBar>
       <Drawer variant='permanent' open={open}>
         <DrawerHeader>
@@ -151,7 +168,7 @@ export default function MiniDrawer({ children }) {
               >
                 <ListItemIcon
                   sx={{
-                    color: '#E9EAEC', //TODO: side bar icon color
+                    // color: '#E9EAEC', //TODO: side bar icon color
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
