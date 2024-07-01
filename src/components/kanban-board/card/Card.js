@@ -19,6 +19,8 @@ const Card = ({
         opacity: isDragging ? 0.5 : 1,
         transition: 'opacity .3s cubic-bezier(0.4, 0, 1, 1)',
         boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+        // boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 50px',
+        // boxShadow: 'rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px'
       }}
       draggable
       onDragStart={(e) => {

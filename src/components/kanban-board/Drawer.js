@@ -18,7 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import ToggleOffTwoToneIcon from '@mui/icons-material/ToggleOffTwoTone';
 import ToggleOnTwoToneIcon from '@mui/icons-material/ToggleOnTwoTone';
 
@@ -93,6 +93,12 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+const StyledGrid = styled(Grid)(({ theme }) => ({
+  // color: theme.palette.text.primary, // Default icon color from the theme
+  marginRight: '1rem',
+  cursor: 'pointer',
+}));
+
 export default function MiniDrawer({ children, isDark, setIsDark }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -109,7 +115,7 @@ export default function MiniDrawer({ children, isDark, setIsDark }) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Grid style={{ display: 'flex', alignItems: 'center' }}>
           <Toolbar
             style={{
               flex: '1',
@@ -132,18 +138,10 @@ export default function MiniDrawer({ children, isDark, setIsDark }) {
               My Kanban Board
             </Typography>
           </Toolbar>
-          <div
-            style={{
-              marginRight: '1rem',
-            }}
-            onClick={() => {
-              setIsDark(!isDark);
-              console.log('setting dark mode: ', isDark);
-            }}
-          >
+          <StyledGrid title='Dark/Light' onClick={() => setIsDark(!isDark)}>
             {isDark ? <ToggleOnTwoToneIcon /> : <ToggleOffTwoToneIcon />}
-          </div>
-        </div>
+          </StyledGrid>
+        </Grid>
       </AppBar>
       <Drawer variant='permanent' open={open}>
         <DrawerHeader>
