@@ -13,9 +13,10 @@ const AddNewCardButton = ({ handleOnClick }) => {
   }));
 
   const StyledGridTypography = styled(Grid)(({ theme }) => ({
-    color: theme.palette.text.secondary, // Default icon color from the theme
+    color: theme.palette.primary.main, // Default icon color from the theme
     '&:hover': {
-      color: theme.palette.text.primary, // Icon color on hover, using secondary color from the theme
+      color: theme.palette.primary.dark, // Icon color on hover, using secondary color from the theme
+      textShadow: '4px 4px 4px rgba(0, 0, 0, 0.5)',
     },
   }));
 
