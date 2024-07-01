@@ -114,6 +114,7 @@ const Column = ({
           width: '300px',
           height: '80vh',
           overflow: 'auto',
+          borderRadius: '1rem',
           // backgroundColor: '#26292C', // TODO: Column bg color
           // color: 'lightgrey', // TODO: Column font color
         }}
