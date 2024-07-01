@@ -12,8 +12,7 @@ const StyledGrid = styled(MuiCard)(({ theme }) => ({
   backgroundColor: theme.palette.text.custom,
   ':hover': {
     // backgroundColor: theme.palette.primary.light,
-    background:
-      'linear-gradient(to right, #9565dc, #945de4, #9256eb, #914ff2, #8f48f9)',
+    background: `linear-gradient(to right, ${theme.palette.primary.light}, ${theme.palette.primary.dark})`,
     color: theme.palette.text.custom,
   },
   transition: 'opacity .3s cubic-bezier(0.4, 0, 1, 1)',
