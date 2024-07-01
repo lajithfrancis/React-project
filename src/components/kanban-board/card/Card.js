@@ -9,6 +9,7 @@ import {
 
 const StyledGrid = styled(MuiCard)(({ theme }) => ({
   borderRadius: '.5rem',
+  backgroundColor: theme.palette.text.custom,
   ':hover': {
     backgroundColor: theme.palette.primary.light,
     color: theme.palette.text.custom,
