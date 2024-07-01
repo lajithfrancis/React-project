@@ -162,9 +162,6 @@ const Column = ({
               setOpenConfirm={setOpenConfirm}
               handleOnClick={handleColumnDelete}
             />
-            {/* <div style={{ flex: '0 1 auto' }}>
-            <ButtonComponent handleOnClick={handleOnClick} />
-          </div> */}
           </div>
           <div
             style={{
