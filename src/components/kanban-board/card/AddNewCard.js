@@ -22,7 +22,12 @@ const AddNewCardButton = ({ handleOnClick }) => {
   return (
     <StyledGridTypography
       onClick={handleOnClick}
-      style={{ display: 'flex', alignItems: 'center', padding: '1rem' }}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: '1rem',
+        cursor: 'pointer',
+      }}
     >
       <AddIcon
         style={{
