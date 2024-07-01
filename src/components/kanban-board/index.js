@@ -13,19 +13,47 @@ const Board = () => {
     palette: {
       mode: 'dark',
       primary: {
-        main: '#90caf9',
+        main: '#9c89b8', // Custom primary color (purple)
+        light: '#b0a4cc', // Lighter shade of the primary color
+        dark: '#7b6790', // Darker shade of the primary color
+        contrastText: '#ffffff', // White text for contrast
       },
       secondary: {
-        main: '#f48fb1',
+        main: '#ff4081', // Example secondary color (pink)
+        light: '#ff79b0', // Very light pink
+        dark: '#c60055', // Dark pink
+        contrastText: '#000000', // Black text for contrast
       },
       background: {
-        default: '#121212',
-        paper: '#1e1e1e',
+        default: '#000000', // Black background
+        paper: '#121212', // Slightly lighter dark background
       },
       text: {
-        primary: '#ffffff',
-        secondary: '#bbbbbb',
+        primary: '#ffffff', // White text
+        secondary: '#b0bec5', // Light gray text
+        custom: '#000000',
       },
+      success: {
+        main: '#66bb6a', // Light green
+        light: '#81c784', // Very light green
+        dark: '#388e3c', // Dark green
+      },
+      error: {
+        main: '#e57373', // Light red
+        light: '#ef9a9a', // Very light red
+        dark: '#d32f2f', // Dark red
+      },
+      warning: {
+        main: '#ffb74d', // Light orange
+        light: '#ffcc80', // Very light orange
+        dark: '#f57c00', // Dark orange
+      },
+      info: {
+        main: '#4fc3f7', // Light cyan
+        light: '#81d4fa', // Very light cyan
+        dark: '#0288d1', // Dark cyan
+      },
+      divider: '#424242', // Divider color
     },
   });
 
@@ -33,43 +61,47 @@ const Board = () => {
     palette: {
       mode: 'light',
       primary: {
-        main: '#F0F0F0', // Primary main color
-        light: '#FFFFFF', // Primary light color
-        dark: '#DADADA', // Primary dark color
+        main: '#6f58c9', // Custom primary color (purple)
+        light: '#9a8ef4', // Lighter shade of the primary color
+        dark: '#483392', // Darker shade of the primary color
+        contrastText: '#ffffff', // White text for contrast
       },
       secondary: {
-        main: '#EFE7DD', // Secondary main color
-        light: '#FFFFFF', // Secondary light color
-        dark: '#D2C4B2', // Secondary dark color
+        main: '#ff4081', // Example secondary color (pink)
+        light: '#ff79b0', // Very light pink
+        dark: '#c60055', // Dark pink
+        contrastText: '#ffffff', // White text for contrast
       },
       background: {
-        default: '#FAFAFA', // Background default color
-        paper: '#FFFFFF', // Background paper color
+        default: '#ffffff', // White background
+        paper: '#f8f8f8', // Slightly off-white paper background
       },
       text: {
-        primary: '#212121', // Primary text color
-        secondary: '#757575', // Secondary text color
+        primary: '#000000', // Black text
+        secondary: '#333333', // Dark gray text
+        custom: '#ffffff',
       },
       success: {
-        main: '#E8F5E9', // Success main color
-        light: '#FFFFFF', // Success light color
-        dark: '#C5E1A5', // Success dark color
+        main: '#4caf50', // Green
+        light: '#81c784', // Light green
+        dark: '#388e3c', // Dark green
       },
       error: {
-        main: '#FFEBEE', // Error main color
-        light: '#FFFFFF', // Error light color
-        dark: '#FFCDD2', // Error dark color
+        main: '#f44336', // Red
+        light: '#e57373', // Light red
+        dark: '#d32f2f', // Dark red
       },
       warning: {
-        main: '#FFFDE7', // Warning main color
-        light: '#FFFFFF', // Warning light color
-        dark: '#FFF9C4', // Warning dark color
+        main: '#ff9800', // Orange
+        light: '#ffb74d', // Light orange
+        dark: '#f57c00', // Dark orange
       },
       info: {
-        main: '#E3F2FD', // Info main color
-        light: '#FFFFFF', // Info light color
-        dark: '#BBDEFB', // Info dark color
+        main: '#2196f3', // Blue
+        light: '#64b5f6', // Light blue
+        dark: '#1976d2', // Dark blue
       },
+      divider: '#e0e0e0',
     },
   });
 
