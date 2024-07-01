@@ -13,9 +13,9 @@ const Board = () => {
     palette: {
       mode: 'dark',
       primary: {
-        main: '#9c89b8', // Custom primary color (purple)
-        light: '#b0a4cc', // Lighter shade of the primary color
-        dark: '#7b6790', // Darker shade of the primary color
+        main: '#45365a', // Custom primary color (purple)
+        light: '#735b97', // Lighter shade of the primary color
+        dark: '#3b2f4e', // Darker shade of the primary color
         contrastText: '#ffffff', // White text for contrast
       },
       secondary: {
@@ -61,8 +61,8 @@ const Board = () => {
     palette: {
       mode: 'light',
       primary: {
-        main: '#6f58c9', // Custom primary color (purple)
-        light: '#9a8ef4', // Lighter shade of the primary color
+        main: '#574573', // Slightly desaturated violet.
+        light: '#9c89b8', // Lighter shade of the primary color
         dark: '#483392', // Darker shade of the primary color
         contrastText: '#ffffff', // White text for contrast
       },
