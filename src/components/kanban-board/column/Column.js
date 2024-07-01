@@ -115,7 +115,7 @@ const Column = ({
           height: '80vh',
           overflow: 'auto',
           // backgroundColor: '#26292C', // TODO: Column bg color
-          color: 'lightgrey',
+          // color: 'lightgrey', // TODO: Column font color
         }}
       >
         <div
@@ -133,7 +133,7 @@ const Column = ({
               borderRadius: '5px',
               padding: '10px',
               marginBottom: '10px',
-              border: '.1px solid #393D41',
+              // border: '.1px solid #393D41', // TODO: column title border
             }}
           >
             <div
