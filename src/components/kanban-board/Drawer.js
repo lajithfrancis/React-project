@@ -31,8 +31,8 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
-  // backgroundColor: '#2F3337', // TODO: side bar bg color
-  // color: '#E9EAEC', // TODO: side bar text color
+  backgroundColor: theme.palette.primary.light, // TODO: side bar bg color
+  color: theme.palette.text.primary, // TODO: side bar text color
 });
 
 const closedMixin = (theme) => ({
@@ -41,8 +41,8 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  // backgroundColor: '#2F3337', // TODO: side bar bg color
-  // color: '#E9EAEC',
+  backgroundColor: theme.palette.primary.main, // TODO: side bar bg color
+  color: theme.palette.text.custom, // TODO: side bar text color
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
