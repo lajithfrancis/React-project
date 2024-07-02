@@ -109,13 +109,7 @@ const Board = () => {
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <Drawer setIsDark={setIsDark} isDark={isDark}>
         <CssBaseline />
-        <Container
-          maxWidth='xl'
-          style={{
-            borderRadius: '1rem',
-            paddingBottom: '2rem',
-          }}
-        >
+        <Container maxWidth='xl'>
           <BoardProvider>
             <KanbanBoard />
           </BoardProvider>

@@ -119,7 +119,6 @@ export default function MiniDrawer({ children, isDark, setIsDark }) {
           <Toolbar
             style={{
               flex: '1',
-              // backgroundColor: '#26292C', // TODO: APP bar bg color
             }}
           >
             <IconButton
