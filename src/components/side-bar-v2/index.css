@@ -82,7 +82,6 @@
     opacity: 1;
     height: 100%;
     pointer-events: auto;
-    background: #11101d;
 }
 
 .sidebar .nav-links li:hover .sub-menu li:hover {
