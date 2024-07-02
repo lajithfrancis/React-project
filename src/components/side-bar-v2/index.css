@@ -108,7 +108,14 @@
 }
 
 .sidebar .nav-links li .sub-menu .hover-heading {
+    opacity: 0;
+    height: 0;
+}
+
+.sidebar-close .nav-links li .sub-menu .hover-heading {
     font-size: 18px;
+    opacity: 1;
+    height: 100%;
 }
 
 .sidebar-close .nav-links li:hover .sub-menu {
