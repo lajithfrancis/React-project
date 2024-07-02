@@ -1,0 +1,47 @@
+body {
+  padding: 25px;
+}
+ 
+.title {
+  color: #5C6AC4;
+}
+ 
+.side-bar {
+  position: fixed;
+  width: 260px;
+  background: grey;
+  height: 100vh;
+}
+ 
+.parent-list {
+  list-style: none;
+  padding: 0;
+}
+ 
+.parent-list li {
+  position: relative;
+  margin-bottom: 3px;
+}
+ 
+.child-list {
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+ 
+.first-child {
+  cursor: pointer;
+  height: 20px;
+}
+ 
+.first-child:hover .child-list .second-child {
+  position: relative;
+  color: red;
+  left: 100%;
+  top: -20px;
+  opacity: 1;
+}
+ 
+.second-child {
+  opacity: 0;
+}
