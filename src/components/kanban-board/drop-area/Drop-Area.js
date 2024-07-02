@@ -21,7 +21,6 @@ export default function DropArea({
     const activeCard = JSON.parse(e.dataTransfer.getData('activeCard'));
     handleDrop(activeCard.id, activeCard.columnId, columnId, cardDropIndex);
   };
-  console.log('height received in drop area: ', draggedElementHeight);
 
   return (
     <div
