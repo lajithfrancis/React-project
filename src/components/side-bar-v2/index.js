@@ -17,8 +17,6 @@ const SideBarV2 = () => {
         <div className='logo-details'>
           <span className='logo-name'>Lajith Coding</span>
         </div>
-        {/* <Button onClick={() => setIsOpen(!isOpen)}>toggle</Button> */}
-
         <ul className='nav-links'>
           <li className=''>
             <a href='#'>
@@ -27,11 +25,6 @@ const SideBarV2 = () => {
               </i>
               <span className='link_name'>Dashboard</span>
             </a>
-            <ul className='sub-menu'>
-              <a className='hover-heading' href='#'>
-                Dashboard
-              </a>
-            </ul>
           </li>
           <li className=''>
             <div className='iocn-link'>
@@ -92,11 +85,6 @@ const SideBarV2 = () => {
               </i>
               <span className='link_name'>Settings</span>
             </a>
-            <ul className='sub-menu'>
-              <a className='hover-heading' href='#'>
-                Settings
-              </a>
-            </ul>
           </li>
         </ul>
       </div>

@@ -101,7 +101,6 @@
     position: relative;
     padding: 6px 6px 14px 80px;
     margin-top: -10px;
-    background: #1d1b31;
     opacity: 0;
     pointer-events: none;
     height: 0;
@@ -112,10 +111,10 @@
     font-size: 18px;
 }
 
-.sidebar-close .nav-links li:hover .sub-menu {
+.sidebar-close .nav-links li:hover .sub-menu a {
     position: absolute;  
     left: 100%;
-    top: -1%;
+    top: -50px;
     margin-top: 0;
     padding: 10px 20px;
     border-radius: 0 6px 6px 0;
@@ -126,7 +125,7 @@
     background: #1d1b31;
 }
 
-.sidebar-close .nav-links li:hover .sub-menu li a {
+.sidebar-close .nav-links li .sub-menu li a {
     /* position: absolute;  
     left: 100%;
     top: -1%;
