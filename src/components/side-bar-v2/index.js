@@ -42,6 +42,11 @@ const SideBarV2 = () => {
             </div>
             <ul className='sub-menu'>
               <li>
+                <a className='hover-heading' href='#'>
+                  Categories
+                </a>
+              </li>
+              <li>
                 <a href='#'>My tasks</a>
               </li>
               <li>
@@ -50,7 +55,7 @@ const SideBarV2 = () => {
             </ul>
           </li>
           <li className=''>
-            <div className='iocn-link'>
+            <div className='link'>
               <a href='#'>
                 <i className='bx bx-collection'>
                   <Profile />
@@ -62,6 +67,11 @@ const SideBarV2 = () => {
               </i>
             </div>
             <ul className='sub-menu'>
+              <li>
+                <a className='hover-heading' href='#'>
+                  Profile
+                </a>
+              </li>
               <li>
                 <a href='#'>First</a>
               </li>

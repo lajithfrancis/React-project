@@ -88,6 +88,10 @@
     display: flex;
 }
 
+.sidebar-close .nav-links li .iocn-link > i {
+    display: none;
+}
+
 .sidebar .nav-links li .sub-menu {
     padding: 6px 6px 14px 80px;
     margin-top: -10px;
@@ -96,6 +100,10 @@
     pointer-events: none;
     height: 0;
     transition: all .3s ease;
+}
+
+.sidebar .nav-links li .sub-menu .hover-heading{
+    display: none;
 }
 
 .sidebar-close .nav-links li .sub-menu {
@@ -115,6 +123,10 @@
     opacity: 1;
     height: 100%;
     pointer-events: auto;
+}
+
+.sidebar-close .nav-links li:hover .sub-menu {
+    display: none;
 }
 
 .sidebar .nav-links li:hover .sub-menu li:hover {
