@@ -103,6 +103,7 @@
 }
 
 .sidebar .nav-links li .sub-menu .hover-heading{
+    font-size: 18px;
     display: none;
 }
 

@@ -55,7 +55,7 @@ const SideBarV2 = () => {
             </ul>
           </li>
           <li className=''>
-            <div className='link'>
+            <div className='iocn-link'>
               <a href='#'>
                 <i className='bx bx-collection'>
                   <Profile />
