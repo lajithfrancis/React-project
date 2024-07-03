@@ -154,7 +154,7 @@ export default function MiniDrawer({ children, isDark, setIsDark }) {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Dashboard', 'Tasks', 'Members', 'Assignees'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <Tooltip title={text} placement='right'>
                 <ListItemButton
