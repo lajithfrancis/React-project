@@ -80,52 +80,64 @@ const KanbanBoard = () => {
           handleOnClick={handleOnClickCloseButton}
         />
       )}
-      <Fade in={isBoardVisible} timeout={100}>
-        <div>
-          <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-            <Grid
-              container
-              spacing={2}
-              style={{ paddingTop: '16px' }}
-              wrap='nowrap'
-              overflow={'auto'}
-            >
-              <SortableContext items={columnIds}>
-                {boardColumns.map((column, index) => (
-                  <Grid
-                    item
-                    key={index}
-                    style={{
-                      paddingBottom: '16px',
-                    }}
-                  >
-                    <Column
-                      column={column}
-                      handleDrop={handleDrop}
-                      setIsDragged={setIsDragged}
-                      isDragged={isDragged}
-                      handleCardOnClick={handleCardOnClick}
-                      setDraggedElementHeight={setDraggedElementHeight}
-                      draggedElementHeight={draggedElementHeight}
-                    />
-                  </Grid>
-                ))}
-                <Button
-                  style={{ marginTop: '16px' }}
-                  onClick={handleAddBtnOnClick}
-                >
-                  Add
-                </Button>
-              </SortableContext>
-            </Grid>
-            <DragOverlay>
-              {activeColumn && <Column column={activeColumn} />}
-            </DragOverlay>
-          </DndContext>
-        </div>
-      </Fade>
+      {/* <Fade in={isBoardVisible} timeout={100}>
+        {Board()}
+      </Fade> */}
+      <Board isModelOpen={isModelOpen} />
     </>
   );
+
+  function Board({ isModelOpen }) {
+    return (
+      <div
+        style={{
+          opacity: isModelOpen && 0.1,
+          pointerEvents: isModelOpen && 'none',
+        }}
+      >
+        <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+          <Grid
+            container
+            spacing={2}
+            style={{ paddingTop: '16px' }}
+            wrap='nowrap'
+            overflow={'auto'}
+          >
+            <SortableContext items={columnIds}>
+              {boardColumns.map((column, index) => (
+                <Grid
+                  item
+                  key={index}
+                  style={{
+                    paddingBottom: '16px',
+                  }}
+                >
+                  <Column
+                    column={column}
+                    handleDrop={handleDrop}
+                    setIsDragged={setIsDragged}
+                    isDragged={isDragged}
+                    handleCardOnClick={handleCardOnClick}
+                    setDraggedElementHeight={setDraggedElementHeight}
+                    draggedElementHeight={draggedElementHeight}
+                  />
+                </Grid>
+              ))}
+              <Button
+                style={{ marginTop: '16px' }}
+                onClick={handleAddBtnOnClick}
+              >
+                Add
+              </Button>
+            </SortableContext>
+          </Grid>
+          <DragOverlay>
+            {activeColumn && <Column column={activeColumn} />}
+          </DragOverlay>
+        </DndContext>
+      </div>
+    );
+  }
 };
 
 export default KanbanBoard;
