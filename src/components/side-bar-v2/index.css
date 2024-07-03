@@ -104,7 +104,6 @@
     opacity: 0;
     pointer-events: none;
     height: 0;
-    transition: all .3s ease;
 }
 
 .sidebar .nav-links li .sub-menu .hover-heading {
