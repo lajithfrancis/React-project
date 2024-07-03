@@ -45,3 +45,24 @@ body {
   height: auto;
   white-space: nowrap;
 }
+
+.container {
+  margin-left: 260px;
+  padding: 20px;
+  display: flex;
+  /* height: 100vh; */
+}
+
+.container div {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  z-index: 100;
+  background-color: green;
+}
+
+.container div.box2 {
+  position: absolute;
+  z-index: 10;
+  background-color: grey;
+}
