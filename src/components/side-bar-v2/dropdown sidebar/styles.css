@@ -27,21 +27,21 @@ body {
   position: relative;
   list-style: none;
   padding: 0;
+  background-color: aqua;
+  opacity: 0;
+  height: 0;
 }
  
 .first-child {
   cursor: pointer;
-  height: 20px;
 }
  
-.first-child:hover .child-list .second-child {
-  position: relative;
+.first-child:hover .child-list  {
+  position: absolute;
   color: red;
   left: 100%;
-  top: -20px;
+  top: -10px;
   opacity: 1;
-}
- 
-.second-child {
-  opacity: 0;
+  height: auto;
+  white-space: nowrap;
 }
