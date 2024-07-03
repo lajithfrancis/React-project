@@ -61,15 +61,14 @@ const KanbanBoard = () => {
 
   const handleCardOnClick = (card) => {
     setIsBoardVisible(false);
-    setTimeout(() => {
-      setIsModelOpen(true);
-    }, 100);
+    setIsModelOpen(true);
     setSelectedCard(card);
   };
 
   const handleOnClickCloseButton = () => {
     setIsModelOpen(false);
     setIsBoardVisible(true);
+    setSelectedCard(null);
   };
 
   return (
@@ -80,14 +79,12 @@ const KanbanBoard = () => {
           handleOnClick={handleOnClickCloseButton}
         />
       )}
-      {/* <Fade in={isBoardVisible} timeout={100}>
-        {Board()}
-      </Fade> */}
       <Board isModelOpen={isModelOpen} />
     </>
   );
 
   function Board({ isModelOpen }) {
+    console.log('board is rendered');
     return (
       <div
         style={{
