@@ -54,7 +54,6 @@ const KanbanBoard = () => {
   };
 
   const handleAddBtnOnClick = () => {
-    console.log('added column')
     colDispatch({
       type: 'add_column',
       title: 'New Column',
@@ -118,12 +117,6 @@ const KanbanBoard = () => {
                 </Grid>
               ))}
               <AddNewColumn onClick={handleAddBtnOnClick} />
-              {/* <Button
-                style={{ marginTop: '16px' }}
-                onClick={handleAddBtnOnClick}
-              >
-                Add
-              </Button> */}
             </SortableContext>
           </Grid>
           <DragOverlay>

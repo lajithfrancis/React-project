@@ -12,7 +12,6 @@ const AddNewColumn = ({onClick}) => {
           borderRadius: '1rem',
           marginTop: '1rem',
           marginLeft: '1rem',
-        //   scrollbarWidth: 'none'
         }}
       >
         <div style={{
@@ -24,14 +23,6 @@ const AddNewColumn = ({onClick}) => {
         <AddNewButton handleOnClick={onClick} title={'Add New Column'} />
 
         </div>
-        {/* <Button style={{
-            transform: 'translate(-50%, -50%)',
-            left: '50%',
-            top: '50%',
-        }}
-        onClick={onClick}>
-            Add New Column
-        </Button> */}
       </Paper>
       </Grid>
     )
