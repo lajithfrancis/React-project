@@ -79,13 +79,6 @@ const KanbanBoard = () => {
           handleOnClick={handleOnClickCloseButton}
         />
       )}
-      <Board isModelOpen={isModelOpen} />
-    </>
-  );
-
-  function Board({ isModelOpen }) {
-    console.log('board is rendered');
-    return (
       <div
         style={{
           opacity: isModelOpen && 0.1,
@@ -133,8 +126,8 @@ const KanbanBoard = () => {
           </DragOverlay>
         </DndContext>
       </div>
-    );
-  }
+    </>
+  );
 };
 
 export default KanbanBoard;
