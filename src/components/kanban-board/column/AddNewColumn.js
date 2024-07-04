@@ -1,4 +1,5 @@
 import { Button, Grid, Paper } from "@mui/material";
+import { AddNewButton } from "../card/AddNewCard";
 
 const AddNewColumn = ({onClick}) => {
     return (
@@ -14,14 +15,23 @@ const AddNewColumn = ({onClick}) => {
         //   scrollbarWidth: 'none'
         }}
       >
-        <Button style={{
+        <div style={{
+            position: 'relative',
+            transform: 'translate(-50%, -50%)',
+            left: '50%',
+            top: '50%',
+        }}>
+        <AddNewButton handleOnClick={onClick} title={'Add New Column'} />
+
+        </div>
+        {/* <Button style={{
             transform: 'translate(-50%, -50%)',
             left: '50%',
             top: '50%',
         }}
         onClick={onClick}>
-            Add
-        </Button>
+            Add New Column
+        </Button> */}
       </Paper>
       </Grid>
     )
