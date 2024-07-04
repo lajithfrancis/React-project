@@ -61,7 +61,9 @@ const KanbanBoard = () => {
 
   const handleCardOnClick = (card) => {
     setIsBoardVisible(false);
-    setIsModelOpen(true);
+    setTimeout(() => {
+      setIsModelOpen(true);
+    }, 100);
     setSelectedCard(card);
   };
 
