@@ -5,6 +5,7 @@ import { SortableContext } from '@dnd-kit/sortable';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { useCardContext, useColumnContext } from './context/BoardContext';
 import CardDetailsPage from './card/CardDetails';
+import AddNewColumn from './column/AddNewColumn';
 
 const KanbanBoard = () => {
   const { boardColumns, colDispatch } = useColumnContext();
@@ -53,6 +54,7 @@ const KanbanBoard = () => {
   };
 
   const handleAddBtnOnClick = () => {
+    console.log('added column')
     colDispatch({
       type: 'add_column',
       title: 'New Column',
@@ -115,12 +117,13 @@ const KanbanBoard = () => {
                   />
                 </Grid>
               ))}
-              <Button
+              <AddNewColumn onClick={handleAddBtnOnClick} />
+              {/* <Button
                 style={{ marginTop: '16px' }}
                 onClick={handleAddBtnOnClick}
               >
                 Add
-              </Button>
+              </Button> */}
             </SortableContext>
           </Grid>
           <DragOverlay>
