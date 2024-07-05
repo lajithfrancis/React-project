@@ -18,6 +18,8 @@ import {
   Flag as FlagIcon,
   Edit as EditIcon,
 } from '@mui/icons-material';
+import DeleteDialogBox from '../column/DeleteDialogBox';
+import { useCardContext } from '../context/BoardContext';
 
 const StyledGrid = styled(MuiCard)(({ theme }) => ({
   borderRadius: '1rem',
@@ -40,6 +42,8 @@ const Card = ({
   const [isDragging, setIsDragging] = useState();
   const [hover, setHover] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [openConfirm, setOpenConfirm] = useState();
+  const { cardDispatch } = useCardContext();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -56,6 +60,14 @@ const Card = ({
     // onFlag(id, flagType);
     console.log('handle flag option: ', flagType);
     handleClose();
+  };
+
+  const handleOnDelete = () => {
+    cardDispatch({
+      type: 'delete_card',
+      id: card.id,
+    });
+    console.log('handleOnDelete: ');
   };
 
   return (
@@ -121,9 +133,17 @@ const Card = ({
                 </IconButton>
               </Tooltip>
               <Tooltip title='Delete'>
-                <IconButton onClick={() => {}} aria-label='delete'>
+                <IconButton
+                  onClick={() => setOpenConfirm(true)}
+                  aria-label='delete'
+                >
                   <DeleteIcon />
                 </IconButton>
+                <DeleteDialogBox
+                  openConfirm={openConfirm}
+                  setOpenConfirm={setOpenConfirm}
+                  handleOnClick={handleOnDelete}
+                />
               </Tooltip>
             </CardActions>
             <Menu

@@ -82,6 +82,11 @@ export function CardReducer(cards, action) {
         ...updatedDestinationColumnCards,
       ];
     }
+
+    case 'delete_card': {
+      console.log('action: ', action);
+      return cards.filter((card) => card.id !== action.id);
+    }
     default: {
       throw Error('Unknown action: ' + action.type);
     }
