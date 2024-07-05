@@ -98,7 +98,48 @@ const Card = ({
           transition: 'all .3s',
         }}
       >
-        <Typography variant='h6'>{card.title}</Typography>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            overflow: 'auto',
+          }}
+        >
+          <Typography variant='h6'>{card.title}</Typography>
+          <Collapse in={hover} timeout='auto' unmountOnExit>
+            <CardActions>
+              <Tooltip title='Edit'>
+                <IconButton onClick={handleOnClick} aria-label='edit'>
+                  <EditIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title='Flag'>
+                <IconButton onClick={handleClick} aria-label='flag'>
+                  <FlagIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title='Delete'>
+                <IconButton onClick={() => {}} aria-label='delete'>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            </CardActions>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={() => handleFlagOption('Inappropriate')}>
+                Inappropriate
+              </MenuItem>
+              <MenuItem onClick={() => handleFlagOption('Spam')}>Spam</MenuItem>
+              <MenuItem onClick={() => handleFlagOption('Other')}>
+                Other
+              </MenuItem>
+            </Menu>
+          </Collapse>
+        </div>
         <div
           style={{
             display: 'flex',
@@ -114,36 +155,6 @@ const Card = ({
           </Typography>
         </div>
       </CardContent>
-      <Collapse in={hover} timeout='auto' unmountOnExit>
-        <CardActions>
-          <Tooltip title='Edit'>
-            <IconButton onClick={handleOnClick} aria-label='edit'>
-              <EditIcon />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title='Flag'>
-            <IconButton onClick={handleClick} aria-label='flag'>
-              <FlagIcon />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title='Delete'>
-            <IconButton onClick={() => {}} aria-label='delete'>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        </CardActions>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={() => handleFlagOption('Inappropriate')}>
-            Inappropriate
-          </MenuItem>
-          <MenuItem onClick={() => handleFlagOption('Spam')}>Spam</MenuItem>
-          <MenuItem onClick={() => handleFlagOption('Other')}>Other</MenuItem>
-        </Menu>
-      </Collapse>
     </StyledGrid>
   );
 };
