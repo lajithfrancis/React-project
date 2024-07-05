@@ -5,7 +5,19 @@ import {
   CardContent,
   Typography,
   styled,
+  CardActionArea,
+  CardActions,
+  Tooltip,
+  IconButton,
+  Collapse,
+  Menu,
+  MenuItem,
 } from '@mui/material';
+import {
+  Delete as DeleteIcon,
+  Flag as FlagIcon,
+  Edit as EditIcon,
+} from '@mui/icons-material';
 
 const StyledGrid = styled(MuiCard)(({ theme }) => ({
   borderRadius: '1rem',
@@ -26,11 +38,30 @@ const Card = ({
   setDraggedElementHeight,
 }) => {
   const [isDragging, setIsDragging] = useState();
+  const [hover, setHover] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const handleOnClick = () => {
     handleCardOnClick(card);
   };
+
+  const handleFlagOption = (flagType) => {
+    // onFlag(id, flagType);
+    console.log('handle flag option: ', flagType);
+    handleClose();
+  };
+
   return (
     <StyledGrid
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       style={{
         // borderRadius: '.5rem',
         opacity: isDragging ? 0.5 : 1,
@@ -43,6 +74,7 @@ const Card = ({
       onDragStart={(e) => {
         setIsDragged(true);
         setIsDragging(true);
+        setHover(false);
         setDraggedElementHeight(e.target.offsetHeight);
         console.log('e.target.offsetHeight: ', e.target.offsetHeight);
         console.log('drag started');
@@ -54,7 +86,7 @@ const Card = ({
         setDraggedElementHeight(null);
         console.log('drag stopped');
       }}
-      onClick={handleOnClick}
+      // onClick={handleOnClick}
     >
       <CardContent
         style={{
@@ -63,7 +95,7 @@ const Card = ({
           justifyContent: 'space-between',
           minHeight: '7rem',
           maxHeight: '10rem',
-          // overflow: 'auto',
+          transition: 'all .3s',
         }}
       >
         <Typography variant='h6'>{card.title}</Typography>
@@ -82,6 +114,36 @@ const Card = ({
           </Typography>
         </div>
       </CardContent>
+      <Collapse in={hover} timeout='auto' unmountOnExit>
+        <CardActions>
+          <Tooltip title='Edit'>
+            <IconButton onClick={handleOnClick} aria-label='edit'>
+              <EditIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title='Flag'>
+            <IconButton onClick={handleClick} aria-label='flag'>
+              <FlagIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title='Delete'>
+            <IconButton onClick={() => {}} aria-label='delete'>
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        </CardActions>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={() => handleFlagOption('Inappropriate')}>
+            Inappropriate
+          </MenuItem>
+          <MenuItem onClick={() => handleFlagOption('Spam')}>Spam</MenuItem>
+          <MenuItem onClick={() => handleFlagOption('Other')}>Other</MenuItem>
+        </Menu>
+      </Collapse>
     </StyledGrid>
   );
 };
