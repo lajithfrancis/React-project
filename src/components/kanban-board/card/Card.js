@@ -5,13 +5,14 @@ import {
   CardContent,
   Typography,
   styled,
-  CardActionArea,
   CardActions,
   Tooltip,
   IconButton,
   Collapse,
   Menu,
   MenuItem,
+  Avatar,
+  AvatarGroup,
 } from '@mui/material';
 import {
   Delete as DeleteIcon,
@@ -31,6 +32,13 @@ const StyledGrid = styled(MuiCard)(({ theme }) => ({
   },
   transition: 'opacity .3s cubic-bezier(0.4, 0, 1, 1)',
   boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+}));
+
+const StyledAvatar = styled(AvatarGroup)(({ theme }) => ({
+  '.MuiAvatar-root': {
+    width: '30px',
+    height: '30px',
+  },
 }));
 
 const Card = ({
@@ -171,10 +179,20 @@ const Card = ({
           <Typography variant='body2' color='' style={{ overflow: 'auto' }}>
             {card.description}
           </Typography>
+
           <Typography variant='body2' color='GrayText'>
             {5}
           </Typography>
         </div>
+        <StyledAvatar max={4}>
+          <Avatar alt='Remy Sharp' src='/static/images/cards/assignee1.jpg' />
+          <Avatar alt='Remy Sharp' src='/static/images/cards/image.jpg' />
+          <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+          <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+          <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+          <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+          <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+        </StyledAvatar>
       </CardContent>
     </StyledGrid>
   );
