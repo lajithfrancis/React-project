@@ -104,6 +104,7 @@ const Card = ({
             justifyContent: 'space-between',
             alignItems: 'center',
             overflow: 'auto',
+            height: '50px',
           }}
         >
           <Typography variant='h6'>{card.title}</Typography>
