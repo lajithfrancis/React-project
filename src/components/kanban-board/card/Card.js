@@ -129,7 +129,12 @@ const Card = ({
         >
           <Typography variant='h6'>{card.title}</Typography>
           <Collapse in={hover} timeout='auto' unmountOnExit>
-            <CardActions>
+            <CardActions
+              sx={{
+                position: 'absolute',
+                transform: 'translate(-80%, -150%)',
+              }}
+            >
               <Tooltip title='Edit'>
                 <IconButton onClick={handleOnClick} aria-label='edit'>
                   <EditIcon />
