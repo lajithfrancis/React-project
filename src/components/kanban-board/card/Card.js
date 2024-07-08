@@ -190,7 +190,7 @@ const Card = ({
           </Typography>
         </div>
         <StyledAvatar max={4}>
-          <Avatar alt='Remy Sharp' src='/static/images/cards/assignee1.jpg' />
+          <Avatar alt='Lajith' src='public/static/images/cards/assignee1.jpg' />
           <Avatar alt='Remy Sharp' src='/static/images/cards/image.jpg' />
           <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
           <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
