@@ -9,6 +9,21 @@
     margin-top: 32px; /* 4 * 8px spacing unit */
     padding: 16px; /* 2 * 8px spacing unit */
   }
+
+  /* Responsive styles for mobile devices */
+@media (max-width: 767px) {
+  .card-root {
+    width: 90%; /* Adjust width for mobile devices */
+    max-width: none;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    height: fit-content;
+    bottom: 16px;
+    padding: 8px; /* Reduced padding for mobile devices */
+    margin-top: 0;
+  }
+}
   
   .card-root .card-title {
     margin-bottom: 16px; /* 2 * 8px spacing unit */
