@@ -21,6 +21,7 @@ import {
 } from '@mui/icons-material';
 import DeleteDialogBox from '../column/DeleteDialogBox';
 import { useCardContext } from '../context/BoardContext';
+const homepage = 'https://lajithfrancis.github.io/React-project';
 
 const StyledGrid = styled(MuiCard)(({ theme }) => ({
   borderRadius: '1rem',
@@ -190,7 +191,10 @@ const Card = ({
           </Typography>
         </div>
         <StyledAvatar max={4}>
-          <Avatar alt='Lajith' src='public/static/images/cards/assignee1.jpg' />
+          <Avatar
+            alt='Lajith'
+            src={`${homepage}/static/images/cards/assignee1.jpg`}
+          />
           <Avatar alt='Remy Sharp' src='/static/images/cards/image.jpg' />
           <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
           <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
