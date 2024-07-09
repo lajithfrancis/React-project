@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+const path = '/React-project#/tasks';
 export default function SideBar({ filterTasks }) {
   const [tab, setTab] = useState('All');
   function handleOnClick(e, buttonName) {
@@ -14,7 +15,7 @@ export default function SideBar({ filterTasks }) {
         style={{ width: '280px', height: '100vh' }}
       >
         <a
-          href='/tasks'
+          href={path}
           className='d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none'
         >
           <span className='fs-4'>ToDo</span>
@@ -24,7 +25,7 @@ export default function SideBar({ filterTasks }) {
           <li className='nav-item'>
             <a
               key='All'
-              href='#'
+              href={path}
               className={`nav-link ${tab === 'All' ? 'active' : 'text-white'}`}
               aria-current='page'
               onClick={(e) => handleOnClick(e, 'All')}
@@ -35,7 +36,7 @@ export default function SideBar({ filterTasks }) {
           <li>
             <a
               key='Completed'
-              href='#'
+              href={path}
               className={`nav-link ${
                 tab === 'Completed' ? 'active' : 'text-white'
               }`}
@@ -47,7 +48,7 @@ export default function SideBar({ filterTasks }) {
           <li>
             <a
               key='Pending'
-              href='#'
+              href={path}
               className={`nav-link ${
                 tab === 'Pending' ? 'active' : 'text-white'
               }`}
@@ -58,7 +59,7 @@ export default function SideBar({ filterTasks }) {
           </li>
           <li>
             <a
-              href='#'
+              href={path}
               className={`nav-link ${
                 tab === 'Upcoming' ? 'active' : 'text-white'
               }`}
@@ -68,7 +69,7 @@ export default function SideBar({ filterTasks }) {
           </li>
           <li>
             <a
-              href='#'
+              href={path}
               className={`nav-link ${
                 tab === 'Others' ? 'active' : 'text-white'
               }`}
