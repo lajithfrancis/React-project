@@ -12,7 +12,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Card from './card';
 
 import './styles.css';
-import { Star } from '@mui/icons-material';
+import { Code, Star } from '@mui/icons-material';
 
 const cardsData = [
   {
@@ -84,7 +84,12 @@ export default function Cards() {
     },
   ];
   return (
-    <>
+    <div
+      style={{
+        backgroundColor: '#f0f0f0',
+        height: '100vh',
+      }}
+    >
       <div className='container px-4 py-5' id='featured-3'>
         <h2 className='pb-2 border-bottom'>My Apps</h2>
         <div className='row g-4 py-5 row-cols-1 row-cols-lg-3'>
@@ -117,12 +122,17 @@ export default function Cards() {
               sx={{
                 margin: '0 10px',
                 boxShadow: 3,
+                borderRadius: 2,
+                transition: 'transform 0.3s',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                },
                 maxWidth: '400px',
                 height: '200px',
               }}
             >
               <CardContent sx={{ padding: '20px' }}>
-                <Box display='flex' alignItems='center' mb={1}>
+                <Box display='flex' alignItems='center' mb={2}>
                   <Star color='primary' sx={{ mr: 1 }} />
                   <Typography
                     variant='h5'
@@ -135,19 +145,22 @@ export default function Cards() {
                 <Typography
                   variant='body2'
                   color='textSecondary'
-                  sx={{ marginBottom: '10px' }}
+                  sx={{ marginBottom: '15px' }}
                 >
                   {card.description}
                 </Typography>
-                <Divider sx={{ marginBottom: '10px' }} />
-                <Typography variant='body2' color='textPrimary'>
-                  <strong>Technologies:</strong> {card.tech}
-                </Typography>
+                <Divider sx={{ marginBottom: '15px' }} />
+                <Box display='flex' alignItems='center'>
+                  <Code sx={{ mr: 1, color: 'primary.main' }} />
+                  <Typography variant='body2' color='textPrimary'>
+                    <strong>Technologies:</strong> {card.tech}
+                  </Typography>
+                </Box>
               </CardContent>
             </MuiCard>
           ))}
         </Slider>
       </div>
-    </>
+    </div>
   );
 }
