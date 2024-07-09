@@ -22,7 +22,8 @@ const cardsData = [
   },
   {
     name: 'Emo Myloh',
-    description: `The deliverable is an eBuddy mobile application that helps users fulfill their goals and build mental resilience`,
+    description: `The scope of the project was to design and develop a Mental Health Mobile Application for Myloh. 
+    The deliverable is an eBuddy mobile application that helps users fulfill their goals and build mental resilience`,
     tech: 'Node. JS - NestJS, Postgres',
   },
   {
@@ -33,6 +34,42 @@ const cardsData = [
   {
     name: 'Data Automation Tool',
     description: `Application for Data automation to reduce the manual effort by 90%.`,
+    tech: 'Node JS- loopback and Postgres',
+  },
+  {
+    name: 'Regulatory reporting system',
+    description: `This App was intended mainly for Singapore based organizations and it was mainly used to upload trial balance sheets and forecast the financial setup of the organizations.
+    Graphical representations of the same on yearly and monthly basis are also available in the system`,
+    tech: 'Node JS- loopback and Postgres',
+  },
+  {
+    name: 'Self-Management Tool',
+    description: `A mobile application for patients who are having secretion clearance diseases such as COPD,
+    bronchiectasis etc. The application will enable the patient and care team to identify their health
+    trends so that proper actions can be taken to potentially prevent the risks and improve their health.
+    And to develop an admin web app to manage the users in the mobile app.`,
+    tech: 'Node JS- NestJS and Postgres',
+  },
+  {
+    name: 'Nutrien',
+    description: `This application is basically for Australian growers who have acres of land i.e., large scale agriculture
+    to provide with the best possible seed grading and treatment services.
+    This application will provide you with expert and reliable seed grading and seed treatment services,
+    from seed cleaning through to protecting your seed against disease and pests.`,
+    tech: 'Node JS- NestJS and Mysql, NextJS',
+  },
+  {
+    name: 'Hydroinformatics',
+    description: `This project deals with the development of Radar Rainfall Monitoring and Nowcasting System for
+    Urban Flood Management in Singapore.
+    And development of Seawater quality monitoring and provide support services for model
+    development and model integration`,
+    tech: 'Node JS, Python, Vanila js',
+  },
+  {
+    name: 'Carbon Footprint Calculator',
+    description: `This App creates an awareness app, which helps the user to know his/her carbon footprint based
+    on the actions they do like the food they eat, mode of travel they prefer, etc.`,
     tech: 'Node JS- loopback and Postgres',
   },
 ];
@@ -145,7 +182,11 @@ export default function Cards() {
                 <Typography
                   variant='body2'
                   color='textSecondary'
-                  sx={{ marginBottom: '15px' }}
+                  sx={{
+                    marginBottom: '10px',
+                    maxHeight: '56px',
+                    overflow: 'auto',
+                  }}
                 >
                   {card.description}
                 </Typography>
