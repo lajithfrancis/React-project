@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const path = '/React-project#/tasks';
+const path = '#/tasks';
 export default function SideBar({ filterTasks }) {
   const [tab, setTab] = useState('All');
   function handleOnClick(e, buttonName) {
