@@ -39,3 +39,13 @@
 .input {
   width: 50%
 }
+
+
+/* Custom CSS to handle the sidebar visibility on mobile */
+@media (max-width: 992px) {
+  .d-flex.flex-column.flex-shrink-0.p-3.text-bg-dark {
+    position: relative;
+    max-width: 160px;
+    transition: left 0.3s;
+  }
+}

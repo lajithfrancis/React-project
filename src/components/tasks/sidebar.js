@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './styles.css';
 
 const path = '#/tasks';
 export default function SideBar({ filterTasks }) {
@@ -11,8 +12,8 @@ export default function SideBar({ filterTasks }) {
   return (
     <>
       <div
-        className='d-flex flex-column flex-shrink-0 p-3 text-bg-dark'
-        style={{ width: '280px', height: '100vh' }}
+        className='d-flex flex-column flex-shrink-0 p-3 text-bg-dark side-bar'
+        style={{ width: '260px', height: '100vh' }}
       >
         <a
           href={path}
