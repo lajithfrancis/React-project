@@ -124,7 +124,6 @@ export default function Cards() {
     <div
       style={{
         backgroundColor: '#f0f0f0',
-        height: '100vh',
       }}
     >
       <div className='container px-4 py-5' id='featured-3'>
@@ -141,12 +140,10 @@ export default function Cards() {
             </a>
           </div>
         </div>
-      </div>
-      <div className='container'>
         <h2
           className='pb-2 border-bottom'
           style={{
-            bottom: '32px',
+            marginBottom: '32px',
             position: 'relative',
           }}
         >
