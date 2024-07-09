@@ -165,7 +165,7 @@ export default function Cards() {
                   transform: 'scale(1.05)',
                 },
                 maxWidth: '400px',
-                height: '200px',
+                height: '230px',
               }}
             >
               <CardContent sx={{ padding: '20px' }}>
@@ -184,7 +184,7 @@ export default function Cards() {
                   color='textSecondary'
                   sx={{
                     marginBottom: '10px',
-                    maxHeight: '56px',
+                    maxHeight: '72px',
                     overflow: 'auto',
                   }}
                 >
