@@ -211,7 +211,7 @@ export default function Cards() {
             position: 'relative',
           }}
         >
-          My timeline
+          My Timeline
         </h2>
         <CustomizedTimeline />
       </div>
