@@ -158,8 +158,11 @@ export default function Cards() {
                 boxShadow: 3,
                 borderRadius: 5,
                 transition: 'transform 0.3s',
+                background:
+                  'linear-gradient(to bottom right, #ffffff, #f0f0f0)',
                 '&:hover': {
                   transform: 'scale(1.05)',
+                  boxShadow: '0 12px 24px rgba(0, 0, 0, 0.3)',
                 },
                 maxWidth: '400px',
                 height: '300px',
