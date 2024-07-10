@@ -13,6 +13,7 @@ import Card from './card';
 
 import './styles.css';
 import { Code, Star } from '@mui/icons-material';
+import CustomizedTimeline from './timeline';
 
 const cardsData = [
   {
@@ -201,6 +202,16 @@ export default function Cards() {
             </MuiCard>
           ))}
         </Slider>
+        <h2
+          className='pb-2 border-bottom'
+          style={{
+            marginBottom: '32px',
+            position: 'relative',
+          }}
+        >
+          My timeline
+        </h2>
+        <CustomizedTimeline />
       </div>
     </div>
   );
