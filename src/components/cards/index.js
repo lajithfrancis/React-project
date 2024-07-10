@@ -202,6 +202,8 @@ export default function Cards() {
             </MuiCard>
           ))}
         </Slider>
+        <br />
+        <br />
         <h2
           className='pb-2 border-bottom'
           style={{
