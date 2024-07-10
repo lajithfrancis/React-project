@@ -50,8 +50,9 @@ export default function CustomizedTimeline() {
         </TimelineSeparator>
         <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant='h6' component='span'>
-            Senior Software Engineer, Perfomatix
+            Senior Software Engineer
           </Typography>
+          <p>Perfomatix</p>
           <DescriptionTypography>
             Full-Stack Development: Node.js, React.js, MongoDB, Express.js |
             Database Management: MySQL, PostgreSQL, MongoDB | Optimization: Code
@@ -78,15 +79,11 @@ export default function CustomizedTimeline() {
         </TimelineSeparator>
         <TimelineContent sx={{ py: '12px', px: 2 }}>
           <TitleTypography variant='h6' component='span'>
-            Software Engineer, Perfomatix
+            Software Engineer
           </TitleTypography>
+          <p>Perfomatix</p>
           <DescriptionTypography>
-            {`Led the development of a high-traffic web application that
-            improved user engagement by 30%. | Spearheaded the migration of
-            legacy systems to modern MERN stack architecture, resulting in a 50%
-            increase in system performance. | Developed and implemented a
-            comprehensive testing strategy that reduced bugs in production by
-            40%.`}
+            Started my career as a software engineer
           </DescriptionTypography>
         </TimelineContent>
       </TimelineItem>
@@ -109,6 +106,7 @@ export default function CustomizedTimeline() {
           <TitleTypography variant='h6' component='span'>
             Graduated
           </TitleTypography>
+          <p>Mar Baselios</p>
           <DescriptionTypography>
             Electronics and Communications Engineering from Kerala University
           </DescriptionTypography>
