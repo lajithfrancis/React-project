@@ -154,7 +154,7 @@ export default function Cards() {
             <MuiCard
               key={index}
               sx={{
-                margin: '8px 8px',
+                margin: '8px 12px',
                 boxShadow: 3,
                 borderRadius: 5,
                 transition: 'transform 0.3s',
