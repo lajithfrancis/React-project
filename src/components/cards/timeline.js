@@ -48,7 +48,7 @@ export default function CustomizedTimeline() {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
+        <TimelineContent sx={{ py: '12px', px: 2, minWidth: '100px' }}>
           <Typography variant='h6' component='span'>
             Senior Software Engineer
           </Typography>
@@ -77,7 +77,7 @@ export default function CustomizedTimeline() {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
+        <TimelineContent sx={{ py: '12px', px: 2, minWidth: '100px' }}>
           <TitleTypography variant='h6' component='span'>
             Software Engineer
           </TitleTypography>
@@ -102,7 +102,7 @@ export default function CustomizedTimeline() {
           </TimelineDot>
           <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
+        <TimelineContent sx={{ py: '12px', px: 2, minWidth: '100px' }}>
           <TitleTypography variant='h6' component='span'>
             Graduated
           </TitleTypography>
