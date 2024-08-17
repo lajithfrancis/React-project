@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable } from '@dnd-kit/sortable';
 import { closestCenter, DndContext, DragOverlay, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
+
+import SortableItem from './components/SortableItem';
+import DroppableContainer from './components/DroppableContainer';
 
 const initialData = {
-  'todo': ['Task 1', 'Task 2', 'Task 3'],
-  'inProgress': ['Task 4', 'Task 5'],
-  'done': ['Task 6', 'Task 7'],
+  'TODO': ['Task 1', 'Task 2', 'Task 3'],
+  'InProgress': ['Task 4', 'Task 5'],
+  'Done': ['Task 6', 'Task 7'],
 };
 
 const KanbanBoard = () => {
@@ -139,46 +141,5 @@ const KanbanBoard = () => {
   };
 
 };
-
-function DroppableContainer({ id, items, isDragging }) {
-  return (
-    <SortableContext id={id} items={items}>
-      <div
-        style={{
-          padding: "20px",
-          backgroundColor: "#f0f0f0",
-          width: "200px",
-          overflow: "visible", // Ensure the overflow is visible
-          position: "relative", // Relative position helps with positioning the DragOverlay
-        }}
-      >
-        <h2>{id}</h2>
-        {items.map((itemId) => (
-          <SortableItem key={itemId} id={itemId} />
-        ))}
-      </div>
-    </SortableContext>
-  );
-}
-
-function SortableItem({ id, isOverlay }) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    padding: '10px',
-    margin: '5px',
-    backgroundColor: isOverlay ? '#e0e0e0' : '#fff',
-    border: '1px solid #ccc',
-    position: 'relative',
-    zIndex: isOverlay ? 10000 : 'auto', // Ensure overlay item is above all,
-  };
-
-  return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {id}
-    </div>
-  );
-}
 
 export default KanbanBoard;
