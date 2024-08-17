@@ -8,9 +8,8 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
-import { Paper } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import DroppableContainer from './components/DroppableContainer';
+import Column from './components/Column';
 import SortableItem from './components/SortableItem';
 import { useColumnContext } from './context/BoardContext';
 import { ACTION_TYPES } from './Reducer';
@@ -74,32 +73,19 @@ const KanbanBoard = () => {
           }}
         >
           {containers.map((container) => (
-            <Paper
-              key={container.id}
-              style={{
-                width: '300px',
-                height: '80vh',
-                overflow: 'auto',
-                borderRadius: '1rem',
-              }}
-            >
-              <DroppableContainer
-                key={container.id}
-                id={container.id}
-                items={container.cards}
-                isDragging={activeContainer?.id === container.id}
-              />
-            </Paper>
+            <Column container={container} activeContainer={activeContainer} />
           ))}
         </div>
         <DragOverlay>
-          {activeId ? (
+          {activeId && (
             <SortableItem id={activeId} card={activeCard} isOverlay />
-          ) : null}
+          )}
         </DragOverlay>
       </DndContext>
     </>
   );
 };
+
+
 
 export default KanbanBoard;
