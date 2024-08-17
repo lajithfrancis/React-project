@@ -1,13 +1,13 @@
-import { arrayMove } from "@dnd-kit/sortable";
-import { v4 as uuidv4 } from "uuid";
+import { arrayMove } from '@dnd-kit/sortable';
+import { v4 as uuidv4 } from 'uuid';
 
 export const ACTION_TYPES = {
-  DRAG_OVER: "BOARD_DRAG_OVER",
-  DRAG_END: "BOARD_DRAG_END",
+  DRAG_OVER: 'BOARD_DRAG_OVER',
+  DRAG_END: 'BOARD_DRAG_END',
 };
 
 export function BoardReducer(state, action) {
-  console.log("action hit", action.type);
+  console.log('action hit', action.type);
   switch (action.type) {
     case ACTION_TYPES.DRAG_OVER: {
       const { active, over } = action;
@@ -21,7 +21,6 @@ export function BoardReducer(state, action) {
 
       if (activeContainerId === overContainerId) {
         // Moving within the same container
-        // setContainers((prev) => {
         const containerIndex = prev.findIndex(
           (column) => column.id === activeContainerId
         );
@@ -84,7 +83,7 @@ export function BoardReducer(state, action) {
       }
     }
     default: {
-      throw Error("Unknown action: " + action.type);
+      throw Error('Unknown action: ' + action.type);
     }
   }
 }
