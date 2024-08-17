@@ -1,4 +1,4 @@
-import { styled, Typography, Card as MuiCard } from '@mui/material';
+import { Typography } from '@mui/material';
 
 export default function Card({ id, card }) {
   return (
