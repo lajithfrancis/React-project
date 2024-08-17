@@ -4,8 +4,14 @@ import {
 } from "@dnd-kit/sortable";
 import SortableItem from "./SortableItem";
 import { useDroppable } from "@dnd-kit/core";
+import { useColumnContext } from "../context/BoardContext";
 
-export default function DroppableContainer({ id, items }) {
+export default function DroppableContainer({ id }) {
+  const { boardColumns: containers } = useColumnContext();
+  const findContainer = (id) => {
+    return containers.find((container) => container.id === id);
+  };
+  const container = findContainer(id)
   const { isOver, setNodeRef } = useDroppable({
     id,
   });
@@ -14,11 +20,11 @@ export default function DroppableContainer({ id, items }) {
       <h2>{id}</h2>
       <SortableContext
         id={id}
-        items={items}
+        items={container.cards}
         strategy={verticalListSortingStrategy}
       >
         <div>
-          {items.map((item) => (
+          {container.cards.map((item) => (
             <SortableItem key={item.id} id={item.id} card={item} />
           ))}
         </div>

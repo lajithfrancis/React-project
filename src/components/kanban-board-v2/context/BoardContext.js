@@ -1,73 +1,23 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { CardReducer, ColumnReducer } from '../Reducer';
+import { BoardReducer } from '../Reducer';
 
 const ColumnContext = createContext();
-const CardContext = createContext();
+
+const initialData = [
+  {title: 'TODO', id: 'col1', cards: [{title: 'Task 1', id: 'task1'}, {title: 'Task 2', id: 'task2'}, {title: 'Task 3', id: 'task3'}]},
+  {id: 'col2', title: 'In-progress', cards: [{title: 'Task 5', id: 'task5'}, {title: 'Task 6', id: 'task6'}, {title: 'Task 7', id: 'task7'}]},
+  {id: 'col3', title: 'done', cards: [{title: 'Task 9', id: 'task9'}, {title: 'Task 10', id: 'task10'}, {title: 'Task 11', id: 'task11'}]},
+];
 
 export const BoardProvider = ({ children }) => {
-  const [boardColumns, dispatch] = useReducer(ColumnReducer, board_columns);
-  const [boardCards, cardDispatch] = useReducer(CardReducer, board_cards);
+  const [boardColumns, dispatch] = useReducer(BoardReducer, initialData);
 
   return (
     <ColumnContext.Provider value={{ boardColumns, colDispatch: dispatch }}>
-      <CardContext.Provider value={{ boardCards, cardDispatch }}>
         {children}
-      </CardContext.Provider>
     </ColumnContext.Provider>
   );
 };
 
 export const useColumnContext = () => useContext(ColumnContext);
-export const useCardContext = () => useContext(CardContext);
 
-const board_columns = [
-  {
-    id: '1',
-    title: 'To Do',
-  },
-  {
-    id: '2',
-    title: 'In Progress',
-  },
-  {
-    id: '3',
-    title: 'Done',
-  },
-  {
-    id: '10',
-    title: 'Again To Do',
-  },
-];
-
-const board_cards = [
-  {
-    id: 'card-1',
-    title: 'Task 1',
-    description: 'Description for Task 1',
-    columnId: '1',
-  },
-  {
-    id: 'card-2',
-    title: 'Task 2',
-    description: 'Description for Task 2',
-    columnId: '1',
-  },
-  {
-    id: 'card-3',
-    title: 'Task 3',
-    description: 'Description for Task 3',
-    columnId: '2',
-  },
-  {
-    id: 'card-10',
-    title: 'Task 4',
-    description: 'Description for Task 1',
-    columnId: '10',
-  },
-  {
-    id: 'card-20',
-    title: 'Task 5',
-    description: 'Description for Task 2',
-    columnId: '10',
-  },
-];
