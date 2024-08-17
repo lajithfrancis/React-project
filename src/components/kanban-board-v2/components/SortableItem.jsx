@@ -1,7 +1,8 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from '@dnd-kit/utilities';
+import { Typography } from "@mui/material";
 
-export default function SortableItem({ id, isOverlay }) {
+export default function SortableItem({ id, isOverlay, card }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
   const style = {
@@ -14,10 +15,19 @@ export default function SortableItem({ id, isOverlay }) {
     position: "relative",
     zIndex: isOverlay ? 10000 : "auto", // Ensure overlay item is above all,
   };
-
+  
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {id}
+      <Card id={id} card={card} />
     </div>
+  );
+}
+
+function Card({ id, card }) {
+  return (
+    <>
+      <Typography variant="h6">{card?.title}</Typography>
+      <Typography variant="body2">{id}</Typography>
+    </>
   );
 }

@@ -4,6 +4,7 @@ import { closestCenter, DndContext, DragOverlay, KeyboardSensor, PointerSensor, 
 
 import SortableItem from './components/SortableItem';
 import DroppableContainer from './components/DroppableContainer';
+import { Paper } from '@mui/material';
 
 const initialData = [
   {title: 'TODO', id: 'col1', cards: [{title: 'Task 1', id: 'task1'}, {title: 'Task 2', id: 'task2'}, {title: 'Task 3', id: 'task3'}]},
@@ -25,7 +26,6 @@ const KanbanBoard = () => {
 
   const handleDragStart = (event) => {
     const { active } = event;
-    console.log('handleDragStart', {active})
     setActiveId(active.id);
     setActiveContainer(containers.find((container) =>
       (container.id === active.data.current.sortable.containerId)
@@ -36,63 +36,128 @@ const KanbanBoard = () => {
     return containers.find((container) => container.id === id);
   };
 
+  
   const handleDragOver = (event) => {
     const { active, over } = event;
+    console.log("handleDragOver", { active, over });
+
     if (!over) return;
-    const activeContainer = findContainer(active.data.current.sortable.containerId);
-    const overContainer = findContainer(over.data.current.sortable.containerId);
 
-    if (!activeContainer || !overContainer || activeContainer.id === overContainer.id) return;
+    const activeContainerId = active.data.current.sortable.containerId;
+    const overContainerId = over.data.current?.sortable.containerId || over.id;
 
-    setContainers((prev) => {
-      const activeColumnIndex = prev.findIndex(column => column.id === activeContainer.id);
-      const overColumnIndex = prev.findIndex(column => column.id === overContainer.id);
+    if (activeContainerId === overContainerId) {
+      // Moving within the same container
+      setContainers((prev) => {
+        const containerIndex = prev.findIndex(
+          (column) => column.id === activeContainerId
+        );
+        const items = [...prev[containerIndex].cards];
 
-      // Retrieve the current cards array for both the active and over containers
-      const activeItems = prev[activeColumnIndex].cards ? [...prev[activeColumnIndex].cards] : [];
-      const overItems = prev[overColumnIndex].cards ? [...prev[overColumnIndex].cards] : [];
-    
-      // Find the index of the card being moved and the index where it will be dropped
-      const activeIndex = activeItems.findIndex(item => item.id === active.id);
-      const overIndex = overItems.findIndex(item => item.id === over.id);
-    
-      // Remove the card from the active container
-      const [movedCard] = activeItems.splice(activeIndex, 1);
-    
-      // Insert the card into the new container's cards array
-      if (activeColumnIndex === overColumnIndex) {
-        // If moving within the same container, just reorder the cards
-        activeItems.splice(overIndex, 0, movedCard);
-      } else {
-        // If moving to a different container, add the card to the over container
-        overItems.splice(overIndex, 0, movedCard);
-      }
-      console.log({
-        activeItems,
-        overItems
-      })
-      // Update the state with the new cards array for both containers
-      const updatedColumns = [...prev];
-      updatedColumns[activeColumnIndex] = {
-        ...updatedColumns[activeColumnIndex],
-        cards: activeItems,
-      };
-      updatedColumns[overColumnIndex] = {
-        ...updatedColumns[overColumnIndex],
-        cards: overItems,
-      };
-    
-      return updatedColumns;
-    });
-    
+        const activeIndex = items.findIndex((card) => card.id === active.id);
+        const overIndex = items.findIndex((card) => card.id === over.id);
+
+        if (activeIndex !== overIndex) {
+          // Move item within the same container
+          const newItems = arrayMove(items, activeIndex, overIndex);
+
+          const newContainers = [...prev];
+          newContainers[containerIndex] = {
+            ...newContainers[containerIndex],
+            cards: newItems,
+          };
+
+          return newContainers;
+        }
+
+        return prev;
+      });
+    } else {
+      // Moving to a different container
+      setContainers((prev) => {
+        const activeColumnIndex = prev.findIndex(
+          (column) => column.id === activeContainerId
+        );
+        const overColumnIndex = prev.findIndex(
+          (column) => column.id === overContainerId
+        );
+
+        const activeItems = [...prev[activeColumnIndex].cards];
+        const overItems = [...(prev[overColumnIndex].cards || [])];
+
+        const activeIndex = activeItems.findIndex(
+          (card) => card.id === active.id
+        );
+
+        const [movedCard] = activeItems.splice(activeIndex, 1);
+
+        const overIndex = overItems.findIndex((card) => card.id === over.id);
+
+        // Insert the card into the new position in the over container
+        if (overIndex === -1) {
+          // If overIndex is -1, it means the container is empty, so just push the card
+          overItems.push(movedCard);
+        } else {
+          overItems.splice(overIndex, 0, movedCard);
+        }
+
+        const newContainers = [...prev];
+        newContainers[activeColumnIndex] = {
+          ...newContainers[activeColumnIndex],
+          cards: activeItems,
+        };
+        newContainers[overColumnIndex] = {
+          ...newContainers[overColumnIndex],
+          cards: overItems,
+        };
+
+        return newContainers;
+      });
+    }
   };
 
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    console.log('handleDragEnd', {active, over})
+    if (!over) return;
+  
+    const activeContainerId = active.data.current.sortable.containerId;
+    const overContainerId = over.data.current.sortable.containerId;
+  
+    // Check if the drag and drop are happening within the same container
+    if (activeContainerId === overContainerId) {
+      // Find the index of the active item and the over item
+      const containerIndex = containers.findIndex(column => column.id === activeContainerId);
+      const items = containers[containerIndex].cards ? [...containers[containerIndex].cards] : [];
+  
+      const activeIndex = items.findIndex(card => card.id === active.id);
+      const overIndex = items.findIndex(card => card.id === over.id);
+  
+      // If the indices are the same, no need to move anything
+      if (activeIndex !== overIndex) {
+        const newItems = arrayMove(items, activeIndex, overIndex);
+  
+        // Update the state with the reordered items
+        setContainers(prevContainers => {
+          const newContainers = [...prevContainers];
+          newContainers[containerIndex] = {
+            ...newContainers[containerIndex],
+            cards: newItems,
+          };
+          return newContainers;
+        });
+      }
+    }
+  };
+
+  
   return (
     <>
       <DndContext
         sensors={sensors}
         onDragStart={handleDragStart}
         onDragOver={handleDragOver}
+        onDragEnd={handleDragEnd}
         collisionDetection={closestCenter}
       >
         <div
@@ -104,12 +169,25 @@ const KanbanBoard = () => {
           }}
         >
           {containers.map((container) => (
-            <DroppableContainer
+            <Paper
               key={container.id}
-              id={container.id}
-              items={container.cards}
-              isDragging={activeContainer?.id === container.id}
-            />
+              style={{
+                // padding: '16px',
+                width: "300px",
+                height: "80vh",
+                overflow: "auto",
+                borderRadius: "1rem",
+                // backgroundColor: '#26292C', // TODO: Column bg color
+                // color: 'lightgrey', // TODO: Column font color
+              }}
+            >
+              <DroppableContainer
+                key={container.id}
+                id={container.id}
+                items={container.cards}
+                isDragging={activeContainer?.id === container.id}
+              />
+            </Paper>
           ))}
         </div>
         <DragOverlay>
