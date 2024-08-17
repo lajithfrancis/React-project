@@ -5,6 +5,7 @@ import MoviePage from './components/movies'
 import Cards from './components/cards';
 import Board from './components/kanban-board';
 import SideBarV2 from './components/side-bar-v2';
+import KanbanBoardV2 from './components/kanban-board-v2';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path='/tasks' element={<Tasks />} />
         <Route path='/movies' element={<MoviePage />} />
         <Route path='/board' element={<Board />} />
+        <Route path='/board-V2' element={<KanbanBoardV2 />} />
         <Route path='/sidebar' element={<SideBarV2 />} />
       </Routes>
       <Section level={10}></Section>

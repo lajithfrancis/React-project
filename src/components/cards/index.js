@@ -120,6 +120,11 @@ export default function Cards() {
       description: 'Kanban board for visual treat',
       route: '/board',
     },
+    {
+      title: 'Kanban Board v2',
+      description: 'Kanban board using @dnd-kit',
+      route: '/board-v2',
+    },
   ];
   return (
     <div
