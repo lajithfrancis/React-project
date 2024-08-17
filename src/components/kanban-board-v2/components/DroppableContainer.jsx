@@ -14,8 +14,8 @@ export default function DroppableContainer({ id, items }) {
         }}
       >
         <h2>{id}</h2>
-        {items.map((itemId) => (
-          <SortableItem key={itemId} id={itemId} />
+        {items.map((item) => (
+          <SortableItem key={item.id} id={item.id} />
         ))}
       </div>
     </SortableContext>
