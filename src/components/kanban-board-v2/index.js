@@ -1,11 +1,10 @@
 // src/App.js
+import { Container, CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React, { useState } from 'react';
-import { Button, Container, CssBaseline, Typography } from '@mui/material';
-import KanbanBoard from './KanbanBoard';
 import { BoardProvider } from './context/BoardContext';
 import Drawer from './Drawer';
-import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@mui/material/styles';
+import KanbanBoard from './KanbanBoard';
 
 const KanbanBoardV2 = () => {
   const [isDark, setIsDark] = useState(false);

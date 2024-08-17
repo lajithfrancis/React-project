@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import {
   closestCenter,
   DndContext,
@@ -9,10 +7,11 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-
-import SortableItem from './components/SortableItem';
-import DroppableContainer from './components/DroppableContainer';
+import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { Paper } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import DroppableContainer from './components/DroppableContainer';
+import SortableItem from './components/SortableItem';
 import { useColumnContext } from './context/BoardContext';
 import { ACTION_TYPES } from './Reducer';
 

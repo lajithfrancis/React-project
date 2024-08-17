@@ -1,9 +1,7 @@
 import { arrayMove } from '@dnd-kit/sortable';
-import { v4 as uuidv4 } from 'uuid';
 
 export const ACTION_TYPES = {
   DRAG_OVER: 'BOARD_DRAG_OVER',
-  DRAG_END: 'BOARD_DRAG_END',
 };
 
 export function BoardReducer(state, action) {
