@@ -1,14 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { Button, Grid, Fade } from '@mui/material';
-import Column from './column/Column';
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import React, { useState } from 'react';
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable } from '@dnd-kit/sortable';
 import { closestCenter, DndContext, DragOverlay, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { useCardContext, useColumnContext } from './context/BoardContext';
-import CardDetailsPage from './card/CardDetails';
-import AddNewColumn from './column/AddNewColumn';
-import Draggable from './components/Draggable';
-import Droppable from './components/Droppable';
-// import { SortableItem } from './components/SortableItem';
 import { CSS } from '@dnd-kit/utilities';
 
 const initialData = {
