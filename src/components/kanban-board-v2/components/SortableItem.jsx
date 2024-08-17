@@ -8,10 +8,8 @@ export default function SortableItem({ id, isOverlay, card }) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    padding: '10px',
     margin: '5px',
     backgroundColor: isOverlay ? '#e0e0e0' : '#fff',
-    border: '1px solid #ccc',
     position: 'relative',
   };
 
