@@ -13,7 +13,6 @@ export default function SortableItem({ id, isOverlay, card }) {
     backgroundColor: isOverlay ? "#e0e0e0" : "#fff",
     border: "1px solid #ccc",
     position: "relative",
-    zIndex: isOverlay ? 10000 : "auto", // Ensure overlay item is above all,
   };
   
   return (

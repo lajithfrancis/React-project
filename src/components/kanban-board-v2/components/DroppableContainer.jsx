@@ -17,21 +17,12 @@ export default function DroppableContainer({ id, items }) {
         items={items}
         strategy={verticalListSortingStrategy}
       >
-        <div
-          style={{
-            padding: "20px",
-            // backgroundColor: "#f0f0f0",
-            // width: "200px",
-            overflow: "visible", // Ensure the overflow is visible
-            position: "relative", // Relative position helps with positioning the DragOverlay
-          }}
-        >
+        <div>
           {items.map((item) => (
             <SortableItem key={item.id} id={item.id} card={item} />
           ))}
         </div>
       </SortableContext>
-      {/* {items.length === 0 && <p>Drop items here</p>} */}
     </div>
   );
 }
