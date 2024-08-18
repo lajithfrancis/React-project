@@ -20,7 +20,6 @@ export default function Column({ container, activeContainer }) {
   });
 
   const style = {
-    margin: '2rem',
     transition,
     transform: CSS.Transform.toString(transform),
     opacity: isDragging && '40%',
