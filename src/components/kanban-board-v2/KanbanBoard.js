@@ -7,7 +7,10 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+} from '@dnd-kit/sortable';
 import React, { useEffect, useState } from 'react';
 import Column from './components/Column';
 import SortableItem from './components/SortableItem';
@@ -29,6 +32,10 @@ const KanbanBoard = () => {
 
   const handleDragStart = (event) => {
     const { active } = event;
+    console.log('handleDragStart', { event });
+    if (event.active.data?.current?.type === 'column') {
+      return;
+    }
     setActiveId(active.id);
     setActiveCard();
     setActiveContainer(
@@ -49,11 +56,17 @@ const KanbanBoard = () => {
 
   const handleDragOver = (event) => {
     const { active, over } = event;
+    console.log('handleDragOver', { event });
+    if (event.active.data?.current?.type === 'column') {
+      return;
+    }
     colDispatch({
       type: ACTION_TYPES.DRAG_OVER,
       active,
       over,
     });
+    setActiveCard(null);
+    setActiveContainer(null);
   };
 
   return (
@@ -72,15 +85,17 @@ const KanbanBoard = () => {
             position: 'relative',
           }}
         >
-          {containers.map((container) => (
-            <Column container={container} activeContainer={activeContainer} />
-          ))}
+          <SortableContext items={containers}>
+            {containers.map((container) => (
+              <Column container={container} activeContainer={activeContainer} />
+            ))}
+          </SortableContext>
         </div>
-        <DragOverlay>
+        {/* <DragOverlay>
           {activeId && (
             <SortableItem id={activeId} card={activeCard} isOverlay />
           )}
-        </DragOverlay>
+        </DragOverlay> */}
       </DndContext>
     </>
   );
