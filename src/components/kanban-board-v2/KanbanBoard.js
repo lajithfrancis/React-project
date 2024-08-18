@@ -65,6 +65,10 @@ const KanbanBoard = () => {
       active,
       over,
     });
+  };
+
+  const handleDragEnd = () => {
+    setActiveId(null);
     setActiveCard(null);
     setActiveContainer(null);
   };
@@ -75,6 +79,7 @@ const KanbanBoard = () => {
         sensors={sensors}
         onDragStart={handleDragStart}
         onDragOver={handleDragOver}
+        onDragEnd={handleDragEnd}
         collisionDetection={closestCenter}
       >
         <div
@@ -91,11 +96,11 @@ const KanbanBoard = () => {
             ))}
           </SortableContext>
         </div>
-        {/* <DragOverlay>
+        <DragOverlay>
           {activeId && (
             <SortableItem id={activeId} card={activeCard} isOverlay />
           )}
-        </DragOverlay> */}
+        </DragOverlay>
       </DndContext>
     </>
   );
