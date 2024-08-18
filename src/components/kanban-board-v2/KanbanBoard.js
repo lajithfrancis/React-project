@@ -29,6 +29,12 @@ const KanbanBoard = () => {
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250, // Require a 250ms hold before dragging starts
+        tolerance: 5, // Allow slight movement (5px) before canceling the drag
+      },
     })
   );
 
