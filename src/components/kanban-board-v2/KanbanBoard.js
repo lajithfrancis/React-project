@@ -8,8 +8,10 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import {
+  horizontalListSortingStrategy,
   SortableContext,
   sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import React, { useEffect, useState } from 'react';
 import Column from './components/Column';
@@ -32,7 +34,6 @@ const KanbanBoard = () => {
 
   const handleDragStart = (event) => {
     const { active } = event;
-    console.log('handleDragStart', { event });
     if (event.active.data?.current?.type === 'column') {
       return;
     }
@@ -56,7 +57,6 @@ const KanbanBoard = () => {
 
   const handleDragOver = (event) => {
     const { active, over } = event;
-    console.log('handleDragOver', { event });
     if (event.active.data?.current?.type === 'column') {
       return;
     }
@@ -67,7 +67,24 @@ const KanbanBoard = () => {
     });
   };
 
-  const handleDragEnd = () => {
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    console.log('handleDragEnd', {
+      active: active.data.current.sortable.containerId,
+      over: over.data.current.sortable.containerId,
+    });
+    console.log('current index', active.data.current.sortable.index);
+    console.log('over index', over.data.current.sortable.index);
+    if (event.active.data?.current?.type === 'column') {
+      colDispatch({
+        type: ACTION_TYPES.MOVE_COLUMN,
+        payload: {
+          from: active.data.current.sortable.index,
+          to: over.data.current.sortable.index,
+        },
+      });
+      return;
+    }
     setActiveId(null);
     setActiveCard(null);
     setActiveContainer(null);
@@ -82,20 +99,27 @@ const KanbanBoard = () => {
         onDragEnd={handleDragEnd}
         collisionDetection={closestCenter}
       >
-        <div
-          style={{
-            display: 'flex',
-            gap: '20px',
-            overflow: 'visible',
-            position: 'relative',
-          }}
+        <SortableContext
+          items={containers}
+          strategy={horizontalListSortingStrategy}
         >
-          <SortableContext items={containers}>
+          <div
+            style={{
+              display: 'flex',
+              gap: '20px',
+              overflow: 'visible',
+              position: 'relative',
+            }}
+          >
             {containers.map((container) => (
-              <Column container={container} activeContainer={activeContainer} />
+              <Column
+                key={container.id}
+                container={container}
+                activeContainer={activeContainer}
+              />
             ))}
-          </SortableContext>
-        </div>
+          </div>
+        </SortableContext>
         <DragOverlay>
           {activeId && (
             <SortableItem id={activeId} card={activeCard} isOverlay />

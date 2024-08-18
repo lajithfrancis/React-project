@@ -20,6 +20,7 @@ export default function Column({ container, activeContainer }) {
   });
 
   const style = {
+    margin: '2rem',
     transition,
     transform: CSS.Transform.toString(transform),
     opacity: isDragging && '40%',
@@ -39,7 +40,7 @@ export default function Column({ container, activeContainer }) {
         <DroppableContainer
           key={container.id}
           id={container.id}
-          items={container.cards}
+          container={container}
           isDragging={activeContainer?.id === container.id}
         />
       </Paper>

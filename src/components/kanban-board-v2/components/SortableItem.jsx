@@ -4,11 +4,12 @@ import Card from './Card';
 
 export default function SortableItem({ id, isOverlay, card }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
+    useSortable({ id, card });
   const style = {
+    // padding: '1rem',
     transform: CSS.Transform.toString(transform),
     transition,
-    margin: '5px',
+    margin: '1rem',
     backgroundColor: isOverlay ? '#e0e0e0' : '#fff',
     position: 'relative',
   };

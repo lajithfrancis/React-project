@@ -1,23 +1,17 @@
+import { useDroppable } from '@dnd-kit/core';
 import {
   SortableContext,
   verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import SortableItem from "./SortableItem";
-import { useDroppable } from "@dnd-kit/core";
-import { useColumnContext } from "../context/BoardContext";
+} from '@dnd-kit/sortable';
+import SortableItem from './SortableItem';
 
-export default function DroppableContainer({ id }) {
-  const { boardColumns: containers } = useColumnContext();
-  const findContainer = (id) => {
-    return containers.find((container) => container.id === id);
-  };
-  const container = findContainer(id)
+export default function DroppableContainer({ id, container }) {
   const { isOver, setNodeRef } = useDroppable({
     id,
   });
   return (
     <div ref={setNodeRef}>
-      <h2>{id}</h2>
+      <h2>{container.title}</h2>
       <SortableContext
         id={id}
         items={container.cards}

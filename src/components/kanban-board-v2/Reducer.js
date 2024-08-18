@@ -2,6 +2,7 @@ import { arrayMove } from '@dnd-kit/sortable';
 
 export const ACTION_TYPES = {
   DRAG_OVER: 'BOARD_DRAG_OVER',
+  MOVE_COLUMN: 'MOVE_COLUMN',
 };
 
 function updateContainerCards(containers, columnIndex, newCards) {
@@ -72,6 +73,9 @@ export function BoardReducer(state, action) {
 
         return newContainers;
       }
+    }
+    case ACTION_TYPES.MOVE_COLUMN: {
+      return arrayMove(state, action.payload.from, action.payload.to);
     }
     default: {
       throw Error('Unknown action: ' + action.type);

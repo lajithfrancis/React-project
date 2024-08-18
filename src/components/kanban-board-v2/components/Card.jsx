@@ -9,6 +9,7 @@ export default function Card({ id, card }) {
         width: '100%',
         height: '100%',
         zIndex: 10,
+        position: 'relative',
       }}
     >
       <Typography variant='h6'>{card?.title}</Typography>
