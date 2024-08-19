@@ -101,6 +101,11 @@ const KanbanBoard = () => {
       });
       return;
     }
+    colDispatch({
+      type: ACTION_TYPES.DRAG_OVER,
+      active,
+      over,
+    });
     setActiveId(null);
     setActiveCard(null);
     setActiveContainer(null);
