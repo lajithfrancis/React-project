@@ -66,6 +66,16 @@ const KanbanBoard = () => {
     if (event.active.data?.current?.type === 'column') {
       return;
     }
+    if (!over || active.id === over.id) return;
+    const activeContainerId = active.data.current.sortable.containerId;
+    const overContainerId = over.data.current.sortable.containerId;
+    if (activeContainerId === overContainerId) return;
+    console.log({
+      activeContainerId,
+      overContainerId,
+      activeId: active.id,
+      overId: over.id
+    })
     colDispatch({
       type: ACTION_TYPES.DRAG_OVER,
       active,
