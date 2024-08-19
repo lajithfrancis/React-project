@@ -11,8 +11,7 @@ import {
 import {
   horizontalListSortingStrategy,
   SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
+  sortableKeyboardCoordinates
 } from '@dnd-kit/sortable';
 import React, { useEffect, useState } from 'react';
 import Column from './components/Column';
