@@ -3,18 +3,24 @@ import Child from "./child";
 
 export default function ReRenderScenarios() {
   const [toggle, setToggle] = useState(true);
-  const [info, setInfo] = useState('child')
+  const [info, setInfo] = useState()
   useEffect(() => {
-    console.log(`Parent re-rendered`);
+    console.log(`Parent re-rendered due to toggle`);
   }, [toggle]);
+  useEffect(() => {
+    console.log(`Parent re-rendered due to info`);
+  }, [info]);
   const handleOnClick = () => {
-    setToggle(!toggle);
-    setInfo(`'child': ${toggle}`)
+    setToggle(prevToggle => {
+        const newToggle = !prevToggle;
+        setInfo(`${newToggle}`);
+        return newToggle;
+      });
   }
   return (
     <>
       <h1>Re-render scenarios</h1>
-      <button onClick={handleOnClick}>Re-render para</button>
+      <button onClick={handleOnClick}>Check - {toggle ? 'true' : 'false'}</button>
       <Child name={info} />
     </>
   );

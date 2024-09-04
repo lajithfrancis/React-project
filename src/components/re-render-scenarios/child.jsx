@@ -4,5 +4,5 @@ export default function Child({ name }) {
   useEffect(() => {
     console.log(`Child re-rendered`); 
   }, [])
-  return <p>Child: {name}</p>;
+  return <p>Child element with parent toggle status change {name}</p>;
 }
