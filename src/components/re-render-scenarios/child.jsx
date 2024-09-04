@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React, { } from "react";
 
 export default function Child({ name }) {
-  useEffect(() => {
-    console.log(`Child re-rendered`); 
-  }, [])
+  console.log('Child component rendered');
   return <p>Child element with parent toggle status change {name}</p>;
 }
