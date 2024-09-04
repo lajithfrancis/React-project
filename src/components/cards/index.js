@@ -125,6 +125,11 @@ export default function Cards() {
       description: 'Kanban board using @dnd-kit',
       route: '/board-v2',
     },
+    {
+      title: 'Re-render scenarios',
+      description: 'Re-render scenarios',
+      route: '/re-render-scenarios',
+    },
   ];
   return (
     <div
