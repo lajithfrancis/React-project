@@ -6,12 +6,14 @@ import Cards from './components/cards';
 import Board from './components/kanban-board';
 import SideBarV2 from './components/side-bar-v2';
 import KanbanBoardV2 from './components/kanban-board-v2';
+import ReRenderScenarios from './components/re-render-scenarios';
 
 export default function App() {
   return (
     <>
       <Routes>
         <Route path='/' element={<Cards />} />
+        <Route path='/re-render-scenarios' element={<ReRenderScenarios />} />
         <Route path='/tasks' element={<Tasks />} />
         <Route path='/movies' element={<MoviePage />} />
         <Route path='/board' element={<Board />} />
