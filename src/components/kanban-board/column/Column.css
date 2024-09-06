@@ -1,0 +1,7 @@
+.delete-button {
+    color: lightgrey !important
+}
+
+.delete-button:hover {
+    color: black !important
+}

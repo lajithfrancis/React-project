@@ -1,0 +1,17 @@
+
+.bg-col {
+    background-color: #EEEEEE;
+}
+
+.bg-toolbar {
+    background-color: #30343F;
+    margin-left: 60px;
+}
+
+.drop-area {
+    opacity: 1;
+}
+
+.drop-area-hidden {
+    opacity: 0;
+}
